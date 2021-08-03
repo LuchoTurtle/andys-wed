@@ -5,10 +5,10 @@
 }
 
 html,
-body
-{
+body {
     height: 100vh;
     font-family: 'Poppins';
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
 }
 
 .webgl

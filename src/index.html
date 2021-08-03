@@ -6,18 +6,26 @@
     <title>ThreeJS Starter</title>
 </head>
 <body>
-    <main>
-        <div data-scroll-container>
-            <div data-scroll-section>
+    <div data-scroll-container>
+        <div class="section" data-scroll-section>
+            <div>
                 <h1 data-scroll>Hey</h1>
-                <p data-scroll>👋</p>
-            </div>
-            <div data-scroll-section>
-                <h2 data-scroll data-scroll-speed="1">What's up?</h2>
-                <p data-scroll data-scroll-speed="2">😬</p>
+                <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="12" style="margin-left: 20vw;">👋</p>
             </div>
         </div>
-    </main>
+        <div class="section" data-scroll-section>
+            <div>
+                <h2 data-scroll data-scroll-speed="1">Looks like rain</h2>
+                <p data-scroll data-scroll-speed="4">🌧</p>
+            </div>
+        </div>
+        <div class="section" data-scroll-section>
+            <div>
+                <h2 data-scroll data-scroll-speed="1">Have an apple</h2>
+                <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="-6">🍎</p>
+            </div>
+        </div>
+    </div>
     <canvas class="webgl"></canvas>
 </body>
 </html>

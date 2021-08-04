@@ -1,4 +1,4 @@
-import './style.css'
+import './style.scss'
 import './locomotive.css'
 import LocomotiveScroll from 'locomotive-scroll';
 

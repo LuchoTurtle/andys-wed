@@ -1,12 +1,11 @@
-import './style.scss'
-import './locomotive.css'
 import LocomotiveScroll from 'locomotive-scroll';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import './style.scss'
+import './locomotive.css'
+import {VarConst, VarLet} from "./vars";
+
 gsap.registerPlugin(ScrollTrigger);
-
-
-const progress_bar = document.querySelector('.progress-bar')
 
 const locoScroll = new LocomotiveScroll({
     el: document.querySelector(".smooth-scroll"),
@@ -35,7 +34,7 @@ ScrollTrigger.refresh();
 /* Progress Bar */
 locoScroll.on('scroll', ({ limit, scroll }) => {
     const progress = 100 - (scroll.y / limit.y * 100)
-    progress_bar.style.transform = `translateY(-${progress}%)`
+    VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
 })
 
 

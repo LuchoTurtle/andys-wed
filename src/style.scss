@@ -15,116 +15,54 @@ section {
     position: fixed;
 }
 
-/** New nav */
+/* Nav */
 nav {
+    display: flex;
+    flex: 1;
     height: 100%;
     width: 100%;
-}
-
-
-/** Nav **/
-.menu {
-    line-height: 1;
-    margin: 0 auto 3em;
-    /*
-    transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-
-     */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    z-index: 5000 // https://medium.com/science-journal/z-index-organization-in-css-5913fd4c25c9
-}
-
-.menu__list {
-    position: relative;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.menu__item {
-    display: block;
-    margin: 1em 0;
-}
-
-.menu__link {
-    font-size: 1.05em;
-    font-weight: bold;
-    display: block;
-    padding: 1em;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -khtml-user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.menu__link:hover,
-.menu__link:focus {
-    outline: none;
-}
-
-/* Maria */
-
-.menu--maria .menu__item {
-    position: relative;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
     flex-direction: column;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
+}
+
+.menu-padding {
+    flex: 2;
+}
+
+.menu-container {
+    display: flex;
+    flex: 8;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    margin: 0 1.25em;
-    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.menu--maria .menu__item::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 140%;
-    height: 4px;
-    background: #d94f5c;
-    -webkit-transform: rotate3d(0, 0, 1, -45deg) scale3d(0, 1, 1);
-    transform: rotate3d(0, 0, 1, -45deg) scale3d(0, 1, 1);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition: -webkit-transform 0.4s;
-    transition: transform 0.4s;
+.menu-container_submenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 }
 
-.menu--maria .menu__item.menu__item--current::before {
-    -webkit-transform: rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
-    transform: rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
+.menu-container_submenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 }
 
-.menu--maria .menu__link {
-    position: relative;
-    color: #929292;
-    -webkit-transition: color 0.4s;
-    transition: color 0.4s;
-}
-
-.menu--maria .menu__link:hover,
-.menu--maria .menu__link:focus {
-    color: #d94f5c;
-}
-
-.menu--maria .menu__item.menu__item--current .menu__link {
-    color: #333;
+.menu-container_submenu--rotate {
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+    /* IE */
+    -ms-transform: rotate(-90deg);
+    /* Opera */
+    -o-transform: rotate(-90deg);
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }

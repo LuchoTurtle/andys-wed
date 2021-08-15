@@ -35,21 +35,19 @@ ScrollTrigger.refresh();
 locoScroll.on('scroll', ({ limit, scroll }) => {
     const progress = 100 - (scroll.y / limit.y * 100)
     VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
-})
-
-
-/*
-// --- RED PANEL ---
-gsap.to('progress', {
-    value: 100,
-    ease: 'none',
-    scrollTrigger: {
-        scroller: ".smooth-scroll",
-        //markers: true,
-        scrub: 0.3,
-        start: "top top",
-        end: "bottom bottom"
-    }
 });
- */
+
+/* Menu toggle highlight */
+
+const sub_menus = document.getElementsByClassName("menu-container_submenu");
+
+const highlight = function() {
+    let current_highlight = document.getElementsByClassName("menu__item--current")[0]
+    current_highlight.classList.remove("menu__item--current")
+    this.classList.add("menu__item--current")
+};
+
+Array.from(sub_menus).forEach(function(element) {
+    element.addEventListener('click', highlight);
+});
 

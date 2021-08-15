@@ -10,12 +10,12 @@ section {
 
 $sidebar-width: 13vw;
 
-/* Content */
+/* Content -------------- */
 .content {
     margin-left: $sidebar-width;
 }
 
-/* Sidebar */
+/* Sidebar -------------- */
 .sidebar {
     background-color: lightgray;
     width: $sidebar-width;
@@ -40,6 +40,7 @@ nav {
     flex-direction: column;
 }
 
+/* Menu styles */
 .menu-padding {
     flex: 2;
 }
@@ -70,15 +71,87 @@ nav {
     justify-content: center;
 }
 
-.menu-container_submenu--rotate {
-    /* Safari */
+.menu__item {
+    display: block;
+    margin: 0 1em;
+
+    // Rotating on all browsers
     -webkit-transform: rotate(-90deg);
-    /* Firefox */
     -moz-transform: rotate(-90deg);
-    /* IE */
     -ms-transform: rotate(-90deg);
-    /* Opera */
     -o-transform: rotate(-90deg);
-    /* Internet Explorer */
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.menu__link {
+    font-size: 1.05em;
+    font-weight: bold;
+    display: block;
+    padding: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    position: relative;
+    text-align: center;
+    color: #b5b5b5;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.menu__link:hover,
+.menu__link:focus {
+    outline: none;
+}
+
+.menu__link:hover,
+.menu__link:focus {
+    color: #929292;
+}
+
+.menu__item--current .menu__link {
+    color: #d94f5c;
+}
+
+.menu__link::before,
+.menu__link::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    border: 2px solid #d94f5c;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.17, 0.67, 0.05, 1.29);
+    transition-timing-function: cubic-bezier(0.17, 0.67, 0.05, 1.29);
+}
+
+.menu__link::before {
+    top: 0;
+    left: 0;
+    border-width: 2px 0 0 2px;
+    -webkit-transform: translate3d(10px, 10px, 0);
+    transform: translate3d(10px, 10px, 0);
+}
+
+.menu__link::after {
+    right: 0;
+    bottom: 0;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: translate3d(-10px, -10px, 0);
+    transform: translate3d(-10px, -10px, 0);
+}
+
+.menu__item--current .menu__link::before,
+.menu__item--current .menu__link::after {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }

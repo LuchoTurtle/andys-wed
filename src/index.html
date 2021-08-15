@@ -6,44 +6,46 @@
     <title>ThreeJS Starter</title>
 </head>
 <body>
-
-    <div style="background-color: lightgray; width: 13vw; height: 100%; position: fixed; z-index: 10000">
-        <div class="progress-bar"></div>
-        <nav>
-            <div class="menu-padding"></div>
-            <div class="menu-container">
-                <div class="menu-container_submenu">
-                    <span class="menu-container_submenu--rotate">bruh</span>
-                </div>
-                <div class="menu-container_submenu">
-                    <span class="menu-container_submenu--rotate">bruh</span>
-                </div>
-                <div class="menu-container_submenu">
-                    <span class="menu-container_submenu--rotate">bruh</span>
-                </div>
-            </div>
-            <div class="menu-padding"></div>
-        </nav>
-    </div>
     <div data-scroll-container class="smooth-scroll">
-        <section data-scroll-section>
-            <div>
-                <h1 data-scroll>Hey</h1>
-                <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="12" style="margin-left: 20vw;">👋</p>
-            </div>
-        </section>
-        <section data-scroll-section>
-            <div>
-                <h2 data-scroll data-scroll-speed="1">Looks like rain</h2>
-                <p data-scroll data-scroll-speed="4">🌧</p>
-            </div>
-        </section>
-        <section data-scroll-section>
-            <div>
-                <h2 data-scroll data-scroll-speed="1">Have an apple</h2>
-                <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="-6">🍎</p>
-            </div>
-        </section>
+        <div class="sidebar">
+            <div class="progress-bar"></div>
+            <nav>
+                <div class="menu-padding"></div>
+                <div class="menu-container">
+                    <div class="menu-container_submenu">
+                        <span class="menu-container_submenu--rotate">bruh</span>
+                    </div>
+                    <div class="menu-container_submenu">
+                        <span class="menu-container_submenu--rotate">bruh</span>
+                    </div>
+                    <div class="menu-container_submenu">
+                        <span class="menu-container_submenu--rotate">bruh</span>
+                    </div>
+                </div>
+                <div class="menu-padding"></div>
+            </nav>
+        </div>
+
+        <div class="content">
+            <section data-scroll-section>
+                <div>
+                    <h1 data-scroll>Hey</h1>
+                    <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="12" style="margin-left: 20vw;">👋</p>
+                </div>
+            </section>
+            <section data-scroll-section>
+                <div>
+                    <h2 data-scroll data-scroll-speed="1">Looks like rain</h2>
+                    <p data-scroll data-scroll-speed="4">🌧</p>
+                </div>
+            </section>
+            <section data-scroll-section>
+                <div>
+                    <h2 data-scroll data-scroll-speed="1">Have an apple</h2>
+                    <p data-scroll data-scroll-direction="horizontal" data-scroll-speed="-6">🍎</p>
+                </div>
+            </section>
+        </div>
     </div>
     <canvas class="webgl"></canvas>
 </body>

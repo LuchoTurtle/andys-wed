@@ -8,6 +8,22 @@ section {
     place-items: center;
 }
 
+$sidebar-width: 13vw;
+
+/* Content */
+.content {
+    margin-left: $sidebar-width;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: lightgray;
+    width: $sidebar-width;
+    height: 100%;
+    position: fixed;
+    z-index: 10000
+}
+
 .progress-bar {
     background-color: red;
     height: 100% ;

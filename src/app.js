@@ -12,6 +12,11 @@ const locoScroll = new LocomotiveScroll({
     smooth: true
 });
 
+window.addEventListener('resize', () =>
+{
+    locoScroll.update()
+});
+
 /* Linking GSAP with Locomotive Scroll - making sure they update accordingly --------------------------------- */
 locoScroll.on("scroll", ScrollTrigger.update);
 ScrollTrigger.scrollerProxy(".smooth-scroll", {
@@ -32,10 +37,23 @@ ScrollTrigger.refresh();
 /* --------------------------------- */
 
 /* Progress Bar */
+function updateProgressBarDirection(progress) {
+    if (x.matches) {
+        VarConst.progress_bar.style.transform = `translateX(-${progress}%)`
+    } else {
+        VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
+    }
+}
+
+let tablet_breakpoint = window.matchMedia("(max-width: 768px)")
+tablet_breakpoint.addEventListener('change', updateProgressBarDirection)
+
+
 locoScroll.on('scroll', ({ limit, scroll }) => {
     const progress = 100 - (scroll.y / limit.y * 100)
-    VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
+    updateProgressBarDirection(progress) // Call listener function at run time
 });
+
 
 /* Menu toggle highlight */
 

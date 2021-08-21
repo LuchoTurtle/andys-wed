@@ -1,0 +1,40 @@
+/**
+* FLEXBOX
+* A mixin to rule complex flexbox layout
+* @author nicolacastellanidev@gmail.com
+* https://dev.to/nicolalc/a-mixin-to-rule-them-all-flexbox-driven-layout-mixin-1h43
+*/
+@mixin flexbox(
+  $display: flex,
+  $direction: row,
+  $placeContent: null,
+  $placeItems: null,
+  $wrap: nowrap,
+  $shrink: 0,
+  $grow: 0,
+  $alignContent: null,
+  $justifyContent: null,
+  $alignItems: null,
+  $justifyItems: null) {
+
+  display: $display;
+  flex-direction: $direction;
+
+  @if $placeContent == null {
+    @if $alignContent   { align-content: $alignContent; }
+    @if $justifyContent { justify-content: $justifyContent; }
+  } @else {
+    place-content: $placeContent;
+  }
+
+  @if $placeItems == null {
+    @if $alignItems   { align-items: $alignItems; }
+    @if $justifyItems { justify-items: $justifyItems; }
+  } @else {
+    place-items: $placeItems;
+  }
+
+  flex-wrap: $wrap;
+  flex-shrink: $shrink;
+  flex-grow: $grow;
+}

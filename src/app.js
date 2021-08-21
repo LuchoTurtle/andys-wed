@@ -1,15 +1,22 @@
 import LocomotiveScroll from 'locomotive-scroll';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import './style.scss'
-import './locomotive.css'
-import {VarConst, VarLet} from "./vars";
+
+import './styles/main.scss'
+import './locomotive_base.css'
+import {VarConst, VarLet} from "./js/vars";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const locoScroll = new LocomotiveScroll({
     el: document.querySelector(".smooth-scroll"),
-    smooth: true
+    smooth: true,
+    smartphone: {
+        smooth: true
+    },
+    tablet: {
+        smooth: true
+    }
 });
 
 window.addEventListener('resize', () =>
@@ -37,15 +44,15 @@ ScrollTrigger.refresh();
 /* --------------------------------- */
 
 /* Progress Bar */
+let tablet_breakpoint = window.matchMedia("(max-width: 768px)")
 function updateProgressBarDirection(progress) {
-    if (x.matches) {
+    if (tablet_breakpoint.matches) {
         VarConst.progress_bar.style.transform = `translateX(-${progress}%)`
     } else {
         VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
     }
 }
 
-let tablet_breakpoint = window.matchMedia("(max-width: 768px)")
 tablet_breakpoint.addEventListener('change', updateProgressBarDirection)
 
 

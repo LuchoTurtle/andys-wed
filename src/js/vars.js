@@ -1,4 +1,16 @@
 import * as THREE from 'three'
+import LocomotiveScroll from "locomotive-scroll";
+
+const loco_scroll = new LocomotiveScroll({
+    el: document.querySelector(".smooth-scroll"),
+    smooth: true,
+    smartphone: {
+        smooth: true
+    },
+    tablet: {
+        smooth: true
+    }
+});
 
 const VarConst = {
     progress_bar: document.querySelector('.progress-bar'),
@@ -12,9 +24,10 @@ const VarConst = {
     THREEnormalBlue: new THREE.Color("#48717F"),
     THREEdarkBlue: new THREE.Color("#29363C"),
     THREEdarkerBlue: new THREE.Color("#171f22"),
-}
+};
 
 let VarLet = {
-}
+    loco_scroll: loco_scroll,
+};
 
 export { VarConst, VarLet }

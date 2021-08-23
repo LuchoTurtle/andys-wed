@@ -5,30 +5,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './styles/main.scss'
 import './locomotive_base.css'
 import {VarConst, VarLet} from "./js/vars";
+import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
 
-const locoScroll = new LocomotiveScroll({
-    el: document.querySelector(".smooth-scroll"),
-    smooth: true,
-    smartphone: {
-        smooth: true
-    },
-    tablet: {
-        smooth: true
-    }
-});
-
 window.addEventListener('resize', () =>
 {
-    locoScroll.update()
+    VarLet.loco_scroll.update()
 });
 
 /* Linking GSAP with Locomotive Scroll - making sure they update accordingly --------------------------------- */
-locoScroll.on("scroll", ScrollTrigger.update);
+VarLet.loco_scroll.on("scroll", ScrollTrigger.update);
 ScrollTrigger.scrollerProxy(".smooth-scroll", {
     scrollTop(value) {
-        return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+        return arguments.length ? VarLet.loco_scroll.scrollTo(value, 0, 0) : VarLet.loco_scroll.scroll.instance.scroll.y;
     },
     getBoundingClientRect() {
         return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
@@ -36,7 +26,7 @@ ScrollTrigger.scrollerProxy(".smooth-scroll", {
     pinType: document.querySelector(".smooth-scroll").style.transform ? "transform" : "fixed"
 });
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
-ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+ScrollTrigger.addEventListener("refresh", () => VarLet.loco_scroll.update());
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
@@ -56,7 +46,7 @@ function updateProgressBarDirection(progress) {
 tablet_breakpoint.addEventListener('change', updateProgressBarDirection)
 
 
-locoScroll.on('scroll', ({ limit, scroll }) => {
+VarLet.loco_scroll.on('scroll', ({ limit, scroll }) => {
     const progress = 100 - (scroll.y / limit.y * 100)
     updateProgressBarDirection(progress) // Call listener function at run time
 });

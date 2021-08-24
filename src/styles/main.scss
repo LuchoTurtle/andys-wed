@@ -1,7 +1,9 @@
 @import '_mixins';
+@import '_vars';
 
 body {
     margin: 0;
+    background-color: map-get(map-get($palettes, yellow), light);
 }
 
 section {
@@ -10,19 +12,11 @@ section {
     place-items: center;
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
-    z-index: -1;
-}
+
 
 $sidebar-width: 60px;
 
 $breakpoint-tablet: 768px;
-
 
 /* Content -------------- */
 .content {
@@ -32,7 +26,6 @@ $breakpoint-tablet: 768px;
 
 /* Navbar -------------- */
 .navbar {
-    background-color: lightgray;
     height: 60px;
     width: 100%;
     position: fixed;
@@ -45,7 +38,7 @@ $breakpoint-tablet: 768px;
 
     /* Progress bar */
     .progress-bar {
-        background-color: red;
+        background-color: map-get($palettes, orange);
         height: 3px ;
         width: 100%;
         position: fixed;
@@ -82,6 +75,16 @@ $breakpoint-tablet: 768px;
     }
 
     @import 'menu_animation';
-
 }
+
+/* Three.js */
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    z-index: -1;
+}
+
 

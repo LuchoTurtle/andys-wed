@@ -15,6 +15,13 @@ const loco_scroll = new LocomotiveScroll({
 const VarConst = {
     progress_bar: document.querySelector('.progress-bar'),
 
+    palette_darkblue: "#264653",
+    palette_darkcyan: "#2A9D8F",
+    palette_yellow: "#E9C46A",
+    palette_orange: "#F4A261",
+    palette_red: "#E76F51",
+
+
     lightBlue: "#E9EFEF",
     normalBlue: "#48717F",
     darkBlue: "#29363C",

@@ -1,3 +1,5 @@
+@import '_vars';
+
 /* Menu styles */
 .menu__item {
     display: block;
@@ -33,7 +35,7 @@
 .menu__item--current .menu__link,
 .menu__item--current .menu__link:hover,
 .menu__item--current .menu__link:focus {
-    color: #d94f5c;
+    color: map-get(map-get($palettes, red), dark);
 }
 
 .menu__item--current .menu__link::after,
@@ -83,5 +85,5 @@
 }
 
 .menu__link::after {
-    background: #d94f5c;
+    background: map-get(map-get($palettes, red), dark);;
 }

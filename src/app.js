@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './styles/main.scss'
 import './locomotive_base.css'
 import {VarConst, VarLet} from "./js/vars";
-import "./js/three_script"
+//import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
 

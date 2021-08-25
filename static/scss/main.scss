@@ -48,8 +48,8 @@ $breakpoint-tablet: 768px;
     width: 100%;
     position: fixed;
     z-index: 10000;
-    font-size: 1.05em;
-    font-weight: bold;
+
+    font-size: 1.15em;
     font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 
       @media (min-width: $breakpoint-tablet) {

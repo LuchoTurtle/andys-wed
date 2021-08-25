@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack --config ./bundler/webpack.prod.js",
-    "dev": "webpack serve --config ./bundler/webpack.dev.js"
+    "dev": "webpack serve --hot --progress --config ./bundler/webpack.dev.js"
   },
   "dependencies": {
     "@babel/core": "^7.13.1",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.48.0"
   }
 }

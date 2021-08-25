@@ -2,7 +2,7 @@ import LocomotiveScroll from 'locomotive-scroll';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import './styles/main.scss'
+import '../static/scss/main.scss'
 import './locomotive_base.css'
 import {VarConst, VarLet} from "./js/vars";
 //import "./js/three_script"

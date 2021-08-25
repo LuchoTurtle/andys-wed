@@ -9,94 +9,85 @@ module.exports = {
         app: path.resolve(__dirname, '../src/app.js')
     },
     output:
-    {
-        filename: 'bundle.[contenthash].js',
-        path: path.resolve(__dirname, '../dist')
-    },
+        {
+            filename: 'bundle.[contenthash].js',
+            path: path.resolve(__dirname, '../dist')
+        },
     devtool: 'source-map',
     plugins:
-    [
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: path.resolve(__dirname, '../static') }
-            ]
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html'),
-            minify: true
-        }),
-        new MiniCSSExtractPlugin()
-    ],
-    module:
-    {
-        rules:
         [
-            // HTML
-            {
-                test: /\.(html)$/,
-                use: ['html-loader']
-            },
-
-            // JS
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use:
-                [
-                    'babel-loader'
+            new CopyWebpackPlugin({
+                patterns: [
+                    {from: path.resolve(__dirname, '../static')}
                 ]
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    // Creates `style` nodes from JS strings
-                    "style-loader",
-                    // Translates CSS into CommonJS
-                    "css-loader",
-                    // Compiles Sass to CSS
-                    "sass-loader",
-                ],
-            },
-
-            // CSS
-            {
-                test: /\.css$/,
-                use:
+            }),
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, '../src/index.html'),
+                minify: true
+            }),
+            new MiniCSSExtractPlugin()
+        ],
+    module:
+        {
+            rules:
                 [
-                    MiniCSSExtractPlugin.loader,
-                    'css-loader'
-                ]
-            },
-
-            // Images
-            {
-                test: /\.(jpg|png|gif|svg)$/,
-                use:
-                [
+                    // HTML
                     {
-                        loader: 'file-loader',
-                        options:
-                        {
-                            outputPath: 'assets/images/'
-                        }
-                    }
-                ]
-            },
+                        test: /\.(html)$/,
+                        use: ['html-loader']
+                    },
 
-            // Fonts
-            {
-                test: /\.(ttf|eot|woff|woff2)$/,
-                use:
-                [
+                    // JS
                     {
-                        loader: 'file-loader',
-                        options:
-                        {
-                            outputPath: 'assets/fonts/'
-                        }
-                    }
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use:
+                            [
+                                'babel-loader'
+                            ]
+                    },
+                    {
+                        test: /\.s[ac]ss$/i,
+                        use: [
+                            // Creates `style` nodes from JS strings
+                            "style-loader",
+                            // Translates CSS into CommonJS
+                            "css-loader",
+                            // Compiles Sass to CSS
+                            "sass-loader",
+                        ],
+                    },
+
+                    // CSS
+                    {
+                        test: /\.css$/,
+                        use:
+                            [
+                                MiniCSSExtractPlugin.loader,
+                                'css-loader'
+                            ]
+                    },
+
+                    // Images
+                    {
+                        test: /\.(jpg|png|gif|svg)$/,
+                        use:
+                            [
+                                {
+                                    loader: 'file-loader',
+                                    options:
+                                        {
+                                            outputPath: 'assets/images/'
+                                        }
+                                }
+                            ]
+                    },
+
+                    // Fonts
+                    {
+                        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                        type: 'asset/resource',
+                    },
                 ]
-            }
-        ]
-    }
+        }
 }

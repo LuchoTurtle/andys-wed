@@ -13,6 +13,11 @@ module.exports = {
             filename: 'bundle.[contenthash].js',
             path: path.resolve(__dirname, '../dist')
         },
+    resolve: {
+        alias: {
+            font: path.resolve(__dirname, '../static/font'),
+        },
+    },
     devtool: 'source-map',
     plugins:
         [

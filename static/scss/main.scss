@@ -1,22 +1,6 @@
 @import 'utils/mixins';
 @import 'utils/vars';
-//@import 'utils/font';
-
-@font-face {
-    font-family: "Title";
-    src: url("../font/Rossanova.woff2") format("woff2"),
-    url("../font/Rossanova.woff") format("woff");
-}
-@font-face {
-    font-family: "Subtitle";
-    src: url("../font/Chapaza.woff2") format("woff2"),
-    url("../font/Chapaza.woff") format("woff");
-}
-@font-face {
-    font-family: "Text";
-    src: url("../font/AndBasR.woff2") format("woff2"),
-    url("../font/AndBasR.woff") format("woff");
-}
+@import 'utils/font';
 
 
 body {
@@ -50,7 +34,7 @@ $breakpoint-tablet: 768px;
     z-index: 10000;
 
     font-size: 1.15em;
-    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: subtitle;
 
       @media (min-width: $breakpoint-tablet) {
           width: $sidebar-width;

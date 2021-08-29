@@ -1,5 +1,8 @@
 $palettes: (
-        darkblue: #264653,
+        darkblue: (
+                base: #264653,
+                light: #677e87
+        ) ,
         darkcyan: (
                 base: #2A9D8F,
                 light: #A0E7E5

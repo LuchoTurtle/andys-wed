@@ -1,38 +1,85 @@
-import LocomotiveScroll from 'locomotive-scroll';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import LocomotiveScroll from "locomotive-scroll";
 import '../static/scss/main.scss'
 import './locomotive_base.css'
-import {VarConst, VarLet} from "./js/vars";
+import {VarConst} from "./js/vars";
 //import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
 
-window.addEventListener('resize', () =>
-{
-    VarLet.loco_scroll.update()
+const loco_scroll = new LocomotiveScroll({
+    el: document.querySelector(".smooth-scroll"),
+    smooth: true,
+    smartphone: {
+        smooth: true
+    },
+    tablet: {
+        smooth: true
+    }
 });
 
-/* Linking GSAP with Locomotive Scroll - making sure they update accordingly --------------------------------- */
-VarLet.loco_scroll.on("scroll", ScrollTrigger.update);
+
+window.addEventListener('resize', () => { loco_scroll.update() });
+
+loco_scroll.on("scroll", ScrollTrigger.update);
+
+// tell ScrollTrigger to use these proxy methods for the ".smooth-scroll" element since Locomotive Scroll is hijacking things
 ScrollTrigger.scrollerProxy(".smooth-scroll", {
     scrollTop(value) {
-        return arguments.length ? VarLet.loco_scroll.scrollTo(value, 0, 0) : VarLet.loco_scroll.scroll.instance.scroll.y;
-    },
+        return arguments.length ? loco_scroll.scrollTo(value, 0, 0) :    loco_scroll.scroll.instance.scroll.y;
+    }, // we don't have to define a scrollLeft because we're only scrolling vertically.
     getBoundingClientRect() {
         return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
     },
+    // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
     pinType: document.querySelector(".smooth-scroll").style.transform ? "transform" : "fixed"
 });
+
+
+/* ANIMATIONS START --------------------------------- */
+
+
+
+gsap.from(".line-1", {
+    scrollTrigger: {
+        trigger: ".line-1",
+        scroller: ".smooth-scroll",
+        scrub: true,
+        start: "top bottom",
+        end: "top top",
+        markers: true,
+    },
+    scaleX: 0,
+    transformOrigin: "left center",
+    ease: "none",
+});
+
+
+
+
+
+/* ANIMATIONS end  -------------------------------- */
+
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
-ScrollTrigger.addEventListener("refresh", () => VarLet.loco_scroll.update());
+ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
 
-/* --------------------------------- */
 
+
+
+
+
+
+
+
+
+
+
+
+/* OTHER TINGS -------------------------------------------------------*/
 /* Progress Bar */
 let tablet_breakpoint = window.matchMedia("(max-width: 768px)")
 function updateProgressBarDirection(progress) {
@@ -46,7 +93,7 @@ function updateProgressBarDirection(progress) {
 tablet_breakpoint.addEventListener('change', updateProgressBarDirection)
 
 
-VarLet.loco_scroll.on('scroll', ({ limit, scroll }) => {
+loco_scroll.on('scroll', ({ limit, scroll }) => {
     const progress = 100 - (scroll.y / limit.y * 100)
     updateProgressBarDirection(progress) // Call listener function at run time
 });

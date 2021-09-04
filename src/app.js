@@ -21,6 +21,7 @@ const loco_scroll = new LocomotiveScroll({
 });
 
 
+/* This is configurations to proxy the locomotive scroll behaviour and map it to GSAP. This is because Locomotive hijacks the scrolling behavior ---------------------- */
 window.addEventListener('resize', () => { loco_scroll.update() });
 
 loco_scroll.on("scroll", ScrollTrigger.update);
@@ -45,7 +46,21 @@ ScrollTrigger.defaults({
 /* ANIMATIONS START --------------------------------- */
 
 
+gsap.from(".line-1", {
+    scrollTrigger: {
+        markers: true,
+        trigger: ".story1",
+        scrub: true,
+        pin: true,
+        start: "top top",
+        end: "+=100%"
+    },
+    scaleX: 0,
+    transformOrigin: "left center",
+    ease: "none"
+});
 
+/*
 gsap.from(".line-1", {
     scrollTrigger: {
         trigger: ".line-1",
@@ -59,6 +74,8 @@ gsap.from(".line-1", {
     transformOrigin: "left center",
     ease: "none",
 });
+
+ */
 
 
 

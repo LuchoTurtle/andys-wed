@@ -22,15 +22,6 @@ p {
 
 $sidebar-width: 60px;
 
-/* Content -------------- */
-.content {
-    margin-left: 0;
-
-    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
-        margin-left: $sidebar-width;
-    }
-}
-
 
 /* Navbar -------------- */
 .navbar {
@@ -88,96 +79,114 @@ $sidebar-width: 60px;
     @import 'menu_animation';
 }
 
-/* Hero ---------------- */
-.hero {
+/* Content ------------- */
+.content {
+    margin-left: 0;
+    overflow-y: unset !important;
 
-    &--container {
-        font-family: Title;
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+        margin-left: $sidebar-width;
+    }
 
-        color: map-get(map-get($palettes, darkblue), base);
-        position: relative;
-        overflow: hidden;
+    #content-body {
         width: 100vw;
-        height: 75vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
 
-    &--main {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        align-self: center;
-        height: 50%;
-        width: 70%;
-    }
-
-    &--content {
-        text-align: left;
-        position: absolute;
-        top: 50%;
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: space-between;
-
-        h1 {
-            color: map-get(map-get($palettes, darkblue), base);
-            position: relative;
-            font-size: 3em;
-            margin: 0;
-
-            @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
-                font-size: 4em;
-            }
-
-            @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
-                font-size: 5em;
-            }
-
-            @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
-                font-size: 6em;
-            }
-
+        @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+            width: calc(100vw - #{$sidebar-width});
         }
-        h2 {
-            color: map-get(map-get($palettes, darkblue), light);
-            position: relative;
-            font-size: .8em;
-            margin: 0;
-            opacity: 1;
+        .hero {
 
-            @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
-                font-size: 1em;
+            &--container {
+                font-family: Title;
+
+                color: map-get(map-get($palettes, darkblue), base);
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                height: 75vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
 
-            @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
-                font-size: 1.5em;
+            &--main {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                align-self: center;
+                height: 50%;
+                width: 70%;
             }
 
-            @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
-                font-size: 2em;
-            }
+            &--content {
+                text-align: left;
+                position: absolute;
+                top: 50%;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: space-between;
 
-            &:hover {
-                .more, .smile {
+                h1 {
+                    color: map-get(map-get($palettes, darkblue), base);
+                    position: relative;
+                    font-size: 3em;
+                    margin: 0;
+
+                    @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
+                        font-size: 4em;
+                    }
+
+                    @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
+                        font-size: 5em;
+                    }
+
+                    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+                        font-size: 6em;
+                    }
+
+                }
+                h2 {
+                    color: map-get(map-get($palettes, darkblue), light);
+                    position: relative;
+                    font-size: .8em;
+                    margin: 0;
                     opacity: 1;
-                    transition: opacity .5s ease-in-out;
-                    transition-delay: .25s;
+
+                    @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
+                        font-size: 1em;
+                    }
+
+                    @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
+                        font-size: 1.5em;
+                    }
+
+                    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+                        font-size: 2em;
+                    }
+
+                    &:hover {
+                        .more, .smile {
+                            opacity: 1;
+                            transition: opacity .5s ease-in-out;
+                            transition-delay: .25s;
+                        }
+                        .smile {
+                            transition-delay: 1.5s;
+                        }
+                    }
                 }
-                .smile {
-                    transition-delay: 1.5s;
+                .more, .smile {
+                    opacity: 0;
+                    transition: opacity .5s ease-in-out;
                 }
             }
-        }
-        .more, .smile {
-            opacity: 0;
-            transition: opacity .5s ease-in-out;
         }
     }
 }
+
+
 
 /* Three.js */
 .webgl

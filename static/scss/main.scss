@@ -1,16 +1,7 @@
 @import 'utils/mixins';
 @import 'utils/vars';
 @import 'utils/font';
-
-.line {
-    width: 100%;
-    max-width: 800px;
-    height: 8px;
-    margin: 0 0 10px 0;
-    position: relative;
-    display: inline-block;
-    background-color: rgba(255,255,255,1);
-}
+@import 'story';
 
 body {
     margin: 0;
@@ -23,14 +14,6 @@ section {
     place-items: center;
 }
 
-h1, h2 {
-    font-family: Title;
-}
-
-h3, h4 {
-    font-family: Subtitle;
-}
-
 p {
     font-family: Text;
 }
@@ -39,15 +22,11 @@ p {
 
 $sidebar-width: 60px;
 
-$breakpoint-tablet: 768px;
-$breakpoint-mobileL: 425px;
-$breakpoint-mobileS: 320px;
-
 /* Content -------------- */
 .content {
     margin-left: 0;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
         margin-left: $sidebar-width;
     }
 }
@@ -63,7 +42,7 @@ $breakpoint-mobileS: 320px;
     font-size: 1.15em;
     font-family: subtitle;
 
-      @media (min-width: $breakpoint-tablet) {
+      @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
           width: $sidebar-width;
           height: 100%;
       }
@@ -75,7 +54,7 @@ $breakpoint-mobileS: 320px;
         width: 100%;
         position: fixed;
 
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
             height: 100% ;
             width: 3px;
         }
@@ -94,7 +73,7 @@ $breakpoint-mobileS: 320px;
         flex: 1;
         @include flexbox($direction: row, $alignItems: center, $justifyContent: center, $grow: 1);
 
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
             @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
         }
     }
@@ -113,6 +92,8 @@ $breakpoint-mobileS: 320px;
 .hero {
 
     &--container {
+        font-family: Title;
+
         color: map-get(map-get($palettes, darkblue), base);
         position: relative;
         overflow: hidden;
@@ -148,15 +129,15 @@ $breakpoint-mobileS: 320px;
             font-size: 3em;
             margin: 0;
 
-            @media (min-width: $breakpoint-mobileS) {
+            @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
                 font-size: 4em;
             }
 
-            @media (min-width: $breakpoint-mobileL) {
+            @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
                 font-size: 5em;
             }
 
-            @media (min-width: $breakpoint-tablet) {
+            @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
                 font-size: 6em;
             }
 
@@ -168,15 +149,15 @@ $breakpoint-mobileS: 320px;
             margin: 0;
             opacity: 1;
 
-            @media (min-width: $breakpoint-mobileS) {
+            @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
                 font-size: 1em;
             }
 
-            @media (min-width: $breakpoint-mobileL) {
+            @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
                 font-size: 1.5em;
             }
 
-            @media (min-width: $breakpoint-tablet) {
+            @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
                 font-size: 2em;
             }
 

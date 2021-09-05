@@ -40,25 +40,82 @@ ScrollTrigger.scrollerProxy(scroller_el, {
 
 ScrollTrigger.defaults({
     scroller: scroller_el
-})
+});
 
 
-/* ANIMATIONS START --------------------------------- */
+/* --------------------------------------- ANIMATIONS START --------------------------------- */
 
-
-gsap.from(".line-1", {
-    scrollTrigger: {
-        markers: true,
-        trigger: ".story1",
+/* Sticky story lines -------------*/
+const body = document.body;
+const texts = [...document.getElementsByClassName("story__section")];
+texts.forEach((section, i) => {
+    ScrollTrigger.create({
+        trigger: section,
         scrub: true,
         pin: true,
         start: "top top",
-        end: "+=100%"
-    },
-    scaleX: 0,
-    transformOrigin: "left center",
-    ease: "none"
+        end: "+=400%",
+    });
 });
+
+/* Opacity of each text in each story line section --------- */
+texts.forEach((section, i) => {
+    const h = section.querySelector('h1');
+
+    ScrollTrigger.create({
+        markers: true,
+        trigger: section,
+        start: "top top",
+        end: "+=350% 50%",      // slightly before the end so the scroll up is not shown
+        onEnter: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false },),
+        onLeave: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
+        onLeaveBack: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
+        onEnterBack: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false })
+    });
+});
+
+/* Gradient transitions -------------*/
+const bodyToLightPurple = gsap.fromTo(body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F7A5CD" });
+const lightPurtpleToDarkerPurple = gsap.fromTo(body, { backgroundColor: "#F7A5CD" },{ backgroundColor: "#F2A0E9", immediateRender: false });
+const darkerPurpleToOrange = gsap.fromTo(body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+ScrollTrigger.create({
+    trigger: texts[0],
+    start: "top top",
+    scrub: true,
+    animation: bodyToLightPurple
+});
+ScrollTrigger.create({
+    trigger: texts[1],
+    start: "top top",
+    scrub: true,
+    animation: lightPurtpleToDarkerPurple
+});
+ScrollTrigger.create({
+    trigger: texts[2],
+    start: "top top",
+    scrub: true,
+    animation: darkerPurpleToOrange
+});
+
+
+
+/*
+
+gsap.from(".story", {
+    scrollTrigger: {
+        markers: true,
+        trigger: ".story",
+        scrub: true,
+        pin: true,
+        start: "top top",
+        end: "+=600%"
+    },
+});
+
+ */
+
+
+
 
 /*
 gsap.from(".line-1", {
@@ -81,7 +138,7 @@ gsap.from(".line-1", {
 
 
 
-/* ANIMATIONS end  -------------------------------- */
+/* --------------------------------------- ANIMATIONS end  -------------------------------- */
 
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
 ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());

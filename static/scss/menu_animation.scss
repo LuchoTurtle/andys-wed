@@ -23,7 +23,7 @@
     -o-transform: none;
     filter: none;
 
-@media (min-width: $breakpoint-tablet) {
+@media (min-width: map-get($breakpoints, breakpoint-tablet)) {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);

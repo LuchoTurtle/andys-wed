@@ -1,0 +1,58 @@
+@import 'utils/vars';
+
+.line {
+  width: 100%;
+  max-width: 800px;
+  height: 8px;
+  margin: 0 0 10px 0;
+  position: relative;
+  display: inline-block;
+  background-color: rgba(255,255,255,1);
+}
+
+.story {
+
+    &__section {
+      font-family: "Story", serif;
+    }
+
+    :nth-child(1) {
+      h1 {
+        opacity: 0;
+        margin: 28vh auto auto 9vw;
+        text-align: right;
+      };
+
+      @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+        h1 {
+          margin: auto;
+          text-align: center;
+        }
+      }
+    }
+
+    :nth-child(2) {
+      h1 {
+        opacity: 0;
+        margin: auto 7vw 23vh auto;
+        text-align: left;
+      };
+
+      @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+        h1 {
+          margin: auto;
+          text-align: center;
+        }
+      }
+    }
+
+    :nth-child(3) {
+      h1 {
+        opacity: 0;
+        margin: auto;
+        text-align: center;
+      };
+    }
+
+
+}

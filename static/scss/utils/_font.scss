@@ -19,3 +19,24 @@
   src: url("font/Judson-Regular.woff2") format("woff2"),
   url("font/Judson-Regular.woff") format("woff");
 }
+
+@font-face {
+  font-family: "Canela";
+  src: url("font/Canela-Bold.woff2") format("woff2");
+  font-weight: bold
+}
+
+@font-face {
+  font-family: "Canela";
+  src: url("font/Canela-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FoundersGroteskLight";
+  src: url("font/Founders_Grotesk_Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FoundersGroteskMedium";
+  src: url("font/Founders_Grotesk_Medium.woff2") format("woff2");
+}

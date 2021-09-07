@@ -63,7 +63,6 @@ texts.forEach((section, i) => {
     const h = section.querySelector('h1');
 
     ScrollTrigger.create({
-        markers: true,
         trigger: section,
         start: "top top",
         end: "+=350% 50%",      // slightly before the end so the scroll up is not shown
@@ -75,9 +74,9 @@ texts.forEach((section, i) => {
 });
 
 /* Gradient transitions -------------*/
-const bodyToLightPurple = gsap.fromTo(body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F7A5CD" });
-const lightPurtpleToDarkerPurple = gsap.fromTo(body, { backgroundColor: "#F7A5CD" },{ backgroundColor: "#F2A0E9", immediateRender: false });
-const darkerPurpleToOrange = gsap.fromTo(body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+const bodyToLightPurple = gsap.fromTo(body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
+const lightPurtpleToDarkerPurple = gsap.fromTo(body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+const darkerPurpleToOrange = gsap.fromTo(body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 ScrollTrigger.create({
     trigger: texts[0],
     start: "top top",
@@ -96,47 +95,6 @@ ScrollTrigger.create({
     scrub: true,
     animation: darkerPurpleToOrange
 });
-
-
-
-/*
-
-gsap.from(".story", {
-    scrollTrigger: {
-        markers: true,
-        trigger: ".story",
-        scrub: true,
-        pin: true,
-        start: "top top",
-        end: "+=600%"
-    },
-});
-
- */
-
-
-
-
-/*
-gsap.from(".line-1", {
-    scrollTrigger: {
-        trigger: ".line-1",
-        scroller: ".smooth-scroll",
-        scrub: true,
-        start: "top bottom",
-        end: "top top",
-        markers: true,
-    },
-    scaleX: 0,
-    transformOrigin: "left center",
-    ease: "none",
-});
-
- */
-
-
-
-
 
 /* --------------------------------------- ANIMATIONS end  -------------------------------- */
 

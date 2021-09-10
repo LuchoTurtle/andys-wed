@@ -11,6 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 const scroller_el = document.querySelector('[data-scroll-container]')
 const loco_scroll = new LocomotiveScroll({
     el: scroller_el,
+    multiplier: 0.45,
+    lerp: 0.03,
     smooth: true,
     smartphone: {
         smooth: true
@@ -54,7 +56,7 @@ texts.forEach((section, i) => {
         scrub: true,
         pin: true,
         start: "top top",
-        end: "+=400%",
+        end: "+=300%",
     });
 });
 
@@ -65,7 +67,7 @@ texts.forEach((section, i) => {
     ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=350% 50%",      // slightly before the end so the scroll up is not shown
+        end: "+=275% 50%",      // slightly before the end so the scroll up is not shown
         onEnter: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false },),
         onLeave: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
         onLeaveBack: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),

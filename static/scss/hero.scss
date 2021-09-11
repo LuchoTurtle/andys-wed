@@ -1,0 +1,97 @@
+@import 'utils/vars';
+
+.hero {
+
+  section {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+
+  &--container {
+    font-family: Title;
+
+    color: map-get(map-get($palettes, darkblue), base);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &--main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    height: 50%;
+    width: 70%;
+  }
+
+  &--content {
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h1 {
+      color: map-get(map-get($palettes, darkblue), base);
+      position: relative;
+      font-size: 3em;
+      margin: 0;
+
+      @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
+        font-size: 4em;
+      }
+
+      @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
+        font-size: 5em;
+      }
+
+      @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+        font-size: 6em;
+      }
+
+    }
+    h2 {
+      color: map-get(map-get($palettes, darkblue), light);
+      position: relative;
+      font-size: .8em;
+      margin: 0;
+      opacity: 1;
+
+      @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
+        font-size: 1em;
+      }
+
+      @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
+        font-size: 1.5em;
+      }
+
+      @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+        font-size: 2em;
+      }
+
+      &:hover {
+        .more, .smile {
+          opacity: 1;
+          transition: opacity .5s ease-in-out;
+          transition-delay: .25s;
+        }
+        .smile {
+          transition-delay: 1.5s;
+        }
+      }
+    }
+    .more, .smile {
+      opacity: 0;
+      transition: opacity .5s ease-in-out;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import 'utils/vars';
+
+.navbar {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+
+  font-size: 1.15em;
+  font-family: subtitle;
+
+  @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+    width: map-get($sidebar, width);
+    height: 100%;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    background-color: map-get(map-get($palettes, red), base);
+    height: 3px ;
+    width: 100%;
+    position: fixed;
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      height: 100% ;
+      width: 3px;
+    }
+  }
+
+
+  /* Nav */
+  nav {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    @include flexbox($direction: column);
+  }
+
+  .menu-container {
+    flex: 1;
+    @include flexbox($direction: row, $alignItems: center, $justifyContent: center, $grow: 1);
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
+    }
+  }
+
+  .menu-container_submenu {
+    width: 100%;
+    height: 100%;
+    @include flexbox($alignItems: center, $justifyContent: center, $grow: 1);
+    flex: 1;
+  }
+
+  @import 'menu_animation';
+}

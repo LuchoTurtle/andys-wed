@@ -85,5 +85,5 @@
 }
 
 .menu__link::after {
-    background: map-get(map-get($palettes, red), dark);;
+    background: map-get(map-get($palettes, red), dark);
 }

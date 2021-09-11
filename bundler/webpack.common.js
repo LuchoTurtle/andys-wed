@@ -75,17 +75,8 @@ module.exports = {
 
                     // Images
                     {
-                        test: /\.(jpg|png|gif|svg)$/,
-                        use:
-                            [
-                                {
-                                    loader: 'file-loader',
-                                    options:
-                                        {
-                                            outputPath: 'assets/images/'
-                                        }
-                                }
-                            ]
+                        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                        type: 'asset/resource',
                     },
 
                     // Fonts

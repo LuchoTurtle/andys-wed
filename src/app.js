@@ -4,6 +4,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import '../static/scss/main.scss'
 import './locomotive_base.css'
 import {VarConst} from "./js/vars";
+import GalleryItem from "./js/galleryItem";
 //import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
@@ -97,6 +98,24 @@ ScrollTrigger.create({
     scrub: true,
     animation: darkerPurpleToOrange
 });
+
+
+/* Gallery effects ---------------*/
+const gallery = document.querySelector('.gallery');
+
+const galleryItemElems = [...gallery.querySelectorAll('.gallery__item')];
+galleryItemElems.forEach(el => {
+    new GalleryItem(el)
+});
+
+
+
+
+
+
+
+
+
 
 /* --------------------------------------- ANIMATIONS end  -------------------------------- */
 

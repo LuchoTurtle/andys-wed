@@ -39,15 +39,10 @@
     max-width: 375px;
     overflow: hidden;
     position: relative;
-    opacity: 1;
 
     @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
       margin-left: auto;
     }
-  }
-
-  .noscroll .gallery__item-img {
-    cursor: default;
   }
 
   .gallery__item-imginner {
@@ -82,10 +77,6 @@
     opacity: .7;
   }
 
-  .gallery__item-title span.char {
-    opacity: 1;
-    will-change: transform;
-  }
 
   .gallery__item-header {
     color: map-get(map-get($palettes, darkgreen), base);
@@ -93,6 +84,7 @@
     font-weight: 100;
     font-size: 1.8rem;
     border-bottom: 1px solid #494444;
+    padding-bottom: 5px;
     width: 100%;
     display: block;
     margin-bottom: 1rem;

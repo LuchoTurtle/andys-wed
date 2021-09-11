@@ -4,7 +4,8 @@ import LocomotiveScroll from "locomotive-scroll";
 import '../static/scss/main.scss'
 import './locomotive_base.css'
 import {VarConst} from "./js/vars";
-import GalleryItem from "./js/galleryItem";
+import GalleryItem from "./gsap_anims/gallery_item";
+import Storyline from "./gsap_anims/storyline";
 //import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
@@ -48,72 +49,19 @@ ScrollTrigger.defaults({
 
 /* --------------------------------------- ANIMATIONS START --------------------------------- */
 
-/* Sticky story lines -------------*/
+
+/* Storyline effects -------------*/
 const body = document.body;
 const texts = [...document.getElementsByClassName("story__section")];
-texts.forEach((section, i) => {
-    ScrollTrigger.create({
-        trigger: section,
-        scrub: true,
-        pin: true,
-        start: "top top",
-        end: "+=300%",
-    });
-});
-
-/* Opacity of each text in each story line section --------- */
-texts.forEach((section, i) => {
-    const h = section.querySelector('h1');
-
-    ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "+=275% 50%",      // slightly before the end so the scroll up is not shown
-        onEnter: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false },),
-        onLeave: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
-        onLeaveBack: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
-        onEnterBack: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false })
-    });
-});
-
-/* Gradient transitions -------------*/
-const bodyToLightPurple = gsap.fromTo(body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
-const lightPurtpleToDarkerPurple = gsap.fromTo(body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
-const darkerPurpleToOrange = gsap.fromTo(body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
-ScrollTrigger.create({
-    trigger: texts[0],
-    start: "top top",
-    scrub: true,
-    animation: bodyToLightPurple
-});
-ScrollTrigger.create({
-    trigger: texts[1],
-    start: "top top",
-    scrub: true,
-    animation: lightPurtpleToDarkerPurple
-});
-ScrollTrigger.create({
-    trigger: texts[2],
-    start: "top top",
-    scrub: true,
-    animation: darkerPurpleToOrange
-});
+new Storyline(ScrollTrigger, body, texts);
 
 
 /* Gallery effects ---------------*/
 const gallery = document.querySelector('.gallery');
-
 const galleryItemElems = [...gallery.querySelectorAll('.gallery__item')];
 galleryItemElems.forEach(el => {
     new GalleryItem(el)
 });
-
-
-
-
-
-
-
 
 
 

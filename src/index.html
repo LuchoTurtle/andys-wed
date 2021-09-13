@@ -53,7 +53,6 @@
                 </section>
             </div>
 
-
             <section class="date-invite">
                 <div data-scroll data-scroll-delay="0.1" data-scroll-speed="1" id="invite">
                     <div class="invite__title">
@@ -65,7 +64,7 @@
                     </div>
                 </div>
 
-                <div data-scroll data-scroll-delay="0.15" data-scroll-speed="3" id="date">
+                <div data-scroll data-scroll-delay="0.15" data-scroll-speed="2" id="date">
                     <div class="date__title">
                         <p>THE DATE</p>
                     </div>
@@ -80,7 +79,7 @@
 
             <section class="photo-gallery">
                 <div class="gallery">
-                    <figure class="gallery__item">
+                    <figure class="gallery__item" style="margin-top: 0">
                         <div id="image1" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
                         <figcaption class="gallery__item-caption">
                             <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
@@ -112,7 +111,7 @@
                             <p class="gallery__item-text">She said he was crazy.</p>
                         </figcaption>
                     </figure>
-                    <figure class="gallery__item">
+                    <figure class="gallery__item" style="margin-bottom: 10vh">
                         <div id="image3" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
                         <figcaption class="gallery__item-caption">
                             <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
@@ -131,15 +130,86 @@
                 </div>
             </section>
 
+            <section class="venue">
+                <div class="venue_container" data-scroll data-scroll-delay="0.1" data-scroll-speed="1">
+                    <div class="venue-title">
+                        <p>
+                            <span>Mosteiro de Landim,</span>
+                            <span>Portugal</span>
+                        </p>
+                    </div>
+                    <div class="venue-cards">
+                        <div data-scroll data-scroll-speed="1" id="airport">
+                            <div class="card__title">
+                                <p>AIRPORT</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="card__subtitle">
+                                <span>Aeroporto Francisco Sá Carneiro</span>
+                            </div>
+                            <div class="card__link">
+                                <a>Book a flight</a>
+                            </div>
+                            <div class="card__text">
+                                You might have more affordable flight options if you use
+                                <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px; cursor: pointer">
+                                    <a>
+                                        Skiplagged
+                                    </a>
+                                </span>
+                                .
+                            </div>
+                        </div>
+                        <div data-scroll data-scroll-speed="2" id="venue">
+                            <div class="card__title">
+                                <p>VENUE</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="card__subtitle">
+                                <span>Alameda de Mosteiro,</span><br/>
+                                <span>4770-32</span>
+                            </div>
+                            <div class="card__link">
+                                <a>Near Porto, in Famalicão</a>
+                            </div>
+                        </div>
 
-            <div class="story">
-                <section >
-                    <h1>fam</h1>
-                </section>
+                        <div data-scroll data-scroll-speed="3" id="lodging">
+                            <div class="card__title">
+                                <p>LODGING</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="card__text">
+                                We suggest guests stay in Porto, as it is roughly a 45-minute drive from the venue. However, you can find alternatives in Braga, if you wish to.
+                            </div>
+                            <div class="card__link">
+                                <a>Lodging list</a>
+                            </div>
+                        </div>
 
-            </div>
+                        <div data-scroll data-scroll-speed="4" id="registry">
+                            <div class="card__title">
+                                <p>REGISTRY</p>
+                            </div>
+                            <div class="line"></div>
+                            <div class="card__subtitle">
+                                <span>Thank You</span>
+                            </div>
+                            <div class="card__text">
+                                Your presence on our wedding day is the most important gift you could ever give us. However, if you would like to buy us something - please check out our registry.
+                            </div>
+                            <div class="card__link">
+                                <a>Registry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
+
+
+
     <canvas class="webgl"></canvas>
 </body>
 </html>

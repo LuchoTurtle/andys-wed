@@ -2,9 +2,11 @@
 
 .date-invite {
   min-height: 50vh;
+  margin-top: -90vh;
 
   @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
     padding-left: 5vw;
+    margin-bottom: 15vh;
   }
 
 

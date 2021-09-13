@@ -9,6 +9,8 @@
   font-size: 1.15em;
   font-family: subtitle;
 
+  background-color: map-get(map-get($palettes, yellow), light);
+
   @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
     width: map-get($sidebar, width);
     height: 100%;

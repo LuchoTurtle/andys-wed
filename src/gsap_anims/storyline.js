@@ -1,8 +1,9 @@
 import {gsap} from 'gsap';
 
 export default class Storyline {
-    constructor(scrolltrigger, body, texts) {
+    constructor(scrolltrigger, body, navbar, texts) {
         this.scrollTrigger = scrolltrigger;
+        this.navbar = navbar;
         this.body = body;
         this.texts = texts;
         this.sectionHeight = 300;
@@ -41,27 +42,51 @@ export default class Storyline {
 
     gradientBodyBackground() {
 
-        const bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
-        const lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
-        const darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
+        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
+        const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+        const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
+
+        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
+        const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+        const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
         this.scrollTrigger.create({
             trigger: this.texts[0],
             start: "top top",
             scrub: true,
-            animation: bodyToLightPurple
+            animation: BODY_bodyToLightPurple
         });
         this.scrollTrigger.create({
             trigger: this.texts[1],
             start: "top top",
             scrub: true,
-            animation: lightPurtpleToDarkerPurple
+            animation: BODY_lightPurtpleToDarkerPurple
         });
         this.scrollTrigger.create({
             trigger: this.texts[2],
             start: "top top",
             scrub: true,
-            animation: darkerPurpleToOrange
+            animation: BODY_darkerPurpleToOrange
+        });
+
+
+        this.scrollTrigger.create({
+            trigger: this.texts[0],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_bodyToLightPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[1],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_lightPurtpleToDarkerPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[2],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_darkerPurpleToOrange
         });
     }
 }

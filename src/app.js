@@ -53,7 +53,6 @@ ScrollTrigger.defaults({
 /* Storyline effects -------------*/
 const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
-console.log(navbar)
 const texts = [...document.getElementsByClassName("story__section")];
 new Storyline(ScrollTrigger, body, navbar,  texts);
 

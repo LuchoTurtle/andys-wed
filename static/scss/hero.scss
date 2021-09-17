@@ -8,8 +8,7 @@
     place-items: center;
   }
 
-  &--container {
-    font-family: Title;
+    font-family: Rossanova;
 
     color: map-get(map-get($palettes, darkblue), base);
     position: relative;
@@ -19,7 +18,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
 
   &--main {
     display: flex;

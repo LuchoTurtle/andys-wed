@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 
 const VarConst = {
-    progress_bar: document.querySelector('.progress-bar'),
-
     palette_darkblue: "#264653",
     palette_darkcyan: "#2A9D8F",
     palette_yellow: "#E9C46A",

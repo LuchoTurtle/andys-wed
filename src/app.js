@@ -4,8 +4,9 @@ import LocomotiveScroll from "locomotive-scroll";
 import '../static/scss/main.scss'
 import './locomotive_base.css'
 import {VarConst} from "./js/vars";
-import GalleryItem from "./gsap_anims/gallery_item";
-import Storyline from "./gsap_anims/storyline";
+import GalleryItem from "./anims/gallery_item";
+import Storyline from "./anims/storyline";
+import Sidebar from "./anims/sidebar";
 //import "./js/three_script"
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,6 +65,10 @@ galleryItemElems.forEach(el => {
     new GalleryItem(el)
 });
 
+/* Sidebar effects --------------*/
+const progress_bar = document.querySelector('.progress-bar')
+const sub_menus = document.getElementsByClassName("menu-container_submenu");
+new Sidebar(ScrollTrigger, loco_scroll, progress_bar, sub_menus);
 
 
 /* --------------------------------------- ANIMATIONS end  -------------------------------- */
@@ -73,50 +78,3 @@ ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* OTHER TINGS -------------------------------------------------------*/
-/* Progress Bar */
-let tablet_breakpoint = window.matchMedia("(max-width: 768px)")
-function updateProgressBarDirection(progress) {
-    if (tablet_breakpoint.matches) {
-        VarConst.progress_bar.style.transform = `translateX(-${progress}%)`
-    } else {
-        VarConst.progress_bar.style.transform = `translateY(-${progress}%)`
-    }
-}
-
-tablet_breakpoint.addEventListener('change', updateProgressBarDirection)
-
-
-loco_scroll.on('scroll', ({ limit, scroll }) => {
-    const progress = 100 - (scroll.y / limit.y * 100)
-    updateProgressBarDirection(progress) // Call listener function at run time
-});
-
-
-/* Menu toggle highlight */
-
-const sub_menus = document.getElementsByClassName("menu-container_submenu");
-
-const highlight = function() {
-    let current_highlight = document.getElementsByClassName("menu__item--current")[0]
-    current_highlight.classList.remove("menu__item--current")
-    this.classList.add("menu__item--current")
-};
-
-Array.from(sub_menus).forEach(function(element) {
-    element.addEventListener('click', highlight);
-});
-

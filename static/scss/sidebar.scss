@@ -7,6 +7,11 @@
   z-index: 10000;
 
   font-size: 1.15em;
+
+  @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
+    font-size: 1em;
+  }
+
   font-family: Chapaza;
 
   background-color: map-get(map-get($palettes, yellow), light);

@@ -13,7 +13,6 @@ export default class Sidebar {
 
         this.addEventListeners();
         this.currentSectionSidebarAnimations();
-        this
     }
 
     // Changes progress bar according to progress and direction.

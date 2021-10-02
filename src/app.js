@@ -1,13 +1,15 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LocomotiveScroll from "locomotive-scroll";
-import '../static/scss/main.scss'
-import './locomotive_base.css'
-import {VarConst} from "./js/vars";
+
 import GalleryItem from "./anims/gallery_item";
 import Storyline from "./anims/storyline";
 import Sidebar from "./anims/sidebar";
-//import "./js/three_script"
+import '../static/scss/main.scss'
+import './locomotive_base.css'
+import * as THREE from "three";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import * as dat from "dat.gui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,10 +28,12 @@ const loco_scroll = new LocomotiveScroll({
 });
 
 
-/* This is configurations to proxy the locomotive scroll behaviour and map it to GSAP. This is because Locomotive hijacks the scrolling behavior ---------------------- */
+/* This is configuration to proxy the locomotive scroll behaviour and map it to GSAP. This is because Locomotive hijacks the scrolling behavior ---------------------- */
 window.addEventListener('resize', () => { loco_scroll.update() });
 
-loco_scroll.on("scroll", ScrollTrigger.update);
+loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
+    ScrollTrigger.update()
+});
 
 // tell ScrollTrigger to use these proxy methods for the ".smooth-scroll" element since Locomotive Scroll is hijacking things
 ScrollTrigger.scrollerProxy(scroller_el, {
@@ -78,3 +82,129 @@ ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
+
+
+
+
+
+
+
+
+/* THREE JS ----------------------------------------------------------------------------- */
+
+// Debug
+const gui = new dat.GUI();
+
+// Canvas
+const canvas = document.querySelector('.webgl');
+
+// Scene
+const scene = new THREE.Scene();
+
+// Objects
+const geometry = new THREE.TorusGeometry( .4, .1, 16, 100 );
+
+// Materials
+const material = new THREE.MeshBasicMaterial();
+material.color = new THREE.Color(0xff0000);
+
+// Mesh
+const sphere = new THREE.Mesh(geometry,material);
+scene.add(sphere);
+
+// Lights
+const pointLight = new THREE.PointLight(0xffffff, 0.1);
+pointLight.position.x = 2;
+pointLight.position.y = 3;
+pointLight.position.z = 4;
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 1);
+scene.add(pointLight, pointLightHelper);
+
+// Helper
+const axesHelper = new THREE.AxesHelper( 5 );
+scene.add( axesHelper );
+
+/**
+ * Sizes
+ */
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+window.addEventListener('resize', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+});
+
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+camera.position.x = 1;
+camera.position.y = 1;
+camera.position.z = 2;
+scene.add(camera);
+
+// Controls
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.enableZoom = true;
+
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    canvas: canvas
+});
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+/**
+ * Animate
+ */
+
+const moveCamera = ({x, y}) => {
+    const distance_from_top = y;
+    camera.position.y = distance_from_top * -0.001
+};
+
+loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
+    moveCamera(scroll);
+});
+
+
+const clock = new THREE.Clock();
+
+const tick = () =>
+{
+
+    const elapsedTime = clock.getElapsedTime();
+
+    // Update objects
+    sphere.rotation.y = .5 * elapsedTime;
+
+    // Update Orbital Controls
+    controls.update();      // -> change here so the camera stops looking at mesh
+
+    // Render
+    renderer.render(scene, camera);
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+};
+
+tick();

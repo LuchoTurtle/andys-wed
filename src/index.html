@@ -7,215 +7,215 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="progress-bar"></div>
-        <nav>
-            <div class="menu-container">
-                <div id="link_home" class="menu-container_submenu menu__item--current">
-                    <a href="#" class="menu__item menu__link">home</a>
-                </div>
-                <div id="link_gallery" class="menu-container_submenu">
-                    <a href="#" class="menu__item menu__link">gallery</a>
-                </div>
-                <div id="link_details" class="menu-container_submenu">
-                    <a href="#" class="menu__item menu__link">details</a>
-                </div>
-                <div id="link_rsvp" class="menu-container_submenu">
-                    <a href="#" class="menu__item menu__link">rsvp</a>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <canvas class="webgl"></canvas>
 
-    <div data-scroll-container class="content smooth-scroll">
-        <div class="content-body" >
-            <section class="hero">
-                <div class="hero--main">
-                    <div class="hero--content">
-                        <h1 data-scroll data-scroll-speed="1">
-                            <span>Andy</span>
-                            <span style="color: #a8b5ba">&</span>
-                            <span>Mady</span>
-                        </h1>
-                        <h2 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-1.3">are getting married! <span class="more">And we want you in 😊</span></h2>
+    <main>
+        <div class="navbar">
+            <div class="progress-bar"></div>
+            <nav>
+                <div class="menu-container">
+                    <div id="link_home" class="menu-container_submenu menu__item--current">
+                        <a href="#" class="menu__item menu__link">home</a>
+                    </div>
+                    <div id="link_gallery" class="menu-container_submenu">
+                        <a href="#" class="menu__item menu__link">gallery</a>
+                    </div>
+                    <div id="link_details" class="menu-container_submenu">
+                        <a href="#" class="menu__item menu__link">details</a>
+                    </div>
+                    <div id="link_rsvp" class="menu-container_submenu">
+                        <a href="#" class="menu__item menu__link">rsvp</a>
                     </div>
                 </div>
-            </section>
+            </nav>
+        </div>
 
-            <section class="story">
-                <section class="story__section">
-                    <h1>The beautiful story began in Cascais</h1>
+        <div data-scroll-container class="content smooth-scroll">
+            <div class="content-body" >
+                <section class="hero">
+                    <div class="hero--main">
+                        <div class="hero--content">
+                            <h1 data-scroll data-scroll-speed="1">
+                                <span>Andy</span>
+                                <span style="color: #a8b5ba">&</span>
+                                <span>Mady</span>
+                            </h1>
+                            <h2 data-scroll data-scroll-direction="horizontal" data-scroll-speed="-1.3">are getting married! <span class="more">And we want you in 😊</span></h2>
+                        </div>
+                    </div>
                 </section>
 
-                <section class="story__section">
-                    <h1>exactly where the knot was tied.</h1>
+                <section class="story">
+                    <section class="story__section">
+                        <h1>The beautiful story began in Cascais</h1>
+                    </section>
+
+                    <section class="story__section">
+                        <h1>exactly where the knot was tied.</h1>
+                    </section>
+
+                    <section class="story__section">
+                        <h1>The story continues in Mosteiro de Landim.</h1>
+                    </section>
                 </section>
 
-                <section class="story__section">
-                    <h1>The story continues in Mosteiro de Landim.</h1>
+                <section class="date-invite">
+                    <div data-scroll data-scroll-delay="0.1" data-scroll-speed="1" id="invite">
+                        <div class="invite__title">
+                            <p>THE INVITATION</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="invite__subtitle">
+                            <p>Come and join the celebration while Andrew and Madalena say "I do" amidst the centuries-old gardens in Landim.</p>
+                        </div>
+                    </div>
+
+                    <div data-scroll data-scroll-delay="0.15" data-scroll-speed="2" id="date">
+                        <div class="date__title">
+                            <p>THE DATE</p>
+                        </div>
+                        <div class="line"></div>
+                        <div class="date__subtitle">
+                            <span>Tuesday</span><br/>
+                            <span>July 28</span><br/>
+                            <span>2022</span>
+                        </div>
+                    </div>
                 </section>
-            </section>
 
-            <section class="date-invite">
-                <div data-scroll data-scroll-delay="0.1" data-scroll-speed="1" id="invite">
-                    <div class="invite__title">
-                        <p>THE INVITATION</p>
+                <section class="photo-gallery">
+                    <div class="gallery">
+                        <figure class="gallery__item" style="margin-top: 2vh">
+                            <div id="image1" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
+                            <figcaption class="gallery__item-caption">
+                                <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                    <span>H</span>
+                                    <span>E</span>
+                                    <span>L</span>
+                                    <span>P</span>
+                                    <span>&nbsp</span>
+                                    <span>M</span>
+                                    <span>E</span>
+                                </h2>
+                                <span class="gallery__item-header">CASCAIS</span>
+                                <p class="gallery__item-text">Halfway through the bridge he knelt.</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="gallery__item">
+                            <div id="image2" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
+                            <figcaption class="gallery__item-caption">
+                                <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                    <span>H</span>
+                                    <span>E</span>
+                                    <span>L</span>
+                                    <span>P</span>
+                                    <span>&nbsp</span>
+                                    <span>M</span>
+                                    <span>E</span>
+                                </h2>
+                                <span class="gallery__item-header">Sep 8 2020</span>
+                                <p class="gallery__item-text">She said he was crazy.</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="gallery__item" style="margin-bottom: 10vh">
+                            <div id="image3" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
+                            <figcaption class="gallery__item-caption">
+                                <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                    <span>H</span>
+                                    <span>E</span>
+                                    <span>L</span>
+                                    <span>P</span>
+                                    <span>&nbsp</span>
+                                    <span>M</span>
+                                    <span>E</span>
+                                </h2>
+                                <span class="gallery__item-header">14:05 pm</span>
+                                <p class="gallery__item-text">She said yes.</p>
+                            </figcaption>
+                        </figure>
                     </div>
-                    <div class="line"></div>
-                    <div class="invite__subtitle">
-                        <p>Come and join the celebration while Andrew and Madalena say "I do" amidst the centuries-old gardens in Landim.</p>
-                    </div>
-                </div>
+                </section>
 
-                <div data-scroll data-scroll-delay="0.15" data-scroll-speed="2" id="date">
-                    <div class="date__title">
-                        <p>THE DATE</p>
-                    </div>
-                    <div class="line"></div>
-                    <div class="date__subtitle">
-                        <span>Tuesday</span><br/>
-                        <span>July 28</span><br/>
-                        <span>2022</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="photo-gallery">
-                <div class="gallery">
-                    <figure class="gallery__item" style="margin-top: 2vh">
-                        <div id="image1" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
-                        <figcaption class="gallery__item-caption">
-                            <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                <span>H</span>
-                                <span>E</span>
-                                <span>L</span>
-                                <span>P</span>
-                                <span>&nbsp</span>
-                                <span>M</span>
-                                <span>E</span>
-                            </h2>
-                            <span class="gallery__item-header">CASCAIS</span>
-                            <p class="gallery__item-text">Halfway through the bridge he knelt.</p>
-                        </figcaption>
-                    </figure>
-                    <figure class="gallery__item">
-                        <div id="image2" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
-                        <figcaption class="gallery__item-caption">
-                            <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                <span>H</span>
-                                <span>E</span>
-                                <span>L</span>
-                                <span>P</span>
-                                <span>&nbsp</span>
-                                <span>M</span>
-                                <span>E</span>
-                            </h2>
-                            <span class="gallery__item-header">Sep 8 2020</span>
-                            <p class="gallery__item-text">She said he was crazy.</p>
-                        </figcaption>
-                    </figure>
-                    <figure class="gallery__item" style="margin-bottom: 10vh">
-                        <div id="image3" class="gallery__item-img"><div class="gallery__item-imginner"></div></div>
-                        <figcaption class="gallery__item-caption">
-                            <h2 class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                <span>H</span>
-                                <span>E</span>
-                                <span>L</span>
-                                <span>P</span>
-                                <span>&nbsp</span>
-                                <span>M</span>
-                                <span>E</span>
-                            </h2>
-                            <span class="gallery__item-header">14:05 pm</span>
-                            <p class="gallery__item-text">She said yes.</p>
-                        </figcaption>
-                    </figure>
-                </div>
-            </section>
-
-            <section class="venue">
-                <div class="venue_container" data-scroll data-scroll-delay="0.1" data-scroll-speed="1">
-                    <div class="venue-title">
-                        <p>
-                            <span>Mosteiro de Landim,</span>
-                            <span>Portugal</span>
-                        </p>
-                    </div>
-                    <div class="venue-cards">
-                        <div data-scroll data-scroll-speed="1" id="airport">
-                            <div class="card__title">
-                                <p>AIRPORT</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="card__subtitle">
-                                <span>Aeroporto Francisco Sá Carneiro</span>
-                            </div>
-                            <div class="card__link">
-                                <a>Book a flight</a>
-                            </div>
-                            <div class="card__text">
-                                You might have more affordable flight options if you use
-                                <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px; cursor: pointer">
+                <section class="venue">
+                    <div class="venue_container" data-scroll data-scroll-delay="0.1" data-scroll-speed="1">
+                        <div class="venue-title">
+                            <p>
+                                <span>Mosteiro de Landim,</span>
+                                <span>Portugal</span>
+                            </p>
+                        </div>
+                        <div class="venue-cards">
+                            <div data-scroll data-scroll-speed="1" id="airport">
+                                <div class="card__title">
+                                    <p>AIRPORT</p>
+                                </div>
+                                <div class="line"></div>
+                                <div class="card__subtitle">
+                                    <span>Aeroporto Francisco Sá Carneiro</span>
+                                </div>
+                                <div class="card__link">
+                                    <a>Book a flight</a>
+                                </div>
+                                <div class="card__text">
+                                    You might have more affordable flight options if you use
+                                    <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px; cursor: pointer">
                                     <a>
                                         Skiplagged
                                     </a>
                                 </span>
-                                .
+                                    .
+                                </div>
                             </div>
-                        </div>
-                        <div data-scroll data-scroll-speed="1.7" id="venue">
-                            <div class="card__title">
-                                <p>VENUE</p>
+                            <div data-scroll data-scroll-speed="1.7" id="venue">
+                                <div class="card__title">
+                                    <p>VENUE</p>
+                                </div>
+                                <div class="line"></div>
+                                <div class="card__subtitle">
+                                    <span>Alameda de Mosteiro,</span><br/>
+                                    <span>4770-32</span>
+                                </div>
+                                <div class="card__link">
+                                    <a>Near Porto, in Famalicão</a>
+                                </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="card__subtitle">
-                                <span>Alameda de Mosteiro,</span><br/>
-                                <span>4770-32</span>
-                            </div>
-                            <div class="card__link">
-                                <a>Near Porto, in Famalicão</a>
-                            </div>
-                        </div>
 
-                        <div data-scroll data-scroll-speed="3" id="lodging">
-                            <div class="card__title">
-                                <p>LODGING</p>
+                            <div data-scroll data-scroll-speed="3" id="lodging">
+                                <div class="card__title">
+                                    <p>LODGING</p>
+                                </div>
+                                <div class="line"></div>
+                                <div class="card__text">
+                                    We suggest guests stay in Porto, as it is roughly a 45-minute drive from the venue. However, you can find alternatives in Braga, if you wish to.
+                                </div>
+                                <div class="card__link">
+                                    <a>Lodging list</a>
+                                </div>
                             </div>
-                            <div class="line"></div>
-                            <div class="card__text">
-                                We suggest guests stay in Porto, as it is roughly a 45-minute drive from the venue. However, you can find alternatives in Braga, if you wish to.
-                            </div>
-                            <div class="card__link">
-                                <a>Lodging list</a>
-                            </div>
-                        </div>
 
-                        <div data-scroll data-scroll-speed="3" id="registry">
-                            <div class="card__title">
-                                <p>REGISTRY</p>
-                            </div>
-                            <div class="line"></div>
-                            <div class="card__subtitle">
-                                <span>Thank You</span>
-                            </div>
-                            <div class="card__text">
-                                Your presence on our wedding day is the most important gift you could ever give us. However, if you'd like to spoil us, we've picked out a few items, activities, and charities that pique our interests.
-                            </div>
-                            <div class="card__link">
-                                <a>Registry</a>
+                            <div data-scroll data-scroll-speed="3" id="registry">
+                                <div class="card__title">
+                                    <p>REGISTRY</p>
+                                </div>
+                                <div class="line"></div>
+                                <div class="card__subtitle">
+                                    <span>Thank You</span>
+                                </div>
+                                <div class="card__text">
+                                    Your presence on our wedding day is the most important gift you could ever give us. However, if you'd like to spoil us, we've picked out a few items, activities, and charities that pique our interests.
+                                </div>
+                                <div class="card__link">
+                                    <a>Registry</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="rsvp">
-            </section>
+                <section class="rsvp">
+                </section>
+            </div>
         </div>
-    </div>
-
-
-
-    <canvas class="webgl"></canvas>
+    </main>
 </body>
 </html>

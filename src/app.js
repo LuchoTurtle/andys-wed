@@ -10,6 +10,9 @@ import './locomotive_base.css'
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from "dat.gui";
+import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import createjs from 'preload-js'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +55,7 @@ ScrollTrigger.defaults({
 });
 
 
-/* --------------------------------------- ANIMATIONS START --------------------------------- */
+/* ------------- ANIMATIONS START ---------- */
 
 
 /* Storyline effects -------------*/
@@ -75,7 +78,7 @@ const sub_menus = document.getElementsByClassName("menu-container_submenu");
 new Sidebar(ScrollTrigger, loco_scroll, progress_bar, sub_menus);
 
 
-/* --------------------------------------- ANIMATIONS end  -------------------------------- */
+/* ----------- ANIMATIONS end  -------- */
 
 // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
 ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());
@@ -87,7 +90,13 @@ ScrollTrigger.refresh();
 
 
 
+/* PRE-LOAD FILES ----------------------------------------------------------------------- */
+// Preload
+//let queue = new createjs.LoadQueue(false);
 
+// 3D
+//queue.loadFile('/3D/landim.glb');
+//queue.on("progress", event => {console.log(Math.floor(event.progress*100))})
 
 
 /* THREE JS ----------------------------------------------------------------------------- */
@@ -101,25 +110,45 @@ const canvas = document.querySelector('.webgl');
 // Scene
 const scene = new THREE.Scene();
 
-// Objects
-const geometry = new THREE.TorusGeometry( .4, .1, 16, 100 );
+/**
+ * Loaders
+ */
+// Texture loader
+const textureLoader = new THREE.TextureLoader();
 
-// Materials
-const material = new THREE.MeshBasicMaterial();
-material.color = new THREE.Color(0xff0000);
+// Draco loader
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('draco/');
 
-// Mesh
-const sphere = new THREE.Mesh(geometry,material);
-scene.add(sphere);
+// GLTF loader
+const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
 
-// Lights
-const pointLight = new THREE.PointLight(0xffffff, 0.1);
-pointLight.position.x = 2;
-pointLight.position.y = 3;
-pointLight.position.z = 4;
+/**
+ * Textures
+ */
+const bakedTexture = textureLoader.load('3D/baked.jpg');
+bakedTexture.flipY = false;
 
-const pointLightHelper = new THREE.PointLightHelper(pointLight, 1);
-scene.add(pointLight, pointLightHelper);
+/**
+ * Materials
+ */
+// Baked material
+const bakedMaterial = new THREE.MeshBasicMaterial({
+    map: bakedTexture
+});
+
+/**
+ * Model
+ */
+gltfLoader.load('3D/landim.glb',
+    (gltf) =>  {
+    gltf.scene.traverse((child) => {
+       child.material = bakedMaterial
+    });
+        scene.add(gltf.scene);
+    });
+
 
 // Helper
 const axesHelper = new THREE.AxesHelper( 5 );
@@ -194,8 +223,6 @@ const tick = () =>
 
     const elapsedTime = clock.getElapsedTime();
 
-    // Update objects
-    sphere.rotation.y = .5 * elapsedTime;
 
     // Update Orbital Controls
     controls.update();      // -> change here so the camera stops looking at mesh

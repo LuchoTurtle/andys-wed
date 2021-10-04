@@ -127,7 +127,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
 /**
  * Textures
  */
-const bakedTexture = textureLoader.load('3D/baked3.jpg');
+const bakedTexture = textureLoader.load('3D/baked.jpg');
 bakedTexture.flipY = false;
 
 /**
@@ -141,7 +141,7 @@ const bakedMaterial = new THREE.MeshBasicMaterial({
 /**
  * Model
  */
-gltfLoader.load('3D/landim3.glb',
+gltfLoader.load('3D/landim.glb',
     (gltf) =>  {
     gltf.scene.traverse((child) => {
        child.material = bakedMaterial

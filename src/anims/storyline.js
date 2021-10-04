@@ -42,7 +42,7 @@ export default class Storyline {
 
     gradientBodyBackground() {
 
-        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
+        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#303030" },{ backgroundColor: "#F2A0E9" });
         const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
         const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 

@@ -129,6 +129,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
  */
 const bakedTexture = textureLoader.load('3D/baked.jpg');
 bakedTexture.flipY = false;
+bakedTexture.encoding = THREE.sRGBEncoding;
 
 /**
  * Materials
@@ -138,16 +139,31 @@ const bakedMaterial = new THREE.MeshBasicMaterial({
     map: bakedTexture
 });
 
+// Pole light material
+const poleLightMaterial = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
+
 /**
  * Model
  */
-gltfLoader.load('3D/landim.glb',
+gltfLoader.load('3D/merged.glb',
     (gltf) =>  {
-    gltf.scene.traverse((child) => {
-       child.material = bakedMaterial
-    });
+
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'merged');
+        bakedMesh.material = bakedMaterial;
+
+        const poleLightAMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleA');
+        const poleLightBMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleB');
+        const poleLightCMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleC');
+        const poleLightDMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleD');
+
+        poleLightAMesh.material = poleLightMaterial;
+        poleLightBMesh.material = poleLightMaterial;
+        poleLightCMesh.material = poleLightMaterial;
+        poleLightDMesh.material = poleLightMaterial;
+
         scene.add(gltf.scene);
-    });
+    }
+);
 
 
 // Helper
@@ -182,10 +198,11 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.x = 1;
-camera.position.y = 1;
-camera.position.z = 2;
+camera.position.x = -24.382370125746245;
+camera.position.y = 9.453742921074706;
+camera.position.z = 2.914656385697082;
 scene.add(camera);
+
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
@@ -201,6 +218,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputEncoding = THREE.sRGBEncoding;
 
 /**
  * Animate

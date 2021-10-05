@@ -42,11 +42,11 @@ export default class Storyline {
 
     gradientBodyBackground() {
 
-        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#303030" },{ backgroundColor: "#F2A0E9" });
+        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#322633" },{ backgroundColor: "#F2A0E9" });
         const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
         const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
-        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#FBE7C6" },{ backgroundColor: "#F2A0E9" });
+        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#F2A0E9" });
         const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
         const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 

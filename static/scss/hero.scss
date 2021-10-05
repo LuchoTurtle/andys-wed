@@ -39,26 +39,26 @@
     justify-content: space-between;
 
     h1 {
-      color: map-get(map-get($palettes, darkblue), base);
+      color: whitesmoke;
       position: relative;
       font-size: 3em;
       margin: 0;
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
-        font-size: 4em;
+        font-size: 3em;
       }
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
-        font-size: 5em;
+        font-size: 4em;
       }
 
       @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
-        font-size: 6em;
+        font-size: 5em;
       }
 
     }
     h2 {
-      color: map-get(map-get($palettes, darkblue), light);
+      color: navajowhite;
       position: relative;
       font-size: .8em;
       margin-top: 1.3vh;
@@ -66,17 +66,17 @@
       left: 9vw;
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
-        font-size: 1em;
+        font-size: .5em;
         margin-top: 1.2vh;
       }
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileL)) {
-        font-size: 1.5em;
+        font-size: 1em;
         margin-top: 3vh;
       }
 
       @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
-        font-size: 2em;
+        font-size: 1.5em;
         margin-top: 2vh;
         left: 2.5vw;
       }

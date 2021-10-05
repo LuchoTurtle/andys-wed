@@ -13,6 +13,7 @@ import * as dat from "dat.gui";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
+import {VarConst} from "./js/vars";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,7 +128,7 @@ gltfLoader.setDRACOLoader(dracoLoader);
 /**
  * Textures
  */
-const bakedTexture = textureLoader.load('3D/baked.jpg');
+const bakedTexture = textureLoader.load('3D/baked2.jpg');
 bakedTexture.flipY = false;
 bakedTexture.encoding = THREE.sRGBEncoding;
 
@@ -145,9 +146,13 @@ const poleLightMaterial = new THREE.MeshBasicMaterial({color: new THREE.Color("r
 /**
  * Model
  */
+let landimMesh;
 gltfLoader.load('3D/merged.glb',
     (gltf) =>  {
 
+        landimMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'merged');
         bakedMesh.material = bakedMaterial;
 
@@ -161,9 +166,16 @@ gltfLoader.load('3D/merged.glb',
         poleLightCMesh.material = poleLightMaterial;
         poleLightDMesh.material = poleLightMaterial;
 
+        // Setting position and rotation of model
+        landimMesh.position.x = 5.1;
+        landimMesh.position.y = -4.7;
+        landimMesh.position.z = -12.3;
+        landimMesh.rotation.y = Math.PI * 0.16;
+
         scene.add(gltf.scene);
     }
 );
+
 
 
 // Helper
@@ -198,30 +210,22 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.x = -24.382370125746245;
-camera.position.y = 9.453742921074706;
-camera.position.z = 2.914656385697082;
 scene.add(camera);
-
-
-// Controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.enableZoom = true;
 
 /**
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
     alpha: true,
-    canvas: canvas
+    canvas: canvas,
+    antialias: true
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputEncoding = THREE.sRGBEncoding;
 
 /**
- * Animate
+ * Animate camera downwards
  */
 
 const moveCamera = ({x, y}) => {
@@ -238,12 +242,7 @@ const clock = new THREE.Clock();
 
 const tick = () =>
 {
-
     const elapsedTime = clock.getElapsedTime();
-
-
-    // Update Orbital Controls
-    controls.update();      // -> change here so the camera stops looking at mesh
 
     // Render
     renderer.render(scene, camera);
@@ -253,3 +252,10 @@ const tick = () =>
 };
 
 tick();
+
+
+/** Update cursor positions **/
+document.addEventListener("mousemove", e => {
+    VarConst.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    VarConst.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+});

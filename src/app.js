@@ -8,12 +8,11 @@ import Sidebar from "./anims/sidebar";
 import '../static/scss/main.scss'
 import './locomotive_base.css'
 import * as THREE from "three";
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from "dat.gui";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
-import {VarConst} from "./js/vars";
+import {VarConst, VarLet} from "./js/vars";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,6 +101,23 @@ ScrollTrigger.refresh();
 
 /* THREE JS ----------------------------------------------------------------------------- */
 
+/**
+ * Screen width initializations
+ */
+// Mobile L
+if (screen.width < 425) {
+    VarLet.landimMesh_initial_position_z = -6;
+}
+
+if (screen.width < 768) {
+    VarLet.landimMesh_initial_position_z = -3;
+}
+
+
+
+/**
+ * Init tools
+ */
 // Debug
 const gui = new dat.GUI();
 
@@ -166,12 +182,6 @@ gltfLoader.load('3D/merged.glb',
         poleLightCMesh.material = poleLightMaterial;
         poleLightDMesh.material = poleLightMaterial;
 
-        // Setting position and rotation of model
-        landimMesh.position.x = 5.1;
-        landimMesh.position.y = -4.7;
-        landimMesh.position.z = -12.3;
-        landimMesh.rotation.y = Math.PI * 0.16;
-
         scene.add(gltf.scene);
     }
 );
@@ -210,7 +220,11 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
+camera.rotation.y = -Math.PI / 4;
+camera.position.set(-12.4, 4.1, 2.3);
 scene.add(camera);
+
+
 
 /**
  * Renderer
@@ -228,13 +242,22 @@ renderer.outputEncoding = THREE.sRGBEncoding;
  * Animate camera downwards
  */
 
-const moveCamera = ({x, y}) => {
-    const distance_from_top = y;
-    camera.position.y = distance_from_top * -0.001
+const moveLandimMesh = ({x, y}) => {
+    if(VarLet.landimMesh_initial_position_z !== undefined && landimMesh !== undefined) {
+        const distance_from_top = y;
+        landimMesh.position.z = VarLet.landimMesh_initial_position_z + (distance_from_top * 0.02);
+    }
+};
+
+const tiltLandimMesh = () => {
+    if(landimMesh) {
+        landimMesh.rotation.y = cursor.x * 0.05;
+        landimMesh.rotation.z = cursor.y * 0.05;
+    }
 };
 
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
-    moveCamera(scroll);
+    moveLandimMesh(scroll);
 });
 
 
@@ -247,6 +270,9 @@ const tick = () =>
     // Render
     renderer.render(scene, camera);
 
+    // Animated things
+    tiltLandimMesh();
+
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 };
@@ -258,4 +284,13 @@ tick();
 document.addEventListener("mousemove", e => {
     VarConst.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     VarConst.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+});
+
+// Cursor
+const cursor = {
+    x: 0, y: 0
+};
+window.addEventListener("mousemove", (event) => {
+    cursor.x = event.clientX / sizes.width - 0.5;
+    cursor.y = event.clientY / sizes.height - 0.5;
 });

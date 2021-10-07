@@ -32,7 +32,7 @@
   &--content {
     text-align: left;
     position: absolute;
-    top: 50%;
+    top: 30%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -78,7 +78,7 @@
       @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
         font-size: 1.5em;
         margin-top: 2vh;
-        left: 2.5vw;
+        left: 0;
       }
 
       &:hover {

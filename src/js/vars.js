@@ -4,4 +4,8 @@ const VarConst = {
     mouse: new THREE.Vector2()
 };
 
-export { VarConst }
+let VarLet = {
+  landimMesh_initial_position_z: 0
+};
+
+export { VarConst, VarLet }

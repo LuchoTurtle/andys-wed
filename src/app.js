@@ -110,28 +110,45 @@ if (screen.width <= 320) {
     VarLet.landimMesh_initial_position_z = -6;
     VarLet.bridgeMesh_initial_position_z = -31.78;
     VarLet.knotMesh_initial_position_x = -6.9;
+    VarLet.champagneMesh_initial_position_x = -11.26;
+    VarLet.danielsMesh_initial_position_x = -11.26;
+    VarLet.wineMesh_initial_position_x = -10.26;
+    VarLet.hennessyMesh_initial_position_x = -11.9;
 }
 // Mobile M
 else if (screen.width <= 375) {
     VarLet.landimMesh_initial_position_z = -6;
     VarLet.bridgeMesh_initial_position_z = -31.78;
     VarLet.knotMesh_initial_position_x = -7;
+    VarLet.champagneMesh_initial_position_x = -11.26;
+    VarLet.danielsMesh_initial_position_x = -10.26;
+    VarLet.wineMesh_initial_position_x = -10.26;
+    VarLet.hennessyMesh_initial_position_x = -11.9;
 }
 // Mobile L
 else if (screen.width <= 425) {
     VarLet.landimMesh_initial_position_z = -6;
     VarLet.bridgeMesh_initial_position_z = -31.78;
     VarLet.knotMesh_initial_position_x = -7;
+    VarLet.champagneMesh_initial_position_x = -11.26;
+    VarLet.danielsMesh_initial_position_x = -10.26;
+    VarLet.wineMesh_initial_position_x = -10.26;
+    VarLet.hennessyMesh_initial_position_x = -11.9;
 }
 // Tablet
 else if (screen.width <= 768) {
     VarLet.landimMesh_initial_position_z = -3;
     VarLet.bridgeMesh_initial_position_z = -31.78;
     VarLet.knotMesh_initial_position_x = -7;
+    VarLet.champagneMesh_initial_position_x = -12.26;
+    VarLet.danielsMesh_initial_position_x = -11.26;
+    VarLet.wineMesh_initial_position_x = -10.26;
+    VarLet.hennessyMesh_initial_position_x = -11.9;
 }
 // Laptop
 else if (screen.width <= 1024) {
     VarLet.knotMesh_initial_position_x = -8.30;
+    VarLet.champagneMesh_initial_position_x = -12;
 }
 // Laptop L
 else if (screen.width <= 1440) {
@@ -144,20 +161,48 @@ else if (screen.width <= 1440) {
 if (screen.height <= 600) {
     VarLet.bridgeMesh_initial_position_y = -45;
     VarLet.knotMesh_initial_position_y = -3;
-} else if (screen.height <= 720) {
+    VarLet.champagneMesh_initial_position_y = -2;
+    VarLet.danielsMesh_initial_position_y = -2;
+    VarLet.wineMesh_initial_position_y = -2;
+    VarLet.hennessyMesh_initial_position_y = -2;
+}
+else if (screen.height <= 720) {
     VarLet.bridgeMesh_initial_position_y = -45;
     VarLet.knotMesh_initial_position_y = -5;
-} else if (screen.height <= 1080) {
+    VarLet.champagneMesh_initial_position_y = -3;
+    VarLet.danielsMesh_initial_position_y = -3;
+    VarLet.wineMesh_initial_position_y = -3;
+    VarLet.hennessyMesh_initial_position_y = -3;
+}
+else if (screen.height <= 1080) {
     VarLet.bridgeMesh_initial_position_y = -45;
     VarLet.knotMesh_initial_position_y = -8;
-} else if (screen.height <= 1440) {
+    VarLet.champagneMesh_initial_position_y = -6.5;
+    VarLet.danielsMesh_initial_position_y = -6.5;
+    VarLet.wineMesh_initial_position_y = -6.5;
+    VarLet.hennessyMesh_initial_position_y = -6.5;
+}
+else if (screen.height <= 1440) {
     VarLet.knotMesh_initial_position_y = -13;
-} else if (screen.height <= 2160) {
+    VarLet.champagneMesh_initial_position_y = -11.3;
+    VarLet.danielsMesh_initial_position_y = -11.3;
+    VarLet.wineMesh_initial_position_y = -11.3;
+    VarLet.hennessyMesh_initial_position_y = -11.3;
+}
+else if (screen.height <= 2160) {
     VarLet.bridgeMesh_initial_position_y = -100;
     VarLet.knotMesh_initial_position_y = -20;
-} else {
+    VarLet.champagneMesh_initial_position_y = -15.3;
+    VarLet.danielsMesh_initial_position_y = -15.3;
+    VarLet.wineMesh_initial_position_y = -15.3;
+    VarLet.hennessyMesh_initial_position_y = -15.3;
+}
+else {
     VarLet.bridgeMesh_initial_position_y = -150;
     VarLet.knotMesh_initial_position_y = -23;
+    VarLet.danielsMesh_initial_position_y = -18.3;
+    VarLet.wineMesh_initial_position_y = -18.3;
+    VarLet.hennessyMesh_initial_position_y = -18.3;
 }
 
 
@@ -169,6 +214,7 @@ if (screen.height <= 600) {
  */
 // Debug
 const gui = new dat.GUI();
+gui.close();
 
 // Canvas
 const canvas = document.querySelector('.webgl');
@@ -347,7 +393,7 @@ gltfLoader.load('3D/bottles/champagne.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Champagne');
         bakedMesh.material = bakedMaterialChampagne;
 
-        gui.add(champagneMesh.position, "x").min(-20).max(10).step(0.01).name("champagne-pos-x").setValue(-12.26)
+        gui.add(champagneMesh.position, "x").min(-20).max(10).step(0.01).name("champagne-pos-x").setValue(VarLet.champagneMesh_initial_position_x)
         gui.add(champagneMesh.position, "y").min(-10).max(10).step(0.01).name("champagne-pos-y").setValue(VarLet.champagneMesh_initial_position_y)
         gui.add(champagneMesh.position, "z").min(-10).max(10).step(0.01).name("champagne-pos-z").setValue(1.45)
 
@@ -369,7 +415,7 @@ gltfLoader.load('3D/bottles/daniels.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'daniels');
         bakedMesh.material = bakedMaterialDaniels;
 
-        gui.add(danielsMesh.position, "x").min(-20).max(10).step(0.01).name("daniels-pos-x").setValue(-11.61)
+        gui.add(danielsMesh.position, "x").min(-20).max(10).step(0.01).name("daniels-pos-x").setValue(VarLet.danielsMesh_initial_position_x)
         gui.add(danielsMesh.position, "y").min(-10).max(10).step(0.01).name("daniels-pos-y").setValue(VarLet.danielsMesh_initial_position_y)
         gui.add(danielsMesh.position, "z").min(-10).max(10).step(0.01).name("daniels-pos-z").setValue(2.1)
 
@@ -391,7 +437,7 @@ gltfLoader.load('3D/bottles/wine.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Wine');
         bakedMesh.material = bakedMaterialWine;
 
-        gui.add(wineMesh.position, "x").min(-20).max(10).step(0.01).name("wine-pos-x").setValue(-11.61)
+        gui.add(wineMesh.position, "x").min(-20).max(10).step(0.01).name("wine-pos-x").setValue(VarLet.wineMesh_initial_position_x)
         gui.add(wineMesh.position, "y").min(-10).max(10).step(0.01).name("wine-pos-y").setValue(VarLet.wineMesh_initial_position_y)
         gui.add(wineMesh.position, "z").min(-10).max(10).step(0.01).name("wine-pos-z").setValue(1.01)
 
@@ -412,7 +458,7 @@ gltfLoader.load('3D/bottles/henessy.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Hennessy');
         bakedMesh.material = bakedMaterialHennessy;
 
-        gui.add(hennessyMesh.position, "x").min(-20).max(10).step(0.01).name("henessy-pos-x").setValue(-11.61)
+        gui.add(hennessyMesh.position, "x").min(-20).max(10).step(0.01).name("henessy-pos-x").setValue(VarLet.hennessyMesh_initial_position_x)
         gui.add(hennessyMesh.position, "y").min(-10).max(10).step(0.01).name("henessy-pos-y").setValue(VarLet.hennessyMesh_initial_position_y)
         gui.add(hennessyMesh.position, "z").min(-10).max(10).step(0.01).name("henessy-pos-z").setValue(1.66)
 

@@ -31,7 +31,7 @@ export default class Storyline {
             this.scrollTrigger.create({
                 trigger: section,
                 start: "top top",
-                end: `+=${this.sectionHeight - (this.sectionHeight * 0.1)}% 50%`,      // slightly before the end so the scroll up is not shown
+                end: `+=${this.sectionHeight - (this.sectionHeight * 0.05)}% 50%`,      // slightly before the end so the scroll up is not shown
                 onEnter: () => gsap.to(h, { opacity: 1, ease: "power1.in", immediateRender: false },),
                 onLeave: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
                 onLeaveBack: () => gsap.to(h, { opacity: 0, ease: "power4.out", immediateRender: false }),
@@ -42,12 +42,12 @@ export default class Storyline {
 
     gradientBodyBackground() {
 
-        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#322633" },{ backgroundColor: "#F2A0E9" });
-        const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
+        const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#637CAD" },{ backgroundColor: "#EB9C9C", immediateRender: false });
         const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
-        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#F2A0E9" });
-        const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#F2A0E9" },{ backgroundColor: "#EB9C9C", immediateRender: false });
+        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
+        const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#637CAD" },{ backgroundColor: "#EB9C9C", immediateRender: false });
         const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
         this.scrollTrigger.create({

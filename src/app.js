@@ -144,43 +144,73 @@ gltfLoader.setDRACOLoader(dracoLoader);
 /**
  * Textures
  */
-const bakedTexture = textureLoader.load('3D/baked2.jpg');
-bakedTexture.flipY = false;
-bakedTexture.encoding = THREE.sRGBEncoding;
+const bakedTextureLandim = textureLoader.load('3D/landim/baked2.jpg');
+bakedTextureLandim.flipY = false;
+bakedTextureLandim.encoding = THREE.sRGBEncoding;
+
+const bakedTextureBridge = textureLoader.load('3D/bridge/baked2.jpg');
+bakedTextureBridge.flipY = false;
+bakedTextureBridge.encoding = THREE.sRGBEncoding;
 
 /**
  * Materials
  */
-// Baked material
-const bakedMaterial = new THREE.MeshBasicMaterial({
-    map: bakedTexture
+// Landim
+const bakedMaterialLandim = new THREE.MeshBasicMaterial({
+    map: bakedTextureLandim
 });
 
-// Pole light material
-const poleLightMaterial = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
+const poleLightMaterialLandim = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
+
+// Bridge
+const bakedMaterialBridge = new THREE.MeshBasicMaterial({
+    map: bakedTextureBridge
+});
 
 /**
  * Model
  */
 let landimMesh;
-gltfLoader.load('3D/merged.glb',
+let bridgeMesh;
+gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
         landimMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'merged');
-        bakedMesh.material = bakedMaterial;
+        bakedMesh.material = bakedMaterialLandim;
 
         const poleLightAMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleA');
         const poleLightBMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleB');
         const poleLightCMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleC');
         const poleLightDMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleD');
 
-        poleLightAMesh.material = poleLightMaterial;
-        poleLightBMesh.material = poleLightMaterial;
-        poleLightCMesh.material = poleLightMaterial;
-        poleLightDMesh.material = poleLightMaterial;
+        poleLightAMesh.material = poleLightMaterialLandim;
+        poleLightBMesh.material = poleLightMaterialLandim;
+        poleLightCMesh.material = poleLightMaterialLandim;
+        poleLightDMesh.material = poleLightMaterialLandim;
+
+        scene.add(gltf.scene);
+    }
+);
+
+gltfLoader.load('3D/bridge/bridge.glb',
+    (gltf) =>  {
+
+        bridgeMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'bridge');
+        bakedMesh.material = bakedMaterialBridge;
+
+
+        bakedMesh.position.x = 16.99;
+        bakedMesh.position.z = -17.69;
+
+        bakedMesh.rotation.x = -0.45;
+        bakedMesh.rotation.y = 1.18;
+        bakedMesh.rotation.z = 1.18;
 
         scene.add(gltf.scene);
     }
@@ -239,9 +269,10 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputEncoding = THREE.sRGBEncoding;
 
 /**
- * Animate camera downwards
+ * Models animations
  */
 
+// Landim
 const moveLandimMesh = ({x, y}) => {
     if(VarLet.landimMesh_initial_position_z !== undefined && landimMesh !== undefined) {
         const distance_from_top = y;
@@ -256,8 +287,18 @@ const tiltLandimMesh = () => {
     }
 };
 
+
+// Bridge
+const moveBridgeMesh = ({x, y}) => {
+    if(VarLet.bridgeMesh_initial_position_y !== undefined && bridgeMesh !== undefined) {
+        const distance_from_top = y;
+        bridgeMesh.position.y = VarLet.bridgeMesh_initial_position_y + (distance_from_top * 0.02);
+    }
+};
+
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
     moveLandimMesh(scroll);
+    moveBridgeMesh(scroll);
 });
 
 

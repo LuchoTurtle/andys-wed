@@ -17,6 +17,7 @@
         opacity: 0;
         margin: 28vh auto auto 9vw;
         text-align: right;
+        font-weight: 100;
       };
 
       @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
@@ -32,6 +33,7 @@
         opacity: 0;
         margin: auto 7vw 23vh auto;
         text-align: left;
+        font-weight: 100;
       };
 
       @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
@@ -47,6 +49,7 @@
         opacity: 0;
         margin: auto;
         text-align: center;
+        font-weight: 100;
       };
     }
 

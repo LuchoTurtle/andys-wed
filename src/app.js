@@ -107,13 +107,25 @@ ScrollTrigger.refresh();
 // Mobile L
 if (screen.width < 425) {
     VarLet.landimMesh_initial_position_z = -6;
+    VarLet.bridgeMesh_initial_position_z = -31.78;
 }
 
+// Tablet
 if (screen.width < 768) {
     VarLet.landimMesh_initial_position_z = -3;
+    VarLet.bridgeMesh_initial_position_z = -31.78;
 }
 
+console.log(screen.height)
+// Height
+if (screen.height < 1080) {
+    VarLet.bridgeMesh_initial_position_y = -40;
+}
 
+// Height
+if (screen.height < 720) {
+    VarLet.bridgeMesh_initial_position_y = -38;
+}
 
 /**
  * Init tools
@@ -205,12 +217,29 @@ gltfLoader.load('3D/bridge/bridge.glb',
         bakedMesh.material = bakedMaterialBridge;
 
 
+        gui.add(bridgeMesh.position, "x").min(-50).max(50).step(0.01).setValue(16.99)
+        //gui.add(bridgeMesh.position, "y").min(-50).max(50).step(0.01).setValue(12.66)
+        gui.add(bridgeMesh.position, "z").min(-50).max(50).step(0.01).setValue(VarLet.bridgeMesh_initial_position_z)
+
+        gui.add(bridgeMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(-0.45)
+        gui.add(bridgeMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.18)
+        gui.add(bridgeMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.18)
+
+        /*
         bakedMesh.position.x = 16.99;
         bakedMesh.position.z = -17.69;
 
         bakedMesh.rotation.x = -0.45;
         bakedMesh.rotation.y = 1.18;
         bakedMesh.rotation.z = 1.18;
+
+         */
+
+
+
+
+
+
 
         scene.add(gltf.scene);
     }

@@ -6,7 +6,8 @@ const VarConst = {
 
 let VarLet = {
     landimMesh_initial_position_z: 0,
-    bridgeMesh_initial_position_y: -60
+    bridgeMesh_initial_position_y: -60,
+    bridgeMesh_initial_position_z: -17.69
 };
 
 export { VarConst, VarLet }

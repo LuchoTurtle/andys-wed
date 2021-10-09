@@ -137,7 +137,7 @@ else if (screen.width <= 1024) {
 else if (screen.width <= 1440) {
     VarLet.knotMesh_initial_position_x = -9;
 } else if(screen.width <= 2560) {
-    VarLet.knotMesh_initial_position_x = -10;
+    VarLet.knotMesh_initial_position_x = -9.4;
 }
 
 // Height -------------
@@ -205,6 +205,23 @@ const bakedTextureKnot = textureLoader.load('3D/knot/baked.jpg');
 bakedTextureKnot.flipY = false;
 bakedTextureKnot.encoding = THREE.sRGBEncoding;
 
+const bakedTextureChampagne = textureLoader.load('3D/bottles/baked_champagne.jpg');
+bakedTextureChampagne.flipY = false;
+bakedTextureChampagne.encoding = THREE.sRGBEncoding;
+
+const bakedTextureDaniels = textureLoader.load('3D/bottles/daniels_baked.jpg');
+bakedTextureDaniels.flipY = false;
+bakedTextureDaniels.encoding = THREE.sRGBEncoding;
+
+const bakedTextureWine = textureLoader.load('3D/bottles/wine_baked.jpg');
+bakedTextureWine.flipY = false;
+bakedTextureWine.encoding = THREE.sRGBEncoding;
+
+const bakedTextureHennessy = textureLoader.load('3D/bottles/henessy_baked.jpg');
+bakedTextureHennessy.flipY = false;
+bakedTextureHennessy.encoding = THREE.sRGBEncoding;
+
+
 /**
  * Materials
  */
@@ -225,12 +242,37 @@ const bakedMaterialKnot = new THREE.MeshBasicMaterial({
     map: bakedTextureKnot
 });
 
+// Champagne
+const bakedMaterialChampagne = new THREE.MeshBasicMaterial({
+    map: bakedTextureChampagne
+});
+
+// Daniels
+const bakedMaterialDaniels = new THREE.MeshBasicMaterial({
+    map: bakedTextureDaniels
+});
+
+// Wine
+const bakedMaterialWine = new THREE.MeshBasicMaterial({
+    map: bakedTextureWine
+});
+
+// Hennessy
+const bakedMaterialHennessy = new THREE.MeshBasicMaterial({
+    map: bakedTextureHennessy
+});
+
+
 /**
  * Model
  */
 let landimMesh;
 let bridgeMesh;
 let knotMesh;
+let champagneMesh;
+let danielsMesh;
+let wineMesh;
+let hennessyMesh;
 gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
@@ -284,13 +326,99 @@ gltfLoader.load('3D/knot/knot.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'knot');
         bakedMesh.material = bakedMaterialKnot;
 
-        gui.add(knotMesh.position, "x").min(-20).max(20).step(0.01).setValue(VarLet.knotMesh_initial_position_x)
-        gui.add(knotMesh.position, "y").min(-20).max(20).step(0.01).setValue(VarLet.knotMesh_initial_position_y)
-        gui.add(knotMesh.position, "z").min(-20).max(20).step(0.01).setValue(-1.87)
+        knotMesh.position.x = VarLet.knotMesh_initial_position_x;
+        knotMesh.position.y = VarLet.knotMesh_initial_position_y;
+        knotMesh.position.z = -1.87;
 
-        gui.add(knotMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.05)
-        gui.add(knotMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(-5.76)
-        gui.add(knotMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(0.18)
+        knotMesh.rotation.x = 1.05;
+        knotMesh.rotation.y = -5.76;
+        knotMesh.rotation.z = 0.18;
+
+        scene.add(gltf.scene);
+    }
+);
+
+gltfLoader.load('3D/bottles/champagne.glb',
+    (gltf) =>  {
+
+        champagneMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Champagne');
+        bakedMesh.material = bakedMaterialChampagne;
+
+        gui.add(champagneMesh.position, "x").min(-20).max(10).step(0.01).name("champagne-pos-x").setValue(-12.26)
+        gui.add(champagneMesh.position, "y").min(-10).max(10).step(0.01).name("champagne-pos-y").setValue(VarLet.champagneMesh_initial_position_y)
+        gui.add(champagneMesh.position, "z").min(-10).max(10).step(0.01).name("champagne-pos-z").setValue(1.45)
+
+        gui.add(champagneMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-x").setValue(-0.32)
+        gui.add(champagneMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-y").setValue(-1.13)
+        gui.add(champagneMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-z").setValue(VarLet.champagneMesh_initial_rotation_z)
+
+        scene.add(gltf.scene);
+    }
+);
+
+
+gltfLoader.load('3D/bottles/daniels.glb',
+    (gltf) =>  {
+
+        danielsMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'daniels');
+        bakedMesh.material = bakedMaterialDaniels;
+
+        gui.add(danielsMesh.position, "x").min(-20).max(10).step(0.01).name("daniels-pos-x").setValue(-11.61)
+        gui.add(danielsMesh.position, "y").min(-10).max(10).step(0.01).name("daniels-pos-y").setValue(VarLet.danielsMesh_initial_position_y)
+        gui.add(danielsMesh.position, "z").min(-10).max(10).step(0.01).name("daniels-pos-z").setValue(2.1)
+
+        gui.add(danielsMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-x").setValue(0.09)
+        gui.add(danielsMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-y").setValue(4.45)
+        gui.add(danielsMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-z").setValue(0.74)
+
+        scene.add(gltf.scene);
+    }
+);
+
+
+gltfLoader.load('3D/bottles/wine.glb',
+    (gltf) =>  {
+
+        wineMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Wine');
+        bakedMesh.material = bakedMaterialWine;
+
+        gui.add(wineMesh.position, "x").min(-20).max(10).step(0.01).name("wine-pos-x").setValue(-11.61)
+        gui.add(wineMesh.position, "y").min(-10).max(10).step(0.01).name("wine-pos-y").setValue(VarLet.wineMesh_initial_position_y)
+        gui.add(wineMesh.position, "z").min(-10).max(10).step(0.01).name("wine-pos-z").setValue(1.01)
+
+        gui.add(wineMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-x").setValue(-5.9)
+        gui.add(wineMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-y").setValue(-1.68)
+        gui.add(wineMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-z").setValue(0.04)
+
+        scene.add(gltf.scene);
+    }
+);
+
+gltfLoader.load('3D/bottles/henessy.glb',
+    (gltf) =>  {
+
+        hennessyMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Hennessy');
+        bakedMesh.material = bakedMaterialHennessy;
+
+        gui.add(hennessyMesh.position, "x").min(-20).max(10).step(0.01).name("henessy-pos-x").setValue(-11.61)
+        gui.add(hennessyMesh.position, "y").min(-10).max(10).step(0.01).name("henessy-pos-y").setValue(VarLet.hennessyMesh_initial_position_y)
+        gui.add(hennessyMesh.position, "z").min(-10).max(10).step(0.01).name("henessy-pos-z").setValue(1.66)
+
+        gui.add(hennessyMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-x").setValue(-5.9)
+        gui.add(hennessyMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-y").setValue(0.18)
+        gui.add(hennessyMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-z").setValue(0.04)
 
         scene.add(gltf.scene);
     }
@@ -384,10 +512,47 @@ const moveKnotMesh = ({x, y}) => {
     }
 };
 
+// Champagne
+const moveChampagneMesh = ({x, y}) => {
+    if(VarLet.champagneMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+        const distance_from_top = y;
+        champagneMesh.position.y = VarLet.champagneMesh_initial_position_y + (distance_from_top * 0.001);
+        champagneMesh.rotation.z = VarLet.champagneMesh_initial_rotation_z + (distance_from_top * 0.001);
+    }
+};
+
+// Daniels
+const moveDanielsMesh = ({x, y}) => {
+    if(VarLet.danielsMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+        const distance_from_top = y;
+        danielsMesh.position.y = VarLet.danielsMesh_initial_position_y + (distance_from_top * 0.001);
+    }
+};
+
+// Wine
+const moveWineMesh = ({x, y}) => {
+    if(VarLet.wineMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+        const distance_from_top = y;
+        wineMesh.position.y = VarLet.wineMesh_initial_position_y + (distance_from_top * 0.001);
+    }
+};
+
+// Hennessy
+const moveHennesyMesh = ({x, y}) => {
+    if(VarLet.hennessyMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+        const distance_from_top = y;
+        hennessyMesh.position.y = VarLet.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
+    }
+};
+
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
     moveLandimMesh(scroll);
     moveBridgeMesh(scroll);
     moveKnotMesh(scroll);
+    moveChampagneMesh(scroll);
+    moveDanielsMesh(scroll);
+    moveWineMesh(scroll);
+    moveHennesyMesh(scroll);
 });
 
 

@@ -104,28 +104,65 @@ ScrollTrigger.refresh();
 /**
  * Screen width initializations
  */
-// Mobile L
-if (screen.width < 425) {
+// Width -------------
+// Mobile S
+if (screen.width <= 320) {
     VarLet.landimMesh_initial_position_z = -6;
     VarLet.bridgeMesh_initial_position_z = -31.78;
+    VarLet.knotMesh_initial_position_x = -6.9;
 }
-
+// Mobile M
+else if (screen.width <= 375) {
+    VarLet.landimMesh_initial_position_z = -6;
+    VarLet.bridgeMesh_initial_position_z = -31.78;
+    VarLet.knotMesh_initial_position_x = -7;
+}
+// Mobile L
+else if (screen.width <= 425) {
+    VarLet.landimMesh_initial_position_z = -6;
+    VarLet.bridgeMesh_initial_position_z = -31.78;
+    VarLet.knotMesh_initial_position_x = -7;
+}
 // Tablet
-if (screen.width < 768) {
+else if (screen.width <= 768) {
     VarLet.landimMesh_initial_position_z = -3;
     VarLet.bridgeMesh_initial_position_z = -31.78;
+    VarLet.knotMesh_initial_position_x = -7;
+}
+// Laptop
+else if (screen.width <= 1024) {
+    VarLet.knotMesh_initial_position_x = -8.30;
+}
+// Laptop L
+else if (screen.width <= 1440) {
+    VarLet.knotMesh_initial_position_x = -9;
+} else if(screen.width <= 2560) {
+    VarLet.knotMesh_initial_position_x = -10;
 }
 
-console.log(screen.height)
-// Height
-if (screen.height < 1080) {
-    VarLet.bridgeMesh_initial_position_y = -40;
+// Height -------------
+if (screen.height <= 600) {
+    VarLet.bridgeMesh_initial_position_y = -45;
+    VarLet.knotMesh_initial_position_y = -3;
+} else if (screen.height <= 720) {
+    VarLet.bridgeMesh_initial_position_y = -45;
+    VarLet.knotMesh_initial_position_y = -5;
+} else if (screen.height <= 1080) {
+    VarLet.bridgeMesh_initial_position_y = -45;
+    VarLet.knotMesh_initial_position_y = -8;
+} else if (screen.height <= 1440) {
+    VarLet.knotMesh_initial_position_y = -13;
+} else if (screen.height <= 2160) {
+    VarLet.bridgeMesh_initial_position_y = -100;
+    VarLet.knotMesh_initial_position_y = -20;
+} else {
+    VarLet.bridgeMesh_initial_position_y = -150;
+    VarLet.knotMesh_initial_position_y = -23;
 }
 
-// Height
-if (screen.height < 720) {
-    VarLet.bridgeMesh_initial_position_y = -38;
-}
+
+
+
 
 /**
  * Init tools
@@ -164,6 +201,10 @@ const bakedTextureBridge = textureLoader.load('3D/bridge/baked2.jpg');
 bakedTextureBridge.flipY = false;
 bakedTextureBridge.encoding = THREE.sRGBEncoding;
 
+const bakedTextureKnot = textureLoader.load('3D/knot/baked.jpg');
+bakedTextureKnot.flipY = false;
+bakedTextureKnot.encoding = THREE.sRGBEncoding;
+
 /**
  * Materials
  */
@@ -179,11 +220,17 @@ const bakedMaterialBridge = new THREE.MeshBasicMaterial({
     map: bakedTextureBridge
 });
 
+// Knot
+const bakedMaterialKnot = new THREE.MeshBasicMaterial({
+    map: bakedTextureKnot
+});
+
 /**
  * Model
  */
 let landimMesh;
 let bridgeMesh;
+let knotMesh;
 gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
@@ -217,29 +264,33 @@ gltfLoader.load('3D/bridge/bridge.glb',
         bakedMesh.material = bakedMaterialBridge;
 
 
-        gui.add(bridgeMesh.position, "x").min(-50).max(50).step(0.01).setValue(16.99)
-        //gui.add(bridgeMesh.position, "y").min(-50).max(50).step(0.01).setValue(12.66)
-        gui.add(bridgeMesh.position, "z").min(-50).max(50).step(0.01).setValue(VarLet.bridgeMesh_initial_position_z)
-
-        gui.add(bridgeMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(-0.45)
-        gui.add(bridgeMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.18)
-        gui.add(bridgeMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.18)
-
-        /*
         bakedMesh.position.x = 16.99;
-        bakedMesh.position.z = -17.69;
+        bakedMesh.position.z = VarLet.bridgeMesh_initial_position_z;
 
         bakedMesh.rotation.x = -0.45;
         bakedMesh.rotation.y = 1.18;
         bakedMesh.rotation.z = 1.18;
 
-         */
+        scene.add(gltf.scene);
+    }
+);
 
+gltfLoader.load('3D/knot/knot.glb',
+    (gltf) =>  {
 
+        knotMesh = gltf.scene;
 
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'knot');
+        bakedMesh.material = bakedMaterialKnot;
 
+        gui.add(knotMesh.position, "x").min(-20).max(20).step(0.01).setValue(VarLet.knotMesh_initial_position_x)
+        gui.add(knotMesh.position, "y").min(-20).max(20).step(0.01).setValue(VarLet.knotMesh_initial_position_y)
+        gui.add(knotMesh.position, "z").min(-20).max(20).step(0.01).setValue(-1.87)
 
-
+        gui.add(knotMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(1.05)
+        gui.add(knotMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(-5.76)
+        gui.add(knotMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).setValue(0.18)
 
         scene.add(gltf.scene);
     }
@@ -325,9 +376,18 @@ const moveBridgeMesh = ({x, y}) => {
     }
 };
 
+// Knot
+const moveKnotMesh = ({x, y}) => {
+    if(VarLet.knotMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+        const distance_from_top = y;
+        knotMesh.position.y = VarLet.knotMesh_initial_position_y + (distance_from_top * 0.002);
+    }
+};
+
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
     moveLandimMesh(scroll);
     moveBridgeMesh(scroll);
+    moveKnotMesh(scroll);
 });
 
 

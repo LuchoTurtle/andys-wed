@@ -63,7 +63,6 @@
       font-size: .8em;
       margin-top: 1.3vh;
       opacity: 1;
-      left: 9vw;
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
         font-size: .5em;
@@ -78,7 +77,6 @@
       @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
         font-size: 1.5em;
         margin-top: 2vh;
-        left: 0;
       }
 
       &:hover {

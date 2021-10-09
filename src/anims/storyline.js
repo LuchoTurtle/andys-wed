@@ -43,12 +43,12 @@ export default class Storyline {
     gradientBodyBackground() {
 
         const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
-        const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#637CAD" },{ backgroundColor: "#EB9C9C", immediateRender: false });
-        const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
+        const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#637CAD" },{ backgroundColor: "#E2E8F9", immediateRender: false });
+        const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#E2E8F9" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
         const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
-        const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#637CAD" },{ backgroundColor: "#EB9C9C", immediateRender: false });
-        const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#EB9C9C" },{ backgroundColor: "#FBE7C6", immediateRender: false });
+        const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#637CAD" },{ backgroundColor: "#E2E8F9", immediateRender: false });
+        const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#E2E8F9" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
         this.scrollTrigger.create({
             trigger: this.texts[0],

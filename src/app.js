@@ -152,9 +152,9 @@ else if (screen.width <= 1024) {
 }
 // Laptop L
 else if (screen.width <= 1440) {
-    VarLet.knotMesh_initial_position_x = -9;
+    VarLet.knotMesh_initial_position_x = -8.30;
 } else if(screen.width <= 2560) {
-    VarLet.knotMesh_initial_position_x = -9.4;
+    VarLet.knotMesh_initial_position_x = -8.30;
 }
 
 // Height -------------
@@ -393,13 +393,13 @@ gltfLoader.load('3D/bottles/champagne.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Champagne');
         bakedMesh.material = bakedMaterialChampagne;
 
-        gui.add(champagneMesh.position, "x").min(-20).max(10).step(0.01).name("champagne-pos-x").setValue(VarLet.champagneMesh_initial_position_x)
-        gui.add(champagneMesh.position, "y").min(-10).max(10).step(0.01).name("champagne-pos-y").setValue(VarLet.champagneMesh_initial_position_y)
-        gui.add(champagneMesh.position, "z").min(-10).max(10).step(0.01).name("champagne-pos-z").setValue(1.45)
+        champagneMesh.position.x = VarLet.champagneMesh_initial_position_x;
+        champagneMesh.position.y = VarLet.champagneMesh_initial_position_y;
+        champagneMesh.position.z = 1.45;
 
-        gui.add(champagneMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-x").setValue(-0.32)
-        gui.add(champagneMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-y").setValue(-1.13)
-        gui.add(champagneMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("champagne-rot-z").setValue(VarLet.champagneMesh_initial_rotation_z)
+        champagneMesh.rotation.x = -0.32;
+        champagneMesh.rotation.y = -1.13;
+        champagneMesh.rotation.z = VarLet.champagneMesh_initial_rotation_z;
 
         scene.add(gltf.scene);
     }
@@ -415,13 +415,13 @@ gltfLoader.load('3D/bottles/daniels.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'daniels');
         bakedMesh.material = bakedMaterialDaniels;
 
-        gui.add(danielsMesh.position, "x").min(-20).max(10).step(0.01).name("daniels-pos-x").setValue(VarLet.danielsMesh_initial_position_x)
-        gui.add(danielsMesh.position, "y").min(-10).max(10).step(0.01).name("daniels-pos-y").setValue(VarLet.danielsMesh_initial_position_y)
-        gui.add(danielsMesh.position, "z").min(-10).max(10).step(0.01).name("daniels-pos-z").setValue(2.1)
+        danielsMesh.position.x = VarLet.danielsMesh_initial_position_x;
+        danielsMesh.position.y = VarLet.danielsMesh_initial_position_y;
+        danielsMesh.position.z = 2.1;
 
-        gui.add(danielsMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-x").setValue(0.09)
-        gui.add(danielsMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-y").setValue(4.45)
-        gui.add(danielsMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("daniels-rot-z").setValue(0.74)
+        danielsMesh.rotation.x = 0.09;
+        danielsMesh.rotation.y = 4.45;
+        danielsMesh.rotation.z = 0.74;
 
         scene.add(gltf.scene);
     }
@@ -437,13 +437,13 @@ gltfLoader.load('3D/bottles/wine.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Wine');
         bakedMesh.material = bakedMaterialWine;
 
-        gui.add(wineMesh.position, "x").min(-20).max(10).step(0.01).name("wine-pos-x").setValue(VarLet.wineMesh_initial_position_x)
-        gui.add(wineMesh.position, "y").min(-10).max(10).step(0.01).name("wine-pos-y").setValue(VarLet.wineMesh_initial_position_y)
-        gui.add(wineMesh.position, "z").min(-10).max(10).step(0.01).name("wine-pos-z").setValue(1.01)
+        wineMesh.position.x = VarLet.wineMesh_initial_position_x;
+        wineMesh.position.y = VarLet.wineMesh_initial_position_y;
+        wineMesh.position.z = 1.0;
 
-        gui.add(wineMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-x").setValue(-5.9)
-        gui.add(wineMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-y").setValue(-1.68)
-        gui.add(wineMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("wine-rot-z").setValue(0.04)
+        wineMesh.rotation.x = -5.9;
+        wineMesh.rotation.y = -1.68;
+        wineMesh.rotation.z = 0.04;
 
         scene.add(gltf.scene);
     }
@@ -458,13 +458,13 @@ gltfLoader.load('3D/bottles/henessy.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Hennessy');
         bakedMesh.material = bakedMaterialHennessy;
 
-        gui.add(hennessyMesh.position, "x").min(-20).max(10).step(0.01).name("henessy-pos-x").setValue(VarLet.hennessyMesh_initial_position_x)
-        gui.add(hennessyMesh.position, "y").min(-10).max(10).step(0.01).name("henessy-pos-y").setValue(VarLet.hennessyMesh_initial_position_y)
-        gui.add(hennessyMesh.position, "z").min(-10).max(10).step(0.01).name("henessy-pos-z").setValue(1.66)
+        hennessyMesh.position.x = VarLet.hennessyMesh_initial_position_x;
+        hennessyMesh.position.y = VarLet.hennessyMesh_initial_position_y;
+        hennessyMesh.position.z = 1.66;
 
-        gui.add(hennessyMesh.rotation, "x").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-x").setValue(-5.9)
-        gui.add(hennessyMesh.rotation, "y").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-y").setValue(0.18)
-        gui.add(hennessyMesh.rotation, "z").min(-Math.PI * 2).max(Math.PI * 2).step(0.01).name("henessy-rot-z").setValue(0.04)
+        hennessyMesh.rotation.x = -5.9;
+        hennessyMesh.rotation.y = 0.18;
+        hennessyMesh.rotation.z = 0.04;
 
         scene.add(gltf.scene);
     }
@@ -550,11 +550,25 @@ const moveBridgeMesh = ({x, y}) => {
     }
 };
 
+const tiltBridgeMesh = () => {
+    if(bridgeMesh) {
+        bridgeMesh.rotation.y = cursor.x * 0.05;
+        bridgeMesh.rotation.z = cursor.y * 0.05;
+    }
+};
+
 // Knot
 const moveKnotMesh = ({x, y}) => {
     if(VarLet.knotMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
         knotMesh.position.y = VarLet.knotMesh_initial_position_y + (distance_from_top * 0.002);
+    }
+};
+
+const tiltKnotMesh = () => {
+    if(knotMesh) {
+        knotMesh.rotation.y = cursor.x * 0.05;
+        knotMesh.rotation.z = cursor.y * 0.05;
     }
 };
 
@@ -575,6 +589,7 @@ const moveDanielsMesh = ({x, y}) => {
     }
 };
 
+
 // Wine
 const moveWineMesh = ({x, y}) => {
     if(VarLet.wineMesh_initial_position_y !== undefined && knotMesh !== undefined) {
@@ -583,6 +598,7 @@ const moveWineMesh = ({x, y}) => {
     }
 };
 
+
 // Hennessy
 const moveHennesyMesh = ({x, y}) => {
     if(VarLet.hennessyMesh_initial_position_y !== undefined && knotMesh !== undefined) {
@@ -590,6 +606,7 @@ const moveHennesyMesh = ({x, y}) => {
         hennessyMesh.position.y = VarLet.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
+
 
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
     moveLandimMesh(scroll);
@@ -613,6 +630,8 @@ const tick = () =>
 
     // Animated things
     tiltLandimMesh();
+    tiltBridgeMesh();
+    tiltKnotMesh();
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)

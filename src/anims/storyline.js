@@ -1,11 +1,12 @@
 import {gsap} from 'gsap';
 
 export default class Storyline {
-    constructor(scrolltrigger, body, navbar, texts) {
+    constructor(scrolltrigger, body, navbar, texts, menu_links) {
         this.scrollTrigger = scrolltrigger;
         this.navbar = navbar;
         this.body = body;
         this.texts = texts;
+        this.menu_links = menu_links;
         this.sectionHeight = 300;
         this.makeSectionsStickyAndTextFade();
         this.gradientBodyBackground()
@@ -49,6 +50,32 @@ export default class Storyline {
         const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
         const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#637CAD" },{ backgroundColor: "#E2E8F9", immediateRender: false });
         const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#E2E8F9" },{ backgroundColor: "#FBE7C6", immediateRender: false });
+
+        for(let ml of this.menu_links) {
+            const MENU_LINK_bodyToLightPurple = gsap.fromTo(ml, { color: "#ededed" },{ color: "#E4F1FE" });
+            const MENU_LINK_lightPurtpleToDarkerPurple = gsap.fromTo(ml, { color: "#E4F1FE" },{ color: "#aaaaaa", immediateRender: false });
+            const MENU_LINK_darkerPurpleToOrange = gsap.fromTo(ml, { color: "#aaaaaa" },{ color: "#545353", immediateRender: false });
+
+            this.scrollTrigger.create({
+                trigger: this.texts[0],
+                start: "top top",
+                scrub: true,
+                animation: MENU_LINK_bodyToLightPurple
+            });
+            this.scrollTrigger.create({
+                trigger: this.texts[1],
+                start: "top top",
+                scrub: true,
+                animation: MENU_LINK_lightPurtpleToDarkerPurple
+            });
+            this.scrollTrigger.create({
+                trigger: this.texts[2],
+                start: "top top",
+                scrub: true,
+                animation: MENU_LINK_darkerPurpleToOrange
+            });
+        }
+
 
         this.scrollTrigger.create({
             trigger: this.texts[0],

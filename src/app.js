@@ -62,7 +62,8 @@ ScrollTrigger.defaults({
 const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
-new Storyline(ScrollTrigger, body, navbar,  texts);
+const menu_links = [...document.getElementsByClassName("menu__link")];
+new Storyline(ScrollTrigger, body, navbar,  texts, menu_links);
 
 
 /* Gallery effects ---------------*/

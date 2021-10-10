@@ -55,4 +55,7 @@ main {
     z-index: 1000 !important;
 }
 
-
+/* Hide scrollbar thumb */
+.c-scrollbar_thumb {
+    display: none
+}

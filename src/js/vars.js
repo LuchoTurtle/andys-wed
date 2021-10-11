@@ -5,6 +5,9 @@ const VarConst = {
 };
 
 let VarLet = {
+    loadCompleted: false,
+
+    // Meshes
     landimMesh_initial_position_z: 0,
 
     bridgeMesh_initial_position_y: -60,

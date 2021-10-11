@@ -65,7 +65,7 @@
       opacity: 1;
 
       @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
-        font-size: .5em;
+        font-size: 1em;
         margin-top: 1.2vh;
       }
 

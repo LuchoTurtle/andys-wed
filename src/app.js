@@ -93,11 +93,57 @@ ScrollTrigger.refresh();
 
 /* PRE-LOAD FILES ----------------------------------------------------------------------- */
 // Preload
-//let queue = new createjs.LoadQueue(false);
+let queue = new createjs.LoadQueue(false);
 
 // 3D
-//queue.loadFile('/3D/landim.glb');
-//queue.on("progress", event => {console.log(Math.floor(event.progress*100))})
+queue.loadFile('/3D/landim/merged.glb');
+queue.loadFile('/3D/knot/knot.glb');
+queue.loadFile('/3D/bridge/bridge.glb');
+queue.loadFile('/3D/bottles/champagne.glb');
+queue.loadFile('/3D/bottles/daniels.glb');
+queue.loadFile('/3D/bottles/wine.glb');
+queue.loadFile('/3D/bottles/henessy.glb');
+
+
+// images
+queue.loadFile('/3D/landim/baked2.jpg');
+queue.loadFile('/3D/knot/baked.jpg');
+queue.loadFile('/3D/bridge/baked2.jpg');
+queue.loadFile('/3D/bottles/baked_champagne.jpg');
+queue.loadFile('/3D/bottles/daniels_baked.jpg');
+queue.loadFile('/3D/bottles/henessy_baked.jpg');
+queue.loadFile('/3D/bottles/wine_baked.jpg');
+
+queue.loadFile('/3D/landim/baked2.jpg');
+queue.loadFile('/3D/knot/baked.jpg');
+queue.loadFile('/3D/bridge/baked2.jpg');
+
+queue.loadFile('/img/1.jpg');
+queue.loadFile('/img/2.jpg');
+queue.loadFile('/img/3.jpg');
+
+// fonts
+queue.loadFile('/font/Canela-Bold.woff2');
+queue.loadFile('/font/Canela-Medium.woff2');
+queue.loadFile('/font/Chapaza.woff');
+queue.loadFile('/font/Chapaza.woff2');
+queue.loadFile('/font/Founders_Grotesk_Light.woff2');
+queue.loadFile('/font/Founders_Grotesk_Medium.woff2');
+queue.loadFile('/font/Judson-Regular.woff');
+queue.loadFile('/font/Judson-Regular.woff2');
+queue.loadFile('/font/Rossanova.woff');
+queue.loadFile('/font/Rossanova.woff2');
+
+
+queue.on("progress", event => {
+    let progressValue =  Math.floor(event.progress*100);
+    console.log(progressValue)
+});
+
+queue.on("complete", event => {
+    VarLet.loadFinished = true
+});
+
 
 
 /* THREE JS ----------------------------------------------------------------------------- */
@@ -655,3 +701,25 @@ window.addEventListener("mousemove", (event) => {
     cursor.x = event.clientX / sizes.width - 0.5;
     cursor.y = event.clientY / sizes.height - 0.5;
 });
+
+
+
+
+
+
+
+//https://codepen.io/mburakerman/pen/roJmaZ?editors=0010
+// Loading
+const buttons = document.getElementsByTagName("button");
+
+for (const button of buttons) {
+    button.addEventListener('click', () => {
+        const layers = document.querySelectorAll(".bottom-layer");
+        const container = document.getElementById("loader");
+
+        for (const layer of layers) {
+            layer.classList.toggle("active");
+        }
+        container.classList.toggle('hidden');
+    });
+}

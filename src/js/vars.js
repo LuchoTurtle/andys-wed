@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 
 const VarConst = {
+    loaderContainer: document.querySelector('.loading-container'),
     mouse: new THREE.Vector2()
 };
 

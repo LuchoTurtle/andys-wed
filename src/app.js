@@ -141,7 +141,8 @@ queue.on("progress", event => {
 });
 
 queue.on("complete", event => {
-    VarLet.loadFinished = true
+    VarLet.loadFinished = true;
+    gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in" });
 });
 
 
@@ -703,23 +704,4 @@ window.addEventListener("mousemove", (event) => {
 });
 
 
-
-
-
-
-
-//https://codepen.io/mburakerman/pen/roJmaZ?editors=0010
-// Loading
-const buttons = document.getElementsByTagName("button");
-
-for (const button of buttons) {
-    button.addEventListener('click', () => {
-        const layers = document.querySelectorAll(".bottom-layer");
-        const container = document.getElementById("loader");
-
-        for (const layer of layers) {
-            layer.classList.toggle("active");
-        }
-        container.classList.toggle('hidden');
-    });
-}
+/* LOADING AND EXPERIENCE FUNCTIONS --------------------------------------- */

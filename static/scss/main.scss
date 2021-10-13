@@ -9,6 +9,8 @@
 @import 'venue';
 @import 'rsvp';
 
+@import 'utils/loading_transition';
+
 body {
     margin: 0;
     background-color: map-get(map-get($palettes, yellow), light);

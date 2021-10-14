@@ -222,6 +222,14 @@ else if (screen.height <= 720) {
     VarLet.wineMesh_initial_position_y = -3;
     VarLet.hennessyMesh_initial_position_y = -3;
 }
+else if (screen.height <= 900) {
+    VarLet.bridgeMesh_initial_position_y = -35;
+    VarLet.knotMesh_initial_position_y = -6;
+    VarLet.champagneMesh_initial_position_y = -4.5;
+    VarLet.danielsMesh_initial_position_y = -4.5;
+    VarLet.wineMesh_initial_position_y = -4.5;
+    VarLet.hennessyMesh_initial_position_y = -4.5;
+}
 else if (screen.height <= 1080) {
     VarLet.bridgeMesh_initial_position_y = -45;
     VarLet.knotMesh_initial_position_y = -8;

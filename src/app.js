@@ -136,13 +136,24 @@ queue.loadFile('/font/Rossanova.woff2');
 
 
 queue.on("progress", event => {
-    let progressValue =  Math.floor(event.progress*100);
-    console.log(progressValue)
+    const progressValue =  event.progress;
+    const progressValue100 =  Math.floor(event.progress*100);
+    VarConst.loadingLine.style.transform = `scale(${progressValue})`;
+
+    if(progressValue100 < 10) {
+        VarConst.loadValue.innerText = `00${ progressValue100}`
+    } else if(progressValue100 < 100) {
+        VarConst.loadValue.innerText = `0${ progressValue100}`
+    } else {
+        VarConst.loadValue.innerText = `${ progressValue100}`
+    }
 });
 
 queue.on("complete", event => {
     VarLet.loadFinished = true;
-    gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in" });
+    gsap.to(VarConst.loadingText, { duration: .5, opacity: 0 });
+    gsap.to(VarConst.doneText, { duration: .5, opacity: 1 });
+    gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in", delay: 1.8 });
 });
 
 
@@ -683,6 +694,11 @@ const tick = () =>
 
     // Render
     renderer.render(scene, camera);
+
+    // Floating landim mesh
+    if (landimMesh) {
+        landimMesh.position.y = Math.sin(elapsedTime) * .07;
+    }
 
     // Animated things
     tiltLandimMesh();

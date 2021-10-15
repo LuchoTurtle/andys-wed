@@ -1,7 +1,13 @@
 import * as THREE from 'three'
 
 const VarConst = {
-    loaderContainer: document.querySelector('.loading-container'),
+    /* Loading */
+    loaderContainer: document.querySelector('.loading-wrapper'),
+    loadingLine: document.querySelector('.loading-line'),
+    loadValue: document.querySelector('.load-value'),
+    loadingText: document.querySelector('.loading-text'),
+    doneText: document.querySelector('.done-text'),
+
     mouse: new THREE.Vector2()
 };
 

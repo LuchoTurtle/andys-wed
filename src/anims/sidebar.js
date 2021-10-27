@@ -1,5 +1,3 @@
-import {gsap} from 'gsap';
-
 export default class Sidebar {
     constructor(scrolltrigger, loco_scroll,
                 progress_bar, sub_menus) {

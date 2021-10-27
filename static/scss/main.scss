@@ -1,6 +1,7 @@
 @import 'utils/mixins';
 @import 'utils/vars';
 @import 'utils/font';
+@import 'utils/cursor';
 @import 'sidebar';
 @import 'story';
 @import 'hero';
@@ -14,6 +15,7 @@
 body {
     margin: 0;
     background-color: map-get(map-get($palettes, yellow), light);
+    cursor: none;
 }
 
 
@@ -37,7 +39,7 @@ body {
 
 main {
     position: absolute;
-    z-index: 1
+    z-index: 1;
 }
 
 

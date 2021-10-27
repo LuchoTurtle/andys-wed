@@ -102,7 +102,6 @@
       font-family: FoundersGroteskLight;
 
       a {
-        cursor: pointer;
         background:
                 linear-gradient(to right, map-get(map-get($palettes, darkblue), light), map-get(map-get($palettes, darkblue), light)),
                 linear-gradient(to right, map-get(map-get($palettes, red), base), map-get(map-get($palettes, red), base));
@@ -110,6 +109,7 @@
         background-position: 100% 100%, 0 100%;
         background-repeat: no-repeat;
         transition: background-size 400ms;
+        padding-bottom: 3px;
       }
 
       a:hover,
@@ -123,6 +123,10 @@
       margin-top: 2vh;
       font-family: FoundersGroteskLight;
       opacity: .4;
+
+      a {
+        cursor: none;
+      }
     }
 
   }

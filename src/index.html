@@ -7,8 +7,14 @@
 </head>
 <body>
 
+    <!-- The cursor elements -->
+    <div class="cursor cursor--small"></div>
+    <canvas class="cursor cursor--canvas" resize></canvas>
+
+    <!-- Three JS canvas -->
     <canvas class="webgl"></canvas>
 
+    <!-- Loading container -->
     <div class="loading-wrapper">
         <span class="loading-line"></span>
         <span class="load-value">000</span>
@@ -21,6 +27,7 @@
     </div>
 
     <main>
+        <!-- Sidebar -->
         <div class="navbar">
             <div class="progress-bar"></div>
             <nav>
@@ -41,6 +48,7 @@
             </nav>
         </div>
 
+        <!-- Site content -->
         <div data-scroll-container class="content smooth-scroll">
             <div class="content-body" >
                 <section class="hero">
@@ -169,7 +177,7 @@
                                 </div>
                                 <div class="card__text">
                                     You might have more affordable flight options if you use
-                                    <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px; cursor: pointer">
+                                    <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px;">
                                     <a>
                                         Skiplagged
                                     </a>

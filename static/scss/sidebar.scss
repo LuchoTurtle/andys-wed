@@ -5,16 +5,13 @@
   width: 100%;
   position: fixed;
   z-index: 10000;
-
+  font-family: Chapaza;
+  background-color: map-get(map-get($palettes, yellow), light);
   font-size: 1.15em;
 
   @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
     font-size: 1em;
   }
-
-  font-family: Chapaza;
-
-  background-color: map-get(map-get($palettes, yellow), light);
 
   @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
     width: map-get($sidebar, width);
@@ -75,6 +72,7 @@
     -webkit-transition: color 0.4s;
     transition: color 0.4s;
     text-decoration: none;
+    cursor: none;
 
     // Rotating on all browsers
     -webkit-transform: none;

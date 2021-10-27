@@ -2,17 +2,22 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LocomotiveScroll from "locomotive-scroll";
 
-import GalleryItem from "./anims/gallery_item";
-import Storyline from "./anims/storyline";
-import Sidebar from "./anims/sidebar";
-import '../static/scss/main.scss'
-import './locomotive_base.css'
 import * as THREE from "three";
 import * as dat from "dat.gui";
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
+
 import {VarConst, VarLet} from "./js/vars";
+
+import '../static/scss/main.scss'
+import './locomotive_base.css'
+
+import GalleryItem from "./anims/gallery_item";
+import Storyline from "./anims/storyline";
+import Sidebar from "./anims/sidebar";
+
+import './js/cursor';
 
 gsap.registerPlugin(ScrollTrigger);
 

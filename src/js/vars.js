@@ -35,6 +35,10 @@ let VarLet = {
 
     hennessyMesh_initial_position_y: -5.6,
     hennessyMesh_initial_position_x: -11.61,
+
+    envelopeMesh_initial_position_y: 4,
+    envelopeMesh_initial_position_x: -10,
+    envelopeMesh_initial_position_z: 0.5,
 };
 
 export { VarConst, VarLet }

@@ -108,6 +108,7 @@ queue.loadFile('/3D/bottles/champagne.glb');
 queue.loadFile('/3D/bottles/daniels.glb');
 queue.loadFile('/3D/bottles/wine.glb');
 queue.loadFile('/3D/bottles/henessy.glb');
+queue.loadFile('/3D/envelope/envelope.glb');
 
 
 // images
@@ -118,6 +119,7 @@ queue.loadFile('/3D/bottles/baked_champagne.jpg');
 queue.loadFile('/3D/bottles/daniels_baked.jpg');
 queue.loadFile('/3D/bottles/henessy_baked.jpg');
 queue.loadFile('/3D/bottles/wine_baked.jpg');
+queue.loadFile('/3D/envelope/baked.jpg');
 
 queue.loadFile('/3D/landim/baked2.jpg');
 queue.loadFile('/3D/knot/baked.jpg');
@@ -178,6 +180,9 @@ if (screen.width <= 320) {
     VarLet.danielsMesh_initial_position_x = -11.26;
     VarLet.wineMesh_initial_position_x = -10.26;
     VarLet.hennessyMesh_initial_position_x = -11.9;
+    VarLet.envelopeMesh_initial_position_x = -9.2;
+    VarLet.envelopeMesh_initial_position_z = -0.93;
+    VarLet.envelopeMesh_initial_position_y = 3.2;
 }
 // Mobile M
 else if (screen.width <= 375) {
@@ -188,6 +193,9 @@ else if (screen.width <= 375) {
     VarLet.danielsMesh_initial_position_x = -10.26;
     VarLet.wineMesh_initial_position_x = -10.26;
     VarLet.hennessyMesh_initial_position_x = -11.9;
+    VarLet.envelopeMesh_initial_position_x = -9.2;
+    VarLet.envelopeMesh_initial_position_z = -0.93;
+    VarLet.envelopeMesh_initial_position_y = 3.2;
 }
 // Mobile L
 else if (screen.width <= 425) {
@@ -198,6 +206,9 @@ else if (screen.width <= 425) {
     VarLet.danielsMesh_initial_position_x = -10.26;
     VarLet.wineMesh_initial_position_x = -10.26;
     VarLet.hennessyMesh_initial_position_x = -11.9;
+    VarLet.envelopeMesh_initial_position_x = -9.2;
+    VarLet.envelopeMesh_initial_position_z = -0.93;
+    VarLet.envelopeMesh_initial_position_y = 3.2;
 }
 // Tablet
 else if (screen.width <= 768) {
@@ -208,17 +219,22 @@ else if (screen.width <= 768) {
     VarLet.danielsMesh_initial_position_x = -11.26;
     VarLet.wineMesh_initial_position_x = -10.26;
     VarLet.hennessyMesh_initial_position_x = -11.9;
+    VarLet.envelopeMesh_initial_position_y = 3.2;
+    if (screen.width === 768) VarLet.envelopeMesh_initial_position_y = 4;
 }
 // Laptop
 else if (screen.width <= 1024) {
     VarLet.knotMesh_initial_position_x = -8.30;
     VarLet.champagneMesh_initial_position_x = -12;
+    VarLet.envelopeMesh_initial_position_y = 4;
 }
 // Laptop L
 else if (screen.width <= 1440) {
     VarLet.knotMesh_initial_position_x = -8.30;
+    VarLet.envelopeMesh_initial_position_y = 4;
 } else if(screen.width <= 2560) {
     VarLet.knotMesh_initial_position_x = -8.30;
+    VarLet.envelopeMesh_initial_position_y = 4;
 }
 
 // Height -------------
@@ -339,6 +355,11 @@ const bakedTextureHennessy = textureLoader.load('3D/bottles/henessy_baked.jpg');
 bakedTextureHennessy.flipY = false;
 bakedTextureHennessy.encoding = THREE.sRGBEncoding;
 
+const bakedTextureEnvelope = textureLoader.load('3D/envelope/baked.jpg');
+bakedTextureEnvelope.flipY = false;
+bakedTextureEnvelope.encoding = THREE.sRGBEncoding;
+
+
 
 /**
  * Materials
@@ -380,6 +401,11 @@ const bakedMaterialHennessy = new THREE.MeshBasicMaterial({
     map: bakedTextureHennessy
 });
 
+// Envelope
+const bakedMaterialEnvelope = new THREE.MeshBasicMaterial({
+    map: bakedTextureEnvelope
+});
+
 
 /**
  * Model
@@ -391,6 +417,7 @@ let champagneMesh;
 let danielsMesh;
 let wineMesh;
 let hennessyMesh;
+let envelopeMesh;
 gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
@@ -542,6 +569,47 @@ gltfLoader.load('3D/bottles/henessy.glb',
     }
 );
 
+gltfLoader.load('3D/envelope/envelope.glb',
+    (gltf) =>  {
+
+        envelopeMesh = gltf.scene;
+
+        // Adding baked textures and emission lights to model
+        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'envelope');
+        bakedMesh.material = bakedMaterialEnvelope;
+        bakedMesh.material.transparent = true;
+        bakedMesh.material.opacity = 0;
+
+        envelopeMesh.position.x = VarLet.envelopeMesh_initial_position_x;
+        envelopeMesh.position.y = VarLet.envelopeMesh_initial_position_y;
+        envelopeMesh.position.z = VarLet.envelopeMesh_initial_position_z;
+
+        envelopeMesh.rotation.x = -3.449;
+        envelopeMesh.rotation.y = 2.272;
+        envelopeMesh.rotation.z = 3.4;
+
+
+        gui.add(envelopeMesh.rotation, 'x').min(-Math.PI * 2).max(Math.PI * 2)
+        gui.add(envelopeMesh.rotation, 'y').min(-Math.PI * 2).max(Math.PI * 2)
+        gui.add(envelopeMesh.rotation, 'z').min(-Math.PI * 2).max(Math.PI * 2)
+
+        // Opacity animation
+        if(ScrollTrigger) {
+            ScrollTrigger.create({
+                trigger: document.getElementsByClassName("rsvp")[0],
+                scrub: true,
+                start: "top 70%",
+                onEnter: () => gsap.to(bakedMesh.material, { opacity: 1, ease: "power1.in", immediateRender: false },),
+                onLeave: () => gsap.to(bakedMesh.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onLeaveBack: () => gsap.to(bakedMesh.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onEnterBack: () => gsap.to(bakedMesh.material, { opacity: 1, ease: "power1.in", immediateRender: false })
+            });
+        }
+
+        scene.add(gltf.scene);
+    }
+);
+
 
 
 // Helper
@@ -679,6 +747,13 @@ const moveHennesyMesh = ({x, y}) => {
     }
 };
 
+// Envelope
+const tiltEnvelopeMesh = () => {
+    if(envelopeMesh) {
+        envelopeMesh.rotation.y = (cursor.x * 0.3) + 1;
+    }
+};
+
 
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
     moveLandimMesh(scroll);
@@ -705,10 +780,16 @@ const tick = () =>
         landimMesh.position.y = Math.sin(elapsedTime) * .07;
     }
 
+    // Floating envelope mesh
+    if (envelopeMesh) {
+        envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
+    }
+
     // Animated things
     tiltLandimMesh();
     tiltBridgeMesh();
     tiltKnotMesh();
+    tiltEnvelopeMesh();
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)

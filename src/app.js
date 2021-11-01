@@ -137,6 +137,7 @@ queue.loadFile('/3D/bridge/baked2.jpg');
 queue.loadFile('/img/1.jpg');
 queue.loadFile('/img/2.jpg');
 queue.loadFile('/img/3.jpg');
+queue.loadFile('/img/4.jpg');
 
 // fonts
 queue.loadFile('/font/Canela-Bold.woff2');

@@ -110,11 +110,17 @@
         background-repeat: no-repeat;
         transition: background-size 400ms;
         padding-bottom: 3px;
+
+        cursor: none;
       }
 
       a:hover,
       a:focus {
         background-size: 0 0.1em, 100% 0.1em;
+      }
+
+      a:visited {
+        color: map-get(map-get($palettes, darkblue), base);
       }
     }
 
@@ -126,6 +132,10 @@
 
       a {
         cursor: none;
+      }
+
+      a:visited {
+        color: map-get(map-get($palettes, darkblue), base);
       }
     }
 

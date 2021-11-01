@@ -130,14 +130,9 @@ queue.loadFile('/3D/bottles/henessy_baked.jpg');
 queue.loadFile('/3D/bottles/wine_baked.jpg');
 queue.loadFile('/3D/envelope/baked.jpg');
 
-queue.loadFile('/3D/landim/baked2.jpg');
-queue.loadFile('/3D/knot/baked.jpg');
-queue.loadFile('/3D/bridge/baked2.jpg');
-
-queue.loadFile('/img/1.jpg');
-queue.loadFile('/img/2.jpg');
-queue.loadFile('/img/3.jpg');
-queue.loadFile('/img/4.jpg');
+queue.loadFile('/img/1.webp');
+queue.loadFile('/img/2.webp');
+queue.loadFile('/img/3.webp');
 
 // fonts
 queue.loadFile('/font/Canela-Bold.woff2');
@@ -448,7 +443,7 @@ gltfLoader.load('3D/landim/merged.glb',
         poleLightCMesh.material = poleLightMaterialLandim;
         poleLightDMesh.material = poleLightMaterialLandim;
 
-        scene.add(gltf.scene);
+        scene.add(landimMesh);
     }
 );
 
@@ -469,7 +464,7 @@ gltfLoader.load('3D/bridge/bridge.glb',
         bakedMesh.rotation.y = 1.18;
         bakedMesh.rotation.z = 1.18;
 
-        scene.add(gltf.scene);
+        scene.add(bridgeMesh);
     }
 );
 
@@ -490,7 +485,7 @@ gltfLoader.load('3D/knot/knot.glb',
         knotMesh.rotation.y = -5.76;
         knotMesh.rotation.z = 0.18;
 
-        scene.add(gltf.scene);
+        scene.add(knotMesh);
     }
 );
 
@@ -511,7 +506,7 @@ gltfLoader.load('3D/bottles/champagne.glb',
         champagneMesh.rotation.y = -1.13;
         champagneMesh.rotation.z = VarLet.champagneMesh_initial_rotation_z;
 
-        scene.add(gltf.scene);
+        scene.add(champagneMesh);
     }
 );
 
@@ -533,7 +528,7 @@ gltfLoader.load('3D/bottles/daniels.glb',
         danielsMesh.rotation.y = 4.45;
         danielsMesh.rotation.z = 0.74;
 
-        scene.add(gltf.scene);
+        scene.add(danielsMesh);
     }
 );
 
@@ -555,7 +550,7 @@ gltfLoader.load('3D/bottles/wine.glb',
         wineMesh.rotation.y = -1.68;
         wineMesh.rotation.z = 0.04;
 
-        scene.add(gltf.scene);
+        scene.add(wineMesh);
     }
 );
 
@@ -576,7 +571,7 @@ gltfLoader.load('3D/bottles/henessy.glb',
         hennessyMesh.rotation.y = 0.18;
         hennessyMesh.rotation.z = 0.04;
 
-        scene.add(gltf.scene);
+        scene.add(hennessyMesh);
     }
 );
 
@@ -612,7 +607,7 @@ gltfLoader.load('3D/envelope/envelope.glb',
             });
         }
 
-        scene.add(gltf.scene);
+        scene.add(envelopeMesh);
     }
 );
 

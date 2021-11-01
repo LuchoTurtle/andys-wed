@@ -16,9 +16,10 @@ import './locomotive_base.css'
 import GalleryItem from "./anims/gallery_item";
 import Storyline from "./anims/storyline";
 import Sidebar from "./anims/sidebar";
+import Cursor from './js/cursor';
 
-import './js/cursor';
 
+/** ---------------------- GSAP SETUP ----------------------------- **/
 gsap.registerPlugin(ScrollTrigger);
 
 const scroller_el = document.querySelector('[data-scroll-container]')
@@ -94,9 +95,17 @@ ScrollTrigger.refresh();
 
 
 
+/** ---------------------- CURSOR SETUP ----------------------------- **/
+const custom_cursor = new Cursor();
+const linkItems = document.querySelectorAll("a");
+linkItems.forEach(item => {
+    item.addEventListener("mouseenter", () => custom_cursor.cursorToClickable());
+    item.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
+});
 
 
-/* PRE-LOAD FILES ----------------------------------------------------------------------- */
+
+/** ---------------------- PRE-LOAD FILES ----------------------------- **/
 // Preload
 let queue = new createjs.LoadQueue(false);
 
@@ -418,6 +427,7 @@ let danielsMesh;
 let wineMesh;
 let hennessyMesh;
 let envelopeMesh;
+let envelopeBakedMat;
 gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
@@ -575,10 +585,10 @@ gltfLoader.load('3D/envelope/envelope.glb',
         envelopeMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
-        const bakedMesh = gltf.scene.children.find(obj => obj.name === 'envelope');
-        bakedMesh.material = bakedMaterialEnvelope;
-        bakedMesh.material.transparent = true;
-        bakedMesh.material.opacity = 0;
+        envelopeBakedMat = gltf.scene.children.find(obj => obj.name === 'envelope');
+        envelopeBakedMat.material = bakedMaterialEnvelope;
+        envelopeBakedMat.material.transparent = true;
+        envelopeBakedMat.material.opacity = 0;
 
         envelopeMesh.position.x = VarLet.envelopeMesh_initial_position_x;
         envelopeMesh.position.y = VarLet.envelopeMesh_initial_position_y;
@@ -588,21 +598,16 @@ gltfLoader.load('3D/envelope/envelope.glb',
         envelopeMesh.rotation.y = 2.272;
         envelopeMesh.rotation.z = 3.4;
 
-
-        gui.add(envelopeMesh.rotation, 'x').min(-Math.PI * 2).max(Math.PI * 2)
-        gui.add(envelopeMesh.rotation, 'y').min(-Math.PI * 2).max(Math.PI * 2)
-        gui.add(envelopeMesh.rotation, 'z').min(-Math.PI * 2).max(Math.PI * 2)
-
         // Opacity animation
         if(ScrollTrigger) {
             ScrollTrigger.create({
                 trigger: document.getElementsByClassName("rsvp")[0],
                 scrub: true,
                 start: "top 70%",
-                onEnter: () => gsap.to(bakedMesh.material, { opacity: 1, ease: "power1.in", immediateRender: false },),
-                onLeave: () => gsap.to(bakedMesh.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
-                onLeaveBack: () => gsap.to(bakedMesh.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
-                onEnterBack: () => gsap.to(bakedMesh.material, { opacity: 1, ease: "power1.in", immediateRender: false })
+                onEnter: () => gsap.to(envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false },),
+                onLeave: () => gsap.to(envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onLeaveBack: () => gsap.to(envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onEnterBack: () => gsap.to(envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false })
             });
         }
 
@@ -647,7 +652,6 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 
 camera.rotation.y = -Math.PI / 4;
 camera.position.set(-12.4, 4.1, 2.3);
 scene.add(camera);
-
 
 
 /**
@@ -748,11 +752,18 @@ const moveHennesyMesh = ({x, y}) => {
 };
 
 // Envelope
+let envelope_intersect_witness = null;
 const tiltEnvelopeMesh = () => {
     if(envelopeMesh) {
         envelopeMesh.rotation.y = (cursor.x * 0.3) + 1;
     }
 };
+
+window.addEventListener('click', () => {
+    if(envelope_intersect_witness && envelopeBakedMat.material.opacity === 1) {
+        window.open("https://www.theknot.com/us/madalena-vicente-gravato-de-castro-e-almeida-and-andrew-sampaio-da-novoa-reid-jun-2022/rsvp", '_blank').focus();
+    }
+})
 
 
 loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
@@ -766,8 +777,12 @@ loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
 });
 
 
-const clock = new THREE.Clock();
+/**
+ * Raycaster
+ */
+const raycaster = new THREE.Raycaster();
 
+const clock = new THREE.Clock();
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime();
@@ -780,9 +795,31 @@ const tick = () =>
         landimMesh.position.y = Math.sin(elapsedTime) * .07;
     }
 
-    // Floating envelope mesh
-    if (envelopeMesh) {
+    // Floating envelope mesh (and raycaster)
+    if (envelopeMesh && envelopeBakedMat) {
         envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
+
+        // Cast a ray
+        raycaster.setFromCamera(VarConst.mouse, camera);
+        const intersects = raycaster.intersectObjects(envelopeMesh.children);
+
+        // Mouse event on envelope enter
+        if(intersects.length) {
+
+            if(envelope_intersect_witness === null && envelopeBakedMat.material.opacity === 1) {
+                custom_cursor.cursorToClickableEnvelope()
+            }
+
+            envelope_intersect_witness = intersects[0]
+        }
+        // Mouse event on envelope leave
+        else {
+            if(envelope_intersect_witness) {
+                custom_cursor.cursorToNormal()
+            }
+
+            envelope_intersect_witness = null
+        }
     }
 
     // Animated things
@@ -790,6 +827,8 @@ const tick = () =>
     tiltBridgeMesh();
     tiltKnotMesh();
     tiltEnvelopeMesh();
+
+
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)

@@ -6,7 +6,7 @@
 
   // Don't show cursor on mobile devices
   @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
-    display: none
+    display: none !important
   }
 }
 

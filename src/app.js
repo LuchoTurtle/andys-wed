@@ -21,12 +21,11 @@ import Cursor from './js/cursor';
 
 /** ---------------------- GSAP / SCROLLTRIGGER / LOCOSCROLL SETUP ----------------------------- **/
 
-
 // Modified gsap, ScrollTrigger and locomotive scroll object that are compatible with each other.
 const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gsap, vanilla_ScrollTrigger);
 
 
-// Adding animations
+/** ---------------------- ADDING ANIMATIONS --------------------------------------------------- **/
 const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
@@ -47,9 +46,8 @@ new Sidebar(scroll_trigger, loco_scroll, progress_bar, sub_menus);
 
 
 
-
-
 /** ---------------------- CURSOR SETUP ----------------------------- **/
+
 const custom_cursor = new Cursor();
 const linkItems = document.querySelectorAll("a");
 linkItems.forEach(item => {
@@ -804,4 +802,3 @@ window.addEventListener("mousemove", (event) => {
 });
 
 
-/* LOADING AND EXPERIENCE FUNCTIONS --------------------------------------- */

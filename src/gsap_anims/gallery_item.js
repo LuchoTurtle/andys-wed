@@ -1,6 +1,13 @@
 import {gsap} from 'gsap';
 
+/**
+ * Object that deals with gallery animations
+ */
 export default class GalleryItem {
+    /**
+     * Initiates the gallery item experience.
+     * @param el Gallery item HTML element
+     */
     constructor(el) {
         this.el = {el: el};
         this.el.img = this.el.el.querySelector('.gallery__item-img');
@@ -12,11 +19,15 @@ export default class GalleryItem {
         };
         this.el.captionChars = this.el.caption.title.querySelectorAll('span');
         this.captionCharsTotal = this.el.captionChars.length;
-        this.addEventListeners();
+
+        this._addEventListeners();
     }
 
-    addEventListeners() {
-        // On hover, scale in/out the image and inner image elements and also the caption titles
+    /**
+     * On hover, scale in/out the image and inner image elements and also the caption titles.
+     * @private
+     */
+    _addEventListeners() {
         this.mouseEnter = () => {
             gsap
                 .timeline({defaults: {duration: 1, ease: 'expo'}})

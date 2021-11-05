@@ -26,14 +26,14 @@ export default class ScrollTriggerWithLoco {
             }
         });
 
-        this.__initTransformations()
+        this._initTransformations()
     }
 
     /**
      * Transforming the vanilla ScrollTrigger and making it compatible with Locomotive Scroller.
      * @private
      */
-    __initTransformations() {
+    _initTransformations() {
         this.gsap.registerPlugin(this.scroll_trigger);
 
         let loco_scroll = this.loco_scroll;

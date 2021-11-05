@@ -1,6 +1,5 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LocomotiveScroll from "locomotive-scroll";
+import { gsap as vanilla_gsap } from "gsap";
+import { ScrollTrigger as vanilla_ScrollTrigger } from "gsap/ScrollTrigger";
 
 import * as THREE from "three";
 import * as dat from "dat.gui";
@@ -9,89 +8,44 @@ import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
 
 import {VarConst, VarLet} from "./js/vars";
+import ScrollTriggerWithLoco from './js/gsap'
 
 import '../static/scss/main.scss'
 import './locomotive_base.css'
 
-import GalleryItem from "./anims/gallery_item";
-import Storyline from "./anims/storyline";
-import Sidebar from "./anims/sidebar";
+import GalleryItem from "./gsap_anims/gallery_item";
+import Storyline from "./gsap_anims/storyline";
+import Sidebar from "./gsap_anims/sidebar";
 import Cursor from './js/cursor';
 
 
-/** ---------------------- GSAP SETUP ----------------------------- **/
-gsap.registerPlugin(ScrollTrigger);
-
-const scroller_el = document.querySelector('[data-scroll-container]')
-const loco_scroll = new LocomotiveScroll({
-    el: scroller_el,
-    multiplier: 0.45,
-    lerp: 0.03,
-    smooth: true,
-    smartphone: {
-        smooth: true
-    },
-    tablet: {
-        smooth: true
-    }
-});
+/** ---------------------- GSAP / SCROLLTRIGGER / LOCOSCROLL SETUP ----------------------------- **/
 
 
-/* This is configuration to proxy the locomotive scroll behaviour and map it to GSAP. This is because Locomotive hijacks the scrolling behavior ---------------------- */
-window.addEventListener('resize', () => { loco_scroll.update() });
-
-loco_scroll.on("scroll", ({currentElements, delta, limit, scroll, speed})=> {
-    ScrollTrigger.update()
-});
-
-// tell ScrollTrigger to use these proxy methods for the ".smooth-scroll" element since Locomotive Scroll is hijacking things
-ScrollTrigger.scrollerProxy(scroller_el, {
-    scrollTop(value) {
-        return arguments.length ? loco_scroll.scrollTo(value, 0, 0) :    loco_scroll.scroll.instance.scroll.y;
-    }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-    getBoundingClientRect() {
-        return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-    },
-    // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-    pinType: scroller_el.style.transform ? "transform" : "fixed"
-});
-
-ScrollTrigger.defaults({
-    scroller: scroller_el
-});
+// Modified gsap, ScrollTrigger and locomotive scroll object that are compatible with each other.
+const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gsap, vanilla_ScrollTrigger);
 
 
-/* ------------- ANIMATIONS START ---------- */
-
-
-/* Storyline effects -------------*/
+// Adding animations
 const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
 const menu_links = [...document.getElementsByClassName("menu__link")];
-new Storyline(ScrollTrigger, body, navbar,  texts, menu_links);
+new Storyline(scroll_trigger, body, navbar,  texts, menu_links);
 
 
-/* Gallery effects ---------------*/
 const gallery = document.querySelector('.gallery');
 const galleryItemElems = [...gallery.querySelectorAll('.gallery__item')];
 galleryItemElems.forEach(el => {
     new GalleryItem(el)
 });
 
-/* Sidebar effects --------------*/
-const progress_bar = document.querySelector('.progress-bar')
+
+const progress_bar = document.querySelector('.progress-bar');
 const sub_menus = document.getElementsByClassName("menu-container_submenu");
-new Sidebar(ScrollTrigger, loco_scroll, progress_bar, sub_menus);
+new Sidebar(scroll_trigger, loco_scroll, progress_bar, sub_menus);
 
 
-/* ----------- ANIMATIONS end  -------- */
-
-// each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
-ScrollTrigger.addEventListener("refresh", () => loco_scroll.update());
-
-// after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
-ScrollTrigger.refresh();
 
 
 
@@ -162,7 +116,7 @@ queue.on("progress", event => {
 });
 
 queue.on("complete", event => {
-    VarLet.loadFinished = true;
+    VarLet.loadCompleted = true;
     gsap.to(VarConst.loadingText, { duration: .5, opacity: 0 });
     gsap.to(VarConst.doneText, { duration: .5, opacity: 1 });
     gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in", delay: 1.8 });
@@ -595,8 +549,8 @@ gltfLoader.load('3D/envelope/envelope.glb',
         envelopeMesh.rotation.z = 3.4;
 
         // Opacity animation
-        if(ScrollTrigger) {
-            ScrollTrigger.create({
+        if(scroll_trigger) {
+            scroll_trigger.create({
                 trigger: document.getElementsByClassName("rsvp")[0],
                 scrub: true,
                 start: "top 70%",
@@ -781,49 +735,50 @@ const raycaster = new THREE.Raycaster();
 const clock = new THREE.Clock();
 const tick = () =>
 {
-    const elapsedTime = clock.getElapsedTime();
+    if(VarLet.loadCompleted) {
+        const elapsedTime = clock.getElapsedTime();
 
-    // Render
-    renderer.render(scene, camera);
+        // Render
+        renderer.render(scene, camera);
 
-    // Floating landim mesh
-    if (landimMesh) {
-        landimMesh.position.y = Math.sin(elapsedTime) * .07;
-    }
-
-    // Floating envelope mesh (and raycaster)
-    if (envelopeMesh && envelopeBakedMat) {
-        envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
-
-        // Cast a ray
-        raycaster.setFromCamera(VarConst.mouse, camera);
-        const intersects = raycaster.intersectObjects(envelopeMesh.children);
-
-        // Mouse event on envelope enter
-        if(intersects.length) {
-
-            if(envelope_intersect_witness === null && envelopeBakedMat.material.opacity === 1) {
-                custom_cursor.cursorToClickableEnvelope()
-            }
-
-            envelope_intersect_witness = intersects[0]
+        // Floating landim mesh
+        if (landimMesh) {
+            landimMesh.position.y = Math.sin(elapsedTime) * .07;
         }
-        // Mouse event on envelope leave
-        else {
-            if(envelope_intersect_witness) {
-                custom_cursor.cursorToNormal()
+
+        // Floating envelope mesh (and raycaster)
+        if (envelopeMesh && envelopeBakedMat) {
+            envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
+
+            // Cast a ray
+            raycaster.setFromCamera(VarConst.mouse, camera);
+            const intersects = raycaster.intersectObjects(envelopeMesh.children);
+
+            // Mouse event on envelope enter
+            if(intersects.length) {
+
+                if(envelope_intersect_witness === null && envelopeBakedMat.material.opacity === 1) {
+                    custom_cursor.cursorToClickableEnvelope()
+                }
+
+                envelope_intersect_witness = intersects[0]
             }
+            // Mouse event on envelope leave
+            else {
+                if(envelope_intersect_witness) {
+                    custom_cursor.cursorToNormal()
+                }
 
-            envelope_intersect_witness = null
+                envelope_intersect_witness = null
+            }
         }
+
+        // Animated things
+        tiltLandimMesh();
+        tiltBridgeMesh();
+        tiltKnotMesh();
+        tiltEnvelopeMesh();
     }
-
-    // Animated things
-    tiltLandimMesh();
-    tiltBridgeMesh();
-    tiltKnotMesh();
-    tiltEnvelopeMesh();
-
 
 
     // Call tick again on the next frame

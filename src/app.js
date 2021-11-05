@@ -7,7 +7,7 @@ import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
 
-import {VarConst, VarLet} from "./js/vars";
+import {VarConst, VarLet, screenVarInitalizations} from "./vars";
 import ScrollTriggerWithLoco from './js/gsap'
 
 import '../static/scss/main.scss'
@@ -25,7 +25,11 @@ import Cursor from './js/cursor';
 const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gsap, vanilla_ScrollTrigger);
 
 
-/** ---------------------- ADDING ANIMATIONS --------------------------------------------------- **/
+/** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
+screenVarInitalizations();
+
+
+/** ------------------------------ ADDING ANIMATIONS -------------------------------------------- **/
 const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
@@ -122,135 +126,7 @@ queue.on("complete", event => {
 
 
 
-/* THREE JS ----------------------------------------------------------------------------- */
-
-/**
- * Screen width initializations
- */
-// Width -------------
-// Mobile S
-if (screen.width <= 320) {
-    VarLet.landimMesh_initial_position_z = -6;
-    VarLet.bridgeMesh_initial_position_z = -31.78;
-    VarLet.knotMesh_initial_position_x = -6.9;
-    VarLet.champagneMesh_initial_position_x = -11.26;
-    VarLet.danielsMesh_initial_position_x = -11.26;
-    VarLet.wineMesh_initial_position_x = -10.26;
-    VarLet.hennessyMesh_initial_position_x = -11.9;
-    VarLet.envelopeMesh_initial_position_x = -9.2;
-    VarLet.envelopeMesh_initial_position_z = -0.93;
-    VarLet.envelopeMesh_initial_position_y = 3.2;
-}
-// Mobile M
-else if (screen.width <= 375) {
-    VarLet.landimMesh_initial_position_z = -6;
-    VarLet.bridgeMesh_initial_position_z = -31.78;
-    VarLet.knotMesh_initial_position_x = -7;
-    VarLet.champagneMesh_initial_position_x = -11.26;
-    VarLet.danielsMesh_initial_position_x = -10.26;
-    VarLet.wineMesh_initial_position_x = -10.26;
-    VarLet.hennessyMesh_initial_position_x = -11.9;
-    VarLet.envelopeMesh_initial_position_x = -9.2;
-    VarLet.envelopeMesh_initial_position_z = -0.93;
-    VarLet.envelopeMesh_initial_position_y = 3.2;
-}
-// Mobile L
-else if (screen.width <= 425) {
-    VarLet.landimMesh_initial_position_z = -6;
-    VarLet.bridgeMesh_initial_position_z = -31.78;
-    VarLet.knotMesh_initial_position_x = -7;
-    VarLet.champagneMesh_initial_position_x = -11.26;
-    VarLet.danielsMesh_initial_position_x = -10.26;
-    VarLet.wineMesh_initial_position_x = -10.26;
-    VarLet.hennessyMesh_initial_position_x = -11.9;
-    VarLet.envelopeMesh_initial_position_x = -9.2;
-    VarLet.envelopeMesh_initial_position_z = -0.93;
-    VarLet.envelopeMesh_initial_position_y = 3.2;
-}
-// Tablet
-else if (screen.width <= 768) {
-    VarLet.landimMesh_initial_position_z = -3;
-    VarLet.bridgeMesh_initial_position_z = -31.78;
-    VarLet.knotMesh_initial_position_x = -7;
-    VarLet.champagneMesh_initial_position_x = -12.26;
-    VarLet.danielsMesh_initial_position_x = -11.26;
-    VarLet.wineMesh_initial_position_x = -10.26;
-    VarLet.hennessyMesh_initial_position_x = -11.9;
-    VarLet.envelopeMesh_initial_position_y = 3.2;
-    if (screen.width === 768) VarLet.envelopeMesh_initial_position_y = 4;
-}
-// Laptop
-else if (screen.width <= 1024) {
-    VarLet.knotMesh_initial_position_x = -8.30;
-    VarLet.champagneMesh_initial_position_x = -12;
-    VarLet.envelopeMesh_initial_position_y = 4;
-}
-// Laptop L
-else if (screen.width <= 1440) {
-    VarLet.knotMesh_initial_position_x = -8.30;
-    VarLet.envelopeMesh_initial_position_y = 4;
-} else if(screen.width <= 2560) {
-    VarLet.knotMesh_initial_position_x = -8.30;
-    VarLet.envelopeMesh_initial_position_y = 4;
-}
-
-// Height -------------
-if (screen.height <= 600) {
-    VarLet.bridgeMesh_initial_position_y = -45;
-    VarLet.knotMesh_initial_position_y = -3;
-    VarLet.champagneMesh_initial_position_y = -2;
-    VarLet.danielsMesh_initial_position_y = -2;
-    VarLet.wineMesh_initial_position_y = -2;
-    VarLet.hennessyMesh_initial_position_y = -2;
-}
-else if (screen.height <= 720) {
-    VarLet.bridgeMesh_initial_position_y = -45;
-    VarLet.knotMesh_initial_position_y = -5;
-    VarLet.champagneMesh_initial_position_y = -3;
-    VarLet.danielsMesh_initial_position_y = -3;
-    VarLet.wineMesh_initial_position_y = -3;
-    VarLet.hennessyMesh_initial_position_y = -3;
-}
-else if (screen.height <= 900) {
-    VarLet.bridgeMesh_initial_position_y = -35;
-    VarLet.knotMesh_initial_position_y = -6;
-    VarLet.champagneMesh_initial_position_y = -4.5;
-    VarLet.danielsMesh_initial_position_y = -4.5;
-    VarLet.wineMesh_initial_position_y = -4.5;
-    VarLet.hennessyMesh_initial_position_y = -4.5;
-}
-else if (screen.height <= 1080) {
-    VarLet.bridgeMesh_initial_position_y = -45;
-    VarLet.knotMesh_initial_position_y = -8;
-    VarLet.champagneMesh_initial_position_y = -6.5;
-    VarLet.danielsMesh_initial_position_y = -6.5;
-    VarLet.wineMesh_initial_position_y = -6.5;
-    VarLet.hennessyMesh_initial_position_y = -6.5;
-}
-else if (screen.height <= 1440) {
-    VarLet.knotMesh_initial_position_y = -13;
-    VarLet.champagneMesh_initial_position_y = -11.3;
-    VarLet.danielsMesh_initial_position_y = -11.3;
-    VarLet.wineMesh_initial_position_y = -11.3;
-    VarLet.hennessyMesh_initial_position_y = -11.3;
-}
-else if (screen.height <= 2160) {
-    VarLet.bridgeMesh_initial_position_y = -100;
-    VarLet.knotMesh_initial_position_y = -20;
-    VarLet.champagneMesh_initial_position_y = -15.3;
-    VarLet.danielsMesh_initial_position_y = -15.3;
-    VarLet.wineMesh_initial_position_y = -15.3;
-    VarLet.hennessyMesh_initial_position_y = -15.3;
-}
-else {
-    VarLet.bridgeMesh_initial_position_y = -150;
-    VarLet.knotMesh_initial_position_y = -23;
-    VarLet.danielsMesh_initial_position_y = -18.3;
-    VarLet.wineMesh_initial_position_y = -18.3;
-    VarLet.hennessyMesh_initial_position_y = -18.3;
-}
-
-
+/** ---------------------------------- THREE.JS ------------------------------------- **/
 
 
 
@@ -410,7 +286,7 @@ gltfLoader.load('3D/bridge/bridge.glb',
 
 
         bakedMesh.position.x = 16.99;
-        bakedMesh.position.z = VarLet.bridgeMesh_initial_position_z;
+        bakedMesh.position.z = VarConst.bridgeMesh_initial_position_z;
 
         bakedMesh.rotation.x = -0.45;
         bakedMesh.rotation.y = 1.18;
@@ -429,8 +305,8 @@ gltfLoader.load('3D/knot/knot.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'knot');
         bakedMesh.material = bakedMaterialKnot;
 
-        knotMesh.position.x = VarLet.knotMesh_initial_position_x;
-        knotMesh.position.y = VarLet.knotMesh_initial_position_y;
+        knotMesh.position.x = VarConst.knotMesh_initial_position_x;
+        knotMesh.position.y = VarConst.knotMesh_initial_position_y;
         knotMesh.position.z = -1.87;
 
         knotMesh.rotation.x = 1.05;
@@ -450,13 +326,13 @@ gltfLoader.load('3D/bottles/champagne.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Champagne');
         bakedMesh.material = bakedMaterialChampagne;
 
-        champagneMesh.position.x = VarLet.champagneMesh_initial_position_x;
-        champagneMesh.position.y = VarLet.champagneMesh_initial_position_y;
+        champagneMesh.position.x = VarConst.champagneMesh_initial_position_x;
+        champagneMesh.position.y = VarConst.champagneMesh_initial_position_y;
         champagneMesh.position.z = 1.45;
 
         champagneMesh.rotation.x = -0.32;
         champagneMesh.rotation.y = -1.13;
-        champagneMesh.rotation.z = VarLet.champagneMesh_initial_rotation_z;
+        champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z;
 
         scene.add(champagneMesh);
     }
@@ -472,8 +348,8 @@ gltfLoader.load('3D/bottles/daniels.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'daniels');
         bakedMesh.material = bakedMaterialDaniels;
 
-        danielsMesh.position.x = VarLet.danielsMesh_initial_position_x;
-        danielsMesh.position.y = VarLet.danielsMesh_initial_position_y;
+        danielsMesh.position.x = VarConst.danielsMesh_initial_position_x;
+        danielsMesh.position.y = VarConst.danielsMesh_initial_position_y;
         danielsMesh.position.z = 2.1;
 
         danielsMesh.rotation.x = 0.09;
@@ -494,8 +370,8 @@ gltfLoader.load('3D/bottles/wine.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Wine');
         bakedMesh.material = bakedMaterialWine;
 
-        wineMesh.position.x = VarLet.wineMesh_initial_position_x;
-        wineMesh.position.y = VarLet.wineMesh_initial_position_y;
+        wineMesh.position.x = VarConst.wineMesh_initial_position_x;
+        wineMesh.position.y = VarConst.wineMesh_initial_position_y;
         wineMesh.position.z = 1.0;
 
         wineMesh.rotation.x = -5.9;
@@ -515,8 +391,8 @@ gltfLoader.load('3D/bottles/henessy.glb',
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Hennessy');
         bakedMesh.material = bakedMaterialHennessy;
 
-        hennessyMesh.position.x = VarLet.hennessyMesh_initial_position_x;
-        hennessyMesh.position.y = VarLet.hennessyMesh_initial_position_y;
+        hennessyMesh.position.x = VarConst.hennessyMesh_initial_position_x;
+        hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y;
         hennessyMesh.position.z = 1.66;
 
         hennessyMesh.rotation.x = -5.9;
@@ -538,9 +414,9 @@ gltfLoader.load('3D/envelope/envelope.glb',
         envelopeBakedMat.material.transparent = true;
         envelopeBakedMat.material.opacity = 0;
 
-        envelopeMesh.position.x = VarLet.envelopeMesh_initial_position_x;
-        envelopeMesh.position.y = VarLet.envelopeMesh_initial_position_y;
-        envelopeMesh.position.z = VarLet.envelopeMesh_initial_position_z;
+        envelopeMesh.position.x = VarConst.envelopeMesh_initial_position_x;
+        envelopeMesh.position.y = VarConst.envelopeMesh_initial_position_y;
+        envelopeMesh.position.z = VarConst.envelopeMesh_initial_position_z;
 
         envelopeMesh.rotation.x = -3.449;
         envelopeMesh.rotation.y = 2.272;
@@ -620,82 +496,82 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 
 // Landim
 const moveLandimMesh = ({x, y}) => {
-    if(VarLet.landimMesh_initial_position_z !== undefined && landimMesh !== undefined) {
+    if(VarConst.landimMesh_initial_position_z !== undefined && landimMesh !== undefined) {
         const distance_from_top = y;
-        landimMesh.position.z = VarLet.landimMesh_initial_position_z + (distance_from_top * 0.02);
+        landimMesh.position.z = VarConst.landimMesh_initial_position_z + (distance_from_top * 0.02);
     }
 };
 
 const tiltLandimMesh = () => {
     if(landimMesh) {
-        landimMesh.rotation.y = cursor.x * 0.05;
-        landimMesh.rotation.z = cursor.y * 0.05;
+        landimMesh.rotation.y = VarConst.mouse.x * 0.01;
+        landimMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
 
 // Bridge
 const moveBridgeMesh = ({x, y}) => {
-    if(VarLet.bridgeMesh_initial_position_y !== undefined && bridgeMesh !== undefined) {
+    if(VarConst.bridgeMesh_initial_position_y !== undefined && bridgeMesh !== undefined) {
         const distance_from_top = y;
-        bridgeMesh.position.y = VarLet.bridgeMesh_initial_position_y + (distance_from_top * 0.02);
+        bridgeMesh.position.y = VarConst.bridgeMesh_initial_position_y + (distance_from_top * 0.02);
     }
 };
 
 const tiltBridgeMesh = () => {
     if(bridgeMesh) {
-        bridgeMesh.rotation.y = cursor.x * 0.05;
-        bridgeMesh.rotation.z = cursor.y * 0.05;
+        bridgeMesh.rotation.y = VarConst.mouse.x * 0.01;
+        bridgeMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
 // Knot
 const moveKnotMesh = ({x, y}) => {
-    if(VarLet.knotMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.knotMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
-        knotMesh.position.y = VarLet.knotMesh_initial_position_y + (distance_from_top * 0.002);
+        knotMesh.position.y = VarConst.knotMesh_initial_position_y + (distance_from_top * 0.002);
     }
 };
 
 const tiltKnotMesh = () => {
     if(knotMesh) {
-        knotMesh.rotation.y = cursor.x * 0.05;
-        knotMesh.rotation.z = cursor.y * 0.05;
+        knotMesh.rotation.y = VarConst.mouse.x * 0.01;
+        knotMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
 // Champagne
 const moveChampagneMesh = ({x, y}) => {
-    if(VarLet.champagneMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.champagneMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
-        champagneMesh.position.y = VarLet.champagneMesh_initial_position_y + (distance_from_top * 0.001);
-        champagneMesh.rotation.z = VarLet.champagneMesh_initial_rotation_z + (distance_from_top * 0.001);
+        champagneMesh.position.y = VarConst.champagneMesh_initial_position_y + (distance_from_top * 0.001);
+        champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z + (distance_from_top * 0.001);
     }
 };
 
 // Daniels
 const moveDanielsMesh = ({x, y}) => {
-    if(VarLet.danielsMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.danielsMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
-        danielsMesh.position.y = VarLet.danielsMesh_initial_position_y + (distance_from_top * 0.001);
+        danielsMesh.position.y = VarConst.danielsMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
 
 // Wine
 const moveWineMesh = ({x, y}) => {
-    if(VarLet.wineMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.wineMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
-        wineMesh.position.y = VarLet.wineMesh_initial_position_y + (distance_from_top * 0.001);
+        wineMesh.position.y = VarConst.wineMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
 
 // Hennessy
 const moveHennesyMesh = ({x, y}) => {
-    if(VarLet.hennessyMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.hennessyMesh_initial_position_y !== undefined && knotMesh !== undefined) {
         const distance_from_top = y;
-        hennessyMesh.position.y = VarLet.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
+        hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
@@ -703,7 +579,7 @@ const moveHennesyMesh = ({x, y}) => {
 let envelope_intersect_witness = null;
 const tiltEnvelopeMesh = () => {
     if(envelopeMesh) {
-        envelopeMesh.rotation.y = (cursor.x * 0.3) + 1;
+        envelopeMesh.rotation.y = (VarConst.mouse.x * 0.1) + 1;
     }
 };
 
@@ -784,21 +660,3 @@ const tick = () =>
 };
 
 tick();
-
-
-/** Update cursor positions **/
-document.addEventListener("mousemove", e => {
-    VarConst.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    VarConst.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
-});
-
-// Cursor
-const cursor = {
-    x: 0, y: 0
-};
-window.addEventListener("mousemove", (event) => {
-    cursor.x = event.clientX / sizes.width - 0.5;
-    cursor.y = event.clientY / sizes.height - 0.5;
-});
-
-

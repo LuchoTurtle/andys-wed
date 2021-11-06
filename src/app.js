@@ -7,7 +7,7 @@ import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import createjs from 'preload-js'
 
-import {VarConst, VarLet, screenVarInitalizations} from "./vars";
+import {VarConst, VarLet, screenMeshPositionInitialization} from "./vars";
 import ScrollTriggerWithLoco from './js/gsap'
 
 import '../static/scss/main.scss'
@@ -26,7 +26,7 @@ const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gs
 
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
-screenVarInitalizations();
+screenMeshPositionInitialization();
 
 
 /** ------------------------------ ADDING ANIMATIONS -------------------------------------------- **/
@@ -198,44 +198,44 @@ bakedTextureEnvelope.encoding = THREE.sRGBEncoding;
  * Materials
  */
 // Landim
-const bakedMaterialLandim = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialLandim = new THREE.MeshBasicMaterial({
     map: bakedTextureLandim
 });
 
-const poleLightMaterialLandim = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
+VarLet.poleLightMaterialLandim = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
 
 // Bridge
-const bakedMaterialBridge = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialBridge = new THREE.MeshBasicMaterial({
     map: bakedTextureBridge
 });
 
 // Knot
-const bakedMaterialKnot = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialKnot = new THREE.MeshBasicMaterial({
     map: bakedTextureKnot
 });
 
 // Champagne
-const bakedMaterialChampagne = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialChampagne = new THREE.MeshBasicMaterial({
     map: bakedTextureChampagne
 });
 
 // Daniels
-const bakedMaterialDaniels = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialDaniels = new THREE.MeshBasicMaterial({
     map: bakedTextureDaniels
 });
 
 // Wine
-const bakedMaterialWine = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialWine = new THREE.MeshBasicMaterial({
     map: bakedTextureWine
 });
 
 // Hennessy
-const bakedMaterialHennessy = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialHennessy = new THREE.MeshBasicMaterial({
     map: bakedTextureHennessy
 });
 
 // Envelope
-const bakedMaterialEnvelope = new THREE.MeshBasicMaterial({
+VarLet.bakedMaterialEnvelope = new THREE.MeshBasicMaterial({
     map: bakedTextureEnvelope
 });
 
@@ -243,46 +243,37 @@ const bakedMaterialEnvelope = new THREE.MeshBasicMaterial({
 /**
  * Model
  */
-let landimMesh;
-let bridgeMesh;
-let knotMesh;
-let champagneMesh;
-let danielsMesh;
-let wineMesh;
-let hennessyMesh;
-let envelopeMesh;
-let envelopeBakedMat;
 gltfLoader.load('3D/landim/merged.glb',
     (gltf) =>  {
 
-        landimMesh = gltf.scene;
+        VarLet.landimMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'merged');
-        bakedMesh.material = bakedMaterialLandim;
+        bakedMesh.material = VarLet.bakedMaterialLandim;
 
         const poleLightAMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleA');
         const poleLightBMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleB');
         const poleLightCMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleC');
         const poleLightDMesh = gltf.scene.children.find(obj => obj.name === 'lightPoleD');
 
-        poleLightAMesh.material = poleLightMaterialLandim;
-        poleLightBMesh.material = poleLightMaterialLandim;
-        poleLightCMesh.material = poleLightMaterialLandim;
-        poleLightDMesh.material = poleLightMaterialLandim;
+        poleLightAMesh.material = VarLet.poleLightMaterialLandim;
+        poleLightBMesh.material = VarLet.poleLightMaterialLandim;
+        poleLightCMesh.material = VarLet.poleLightMaterialLandim;
+        poleLightDMesh.material = VarLet.poleLightMaterialLandim;
 
-        scene.add(landimMesh);
+        scene.add(VarLet.landimMesh);
     }
 );
 
 gltfLoader.load('3D/bridge/bridge.glb',
     (gltf) =>  {
 
-        bridgeMesh = gltf.scene;
+        VarLet.bridgeMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'bridge');
-        bakedMesh.material = bakedMaterialBridge;
+        bakedMesh.material = VarLet.bakedMaterialBridge;
 
 
         bakedMesh.position.x = 16.99;
@@ -292,49 +283,49 @@ gltfLoader.load('3D/bridge/bridge.glb',
         bakedMesh.rotation.y = 1.18;
         bakedMesh.rotation.z = 1.18;
 
-        scene.add(bridgeMesh);
+        scene.add(VarLet.bridgeMesh);
     }
 );
 
 gltfLoader.load('3D/knot/knot.glb',
     (gltf) =>  {
 
-        knotMesh = gltf.scene;
+        VarLet.knotMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'knot');
-        bakedMesh.material = bakedMaterialKnot;
+        bakedMesh.material = VarLet.bakedMaterialKnot;
 
-        knotMesh.position.x = VarConst.knotMesh_initial_position_x;
-        knotMesh.position.y = VarConst.knotMesh_initial_position_y;
-        knotMesh.position.z = -1.87;
+        VarLet.knotMesh.position.x = VarConst.knotMesh_initial_position_x;
+        VarLet.knotMesh.position.y = VarConst.knotMesh_initial_position_y;
+        VarLet.knotMesh.position.z = -1.87;
 
-        knotMesh.rotation.x = 1.05;
-        knotMesh.rotation.y = -5.76;
-        knotMesh.rotation.z = 0.18;
+        VarLet.knotMesh.rotation.x = 1.05;
+        VarLet.knotMesh.rotation.y = -5.76;
+        VarLet.knotMesh.rotation.z = 0.18;
 
-        scene.add(knotMesh);
+        scene.add(VarLet.knotMesh);
     }
 );
 
 gltfLoader.load('3D/bottles/champagne.glb',
     (gltf) =>  {
 
-        champagneMesh = gltf.scene;
+        VarLet.champagneMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Champagne');
-        bakedMesh.material = bakedMaterialChampagne;
+        bakedMesh.material = VarLet.bakedMaterialChampagne;
 
-        champagneMesh.position.x = VarConst.champagneMesh_initial_position_x;
-        champagneMesh.position.y = VarConst.champagneMesh_initial_position_y;
-        champagneMesh.position.z = 1.45;
+        VarLet.champagneMesh.position.x = VarConst.champagneMesh_initial_position_x;
+        VarLet.champagneMesh.position.y = VarConst.champagneMesh_initial_position_y;
+        VarLet.champagneMesh.position.z = 1.45;
 
-        champagneMesh.rotation.x = -0.32;
-        champagneMesh.rotation.y = -1.13;
-        champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z;
+        VarLet.champagneMesh.rotation.x = -0.32;
+        VarLet.champagneMesh.rotation.y = -1.13;
+        VarLet.champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z;
 
-        scene.add(champagneMesh);
+        scene.add(VarLet.champagneMesh);
     }
 );
 
@@ -342,21 +333,21 @@ gltfLoader.load('3D/bottles/champagne.glb',
 gltfLoader.load('3D/bottles/daniels.glb',
     (gltf) =>  {
 
-        danielsMesh = gltf.scene;
+        VarLet.danielsMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'daniels');
-        bakedMesh.material = bakedMaterialDaniels;
+        bakedMesh.material = VarLet.bakedMaterialDaniels;
 
-        danielsMesh.position.x = VarConst.danielsMesh_initial_position_x;
-        danielsMesh.position.y = VarConst.danielsMesh_initial_position_y;
-        danielsMesh.position.z = 2.1;
+        VarLet.danielsMesh.position.x = VarConst.danielsMesh_initial_position_x;
+        VarLet.danielsMesh.position.y = VarConst.danielsMesh_initial_position_y;
+        VarLet.danielsMesh.position.z = 2.1;
 
-        danielsMesh.rotation.x = 0.09;
-        danielsMesh.rotation.y = 4.45;
-        danielsMesh.rotation.z = 0.74;
+        VarLet.danielsMesh.rotation.x = 0.09;
+        VarLet.danielsMesh.rotation.y = 4.45;
+        VarLet.danielsMesh.rotation.z = 0.74;
 
-        scene.add(danielsMesh);
+        scene.add(VarLet.danielsMesh);
     }
 );
 
@@ -364,63 +355,63 @@ gltfLoader.load('3D/bottles/daniels.glb',
 gltfLoader.load('3D/bottles/wine.glb',
     (gltf) =>  {
 
-        wineMesh = gltf.scene;
+        VarLet.wineMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Wine');
-        bakedMesh.material = bakedMaterialWine;
+        bakedMesh.material = VarLet.bakedMaterialWine;
 
-        wineMesh.position.x = VarConst.wineMesh_initial_position_x;
-        wineMesh.position.y = VarConst.wineMesh_initial_position_y;
-        wineMesh.position.z = 1.0;
+        VarLet.wineMesh.position.x = VarConst.wineMesh_initial_position_x;
+        VarLet.wineMesh.position.y = VarConst.wineMesh_initial_position_y;
+        VarLet.wineMesh.position.z = 1.0;
 
-        wineMesh.rotation.x = -5.9;
-        wineMesh.rotation.y = -1.68;
-        wineMesh.rotation.z = 0.04;
+        VarLet.wineMesh.rotation.x = -5.9;
+        VarLet.wineMesh.rotation.y = -1.68;
+        VarLet.wineMesh.rotation.z = 0.04;
 
-        scene.add(wineMesh);
+        scene.add(VarLet.wineMesh);
     }
 );
 
 gltfLoader.load('3D/bottles/henessy.glb',
     (gltf) =>  {
 
-        hennessyMesh = gltf.scene;
+        VarLet.hennessyMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
         const bakedMesh = gltf.scene.children.find(obj => obj.name === 'Hennessy');
-        bakedMesh.material = bakedMaterialHennessy;
+        bakedMesh.material = VarLet.bakedMaterialHennessy;
 
-        hennessyMesh.position.x = VarConst.hennessyMesh_initial_position_x;
-        hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y;
-        hennessyMesh.position.z = 1.66;
+        VarLet.hennessyMesh.position.x = VarConst.hennessyMesh_initial_position_x;
+        VarLet.hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y;
+        VarLet.hennessyMesh.position.z = 1.66;
 
-        hennessyMesh.rotation.x = -5.9;
-        hennessyMesh.rotation.y = 0.18;
-        hennessyMesh.rotation.z = 0.04;
+        VarLet.hennessyMesh.rotation.x = -5.9;
+        VarLet.hennessyMesh.rotation.y = 0.18;
+        VarLet.hennessyMesh.rotation.z = 0.04;
 
-        scene.add(hennessyMesh);
+        scene.add(VarLet.hennessyMesh);
     }
 );
 
 gltfLoader.load('3D/envelope/envelope.glb',
     (gltf) =>  {
 
-        envelopeMesh = gltf.scene;
+        VarLet.envelopeMesh = gltf.scene;
 
         // Adding baked textures and emission lights to model
-        envelopeBakedMat = gltf.scene.children.find(obj => obj.name === 'envelope');
-        envelopeBakedMat.material = bakedMaterialEnvelope;
-        envelopeBakedMat.material.transparent = true;
-        envelopeBakedMat.material.opacity = 0;
+        VarLet.envelopeBakedMat = gltf.scene.children.find(obj => obj.name === 'envelope');
+        VarLet.envelopeBakedMat.material = VarLet.bakedMaterialEnvelope;
+        VarLet.envelopeBakedMat.material.transparent = true;
+        VarLet.envelopeBakedMat.material.opacity = 0;
 
-        envelopeMesh.position.x = VarConst.envelopeMesh_initial_position_x;
-        envelopeMesh.position.y = VarConst.envelopeMesh_initial_position_y;
-        envelopeMesh.position.z = VarConst.envelopeMesh_initial_position_z;
+        VarLet.envelopeMesh.position.x = VarConst.envelopeMesh_initial_position_x;
+        VarLet.envelopeMesh.position.y = VarConst.envelopeMesh_initial_position_y;
+        VarLet.envelopeMesh.position.z = VarConst.envelopeMesh_initial_position_z;
 
-        envelopeMesh.rotation.x = -3.449;
-        envelopeMesh.rotation.y = 2.272;
-        envelopeMesh.rotation.z = 3.4;
+        VarLet.envelopeMesh.rotation.x = -3.449;
+        VarLet.envelopeMesh.rotation.y = 2.272;
+        VarLet.envelopeMesh.rotation.z = 3.4;
 
         // Opacity animation
         if(scroll_trigger) {
@@ -428,14 +419,14 @@ gltfLoader.load('3D/envelope/envelope.glb',
                 trigger: document.getElementsByClassName("rsvp")[0],
                 scrub: true,
                 start: "top 70%",
-                onEnter: () => gsap.to(envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false },),
-                onLeave: () => gsap.to(envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
-                onLeaveBack: () => gsap.to(envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
-                onEnterBack: () => gsap.to(envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false })
+                onEnter: () => gsap.to(VarLet.envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false },),
+                onLeave: () => gsap.to(VarLet.envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onLeaveBack: () => gsap.to(VarLet.envelopeBakedMat.material, { opacity: 0, ease: "power4.out", immediateRender: false }),
+                onEnterBack: () => gsap.to(VarLet.envelopeBakedMat.material, { opacity: 1, ease: "power1.in", immediateRender: false })
             });
         }
 
-        scene.add(envelopeMesh);
+        scene.add(VarLet.envelopeMesh);
     }
 );
 
@@ -496,95 +487,96 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 
 // Landim
 const moveLandimMesh = ({x, y}) => {
-    if(VarConst.landimMesh_initial_position_z !== undefined && landimMesh !== undefined) {
+    if(VarConst.landimMesh_initial_position_z !== undefined && VarLet.landimMesh) {
         const distance_from_top = y;
-        landimMesh.position.z = VarConst.landimMesh_initial_position_z + (distance_from_top * 0.02);
+        VarLet.landimMesh.position.z = VarConst.landimMesh_initial_position_z + (distance_from_top * 0.02);
     }
 };
 
 const tiltLandimMesh = () => {
-    if(landimMesh) {
-        landimMesh.rotation.y = VarConst.mouse.x * 0.01;
-        landimMesh.rotation.z = VarConst.mouse.y * 0.01;
+    if(VarLet.landimMesh) {
+        VarLet.landimMesh.rotation.y = VarConst.mouse.x * 0.01;
+        VarLet.landimMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
+// Where are the tests...? ;-)
 
 // Bridge
 const moveBridgeMesh = ({x, y}) => {
-    if(VarConst.bridgeMesh_initial_position_y !== undefined && bridgeMesh !== undefined) {
+    if(VarConst.bridgeMesh_initial_position_y !== undefined && VarLet.bridgeMesh) {
         const distance_from_top = y;
-        bridgeMesh.position.y = VarConst.bridgeMesh_initial_position_y + (distance_from_top * 0.02);
+        VarLet.bridgeMesh.position.y = VarConst.bridgeMesh_initial_position_y + (distance_from_top * 0.02);
     }
 };
 
 const tiltBridgeMesh = () => {
-    if(bridgeMesh) {
-        bridgeMesh.rotation.y = VarConst.mouse.x * 0.01;
-        bridgeMesh.rotation.z = VarConst.mouse.y * 0.01;
+    if(VarLet.bridgeMesh) {
+        VarLet.bridgeMesh.rotation.y = VarConst.mouse.x * 0.01;
+        VarLet.bridgeMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
 // Knot
 const moveKnotMesh = ({x, y}) => {
-    if(VarConst.knotMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.knotMesh_initial_position_y !== undefined && VarLet.knotMesh) {
         const distance_from_top = y;
-        knotMesh.position.y = VarConst.knotMesh_initial_position_y + (distance_from_top * 0.002);
+        VarLet.knotMesh.position.y = VarConst.knotMesh_initial_position_y + (distance_from_top * 0.002);
     }
 };
 
 const tiltKnotMesh = () => {
-    if(knotMesh) {
-        knotMesh.rotation.y = VarConst.mouse.x * 0.01;
-        knotMesh.rotation.z = VarConst.mouse.y * 0.01;
+    if(VarLet.knotMesh) {
+        VarLet.knotMesh.rotation.y = VarConst.mouse.x * 0.01;
+        VarLet.knotMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
 };
 
 // Champagne
 const moveChampagneMesh = ({x, y}) => {
-    if(VarConst.champagneMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.champagneMesh_initial_position_y !== undefined && VarLet.knotMesh) {
         const distance_from_top = y;
-        champagneMesh.position.y = VarConst.champagneMesh_initial_position_y + (distance_from_top * 0.001);
-        champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z + (distance_from_top * 0.001);
+        VarLet.champagneMesh.position.y = VarConst.champagneMesh_initial_position_y + (distance_from_top * 0.001);
+        VarLet.champagneMesh.rotation.z = VarConst.champagneMesh_initial_rotation_z + (distance_from_top * 0.001);
     }
 };
 
 // Daniels
 const moveDanielsMesh = ({x, y}) => {
-    if(VarConst.danielsMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.danielsMesh_initial_position_y !== undefined && VarLet.knotMesh) {
         const distance_from_top = y;
-        danielsMesh.position.y = VarConst.danielsMesh_initial_position_y + (distance_from_top * 0.001);
+        VarLet.danielsMesh.position.y = VarConst.danielsMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
 
 // Wine
 const moveWineMesh = ({x, y}) => {
-    if(VarConst.wineMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.wineMesh_initial_position_y !== undefined && VarLet.knotMesh) {
         const distance_from_top = y;
-        wineMesh.position.y = VarConst.wineMesh_initial_position_y + (distance_from_top * 0.001);
+        VarLet.wineMesh.position.y = VarConst.wineMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
 
 // Hennessy
 const moveHennesyMesh = ({x, y}) => {
-    if(VarConst.hennessyMesh_initial_position_y !== undefined && knotMesh !== undefined) {
+    if(VarConst.hennessyMesh_initial_position_y !== undefined && VarLet.knotMesh) {
         const distance_from_top = y;
-        hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
+        VarLet.hennessyMesh.position.y = VarConst.hennessyMesh_initial_position_y + (distance_from_top * 0.001);
     }
 };
 
 // Envelope
 let envelope_intersect_witness = null;
 const tiltEnvelopeMesh = () => {
-    if(envelopeMesh) {
-        envelopeMesh.rotation.y = (VarConst.mouse.x * 0.1) + 1;
+    if(VarLet.envelopeMesh) {
+        VarLet.envelopeMesh.rotation.y = (VarConst.mouse.x * 0.1) + 1;
     }
 };
 
 window.addEventListener('click', () => {
-    if(envelope_intersect_witness && envelopeBakedMat.material.opacity === 1) {
+    if(envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1) {
         window.open("https://www.theknot.com/us/madalena-vicente-gravato-de-castro-e-almeida-and-andrew-sampaio-da-novoa-reid-jun-2022/rsvp", '_blank').focus();
     }
 })
@@ -616,22 +608,22 @@ const tick = () =>
         renderer.render(scene, camera);
 
         // Floating landim mesh
-        if (landimMesh) {
-            landimMesh.position.y = Math.sin(elapsedTime) * .07;
+        if (VarLet.landimMesh) {
+            VarLet.landimMesh.position.y = Math.sin(elapsedTime) * .07;
         }
 
         // Floating envelope mesh (and raycaster)
-        if (envelopeMesh && envelopeBakedMat) {
-            envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
+        if (VarLet.envelopeMesh && VarLet.envelopeBakedMat) {
+            VarLet.envelopeMesh.position.y += Math.sin(elapsedTime) * .0003;
 
             // Cast a ray
             raycaster.setFromCamera(VarConst.mouse, camera);
-            const intersects = raycaster.intersectObjects(envelopeMesh.children);
+            const intersects = raycaster.intersectObjects(VarLet.envelopeMesh.children);
 
             // Mouse event on envelope enter
             if(intersects.length) {
 
-                if(envelope_intersect_witness === null && envelopeBakedMat.material.opacity === 1) {
+                if(envelope_intersect_witness === null && VarLet.envelopeBakedMat.material.opacity === 1) {
                     custom_cursor.cursorToClickableEnvelope()
                 }
 

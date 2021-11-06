@@ -40,6 +40,28 @@ const VarConst = {
 
 let VarLet = {
     loadCompleted: false,
+
+    // Materials
+    bakedMaterialLandim: null,
+    poleLightMaterialLandim: null,
+    bakedMaterialBridge : null,
+    bakedMaterialKnot : null,
+    bakedMaterialChampagne : null,
+    bakedMaterialDaniels: null,
+    bakedMaterialWine : null,
+    bakedMaterialHennessy: null,
+    bakedMaterialEnvelope: null,
+
+    // Meshes
+    landimMesh: null,
+    bridgeMesh: null,
+    knotMesh: null,
+    champagneMesh: null,
+    danielsMesh: null,
+    wineMesh: null,
+    hennessyMesh: null,
+    envelopeMesh: null,
+    envelopeBakedMat: null
 };
 
 
@@ -47,7 +69,7 @@ let VarLet = {
  * Initializes variables according to screen height and width.
  * This affects the scrolling THREE.js experience because it sets the starting points of 3D objects.
  */
-function screenVarInitalizations() {
+function screenMeshPositionInitialization() {
     /* ------- Width --------- */
 
     // Mobile S
@@ -183,4 +205,4 @@ document.addEventListener("mousemove", e => {
     VarConst.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
 });
 
-export { VarConst, VarLet, screenVarInitalizations }
+export { VarConst, VarLet, screenMeshPositionInitialization }

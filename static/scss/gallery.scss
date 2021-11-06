@@ -82,6 +82,10 @@
     opacity: .7;
   }
 
+  #hunt {
+    bottom: 10px;
+  }
+
 
   .gallery__item-header {
     color: map-get(map-get($palettes, darkgreen), base);

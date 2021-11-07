@@ -21,7 +21,6 @@
     "mini-css-extract-plugin": "^1.3.9",
     "paper": "^0.12.15",
     "portfinder-sync": "0.0.2",
-    "preload-js": "^0.6.3",
     "raw-loader": "^4.0.2",
     "simplex-noise": "^3.0.0",
     "style-loader": "^2.0.0",

@@ -62,6 +62,9 @@ export default class Experience {
      * After the loading is finished, it sets the "VarLet.loadCompleted" to true.
      */
     loadFiles() {
+        const renderer = this.renderer;
+        const loco_scroll = this.loco_scroll;
+
         // Loading manager
         const manager = new THREE.LoadingManager();
         manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
@@ -82,6 +85,8 @@ export default class Experience {
             gsap.to(VarConst.loadingText, { duration: .5, opacity: 0 });
             gsap.to(VarConst.doneText, { duration: .5, opacity: 1 });
             gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in", delay: 1.8 });
+
+            loco_scroll.scrollTo(0.1) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
         };
 
         // Texture loader
@@ -102,6 +107,8 @@ export default class Experience {
                     map: bakedTextureLandim
                 });
                 VarLet.poleLightMaterialLandim = new THREE.MeshBasicMaterial({color: new THREE.Color("rgb(255, 125, 69)")});
+
+                renderer.initTexture(bakedTextureLandim);
 
                 gltfLoader.load('3D/landim/merged.glb',
                     (gltf) =>  {
@@ -136,6 +143,8 @@ export default class Experience {
                     map: bakedTextureBridge
                 });
 
+                renderer.initTexture(bakedTextureBridge);
+
                 gltfLoader.load('3D/bridge/bridge.glb',
                     (gltf) =>  {
 
@@ -145,7 +154,7 @@ export default class Experience {
 
                         bakedMesh.position.x = 16.99;
                         bakedMesh.position.z = VarConst.bridgeMesh_initial_position_z;
-                        //bakedMesh.position.y = VarConst.bridgeMesh_initial_position_y;
+
 
                         bakedMesh.rotation.x = -0.45;
                         bakedMesh.rotation.y = 1.18;
@@ -166,6 +175,8 @@ export default class Experience {
                 VarLet.bakedMaterialKnot = new THREE.MeshBasicMaterial({
                     map: bakedTextureKnot
                 });
+
+                renderer.initTexture(bakedTextureKnot);
 
                 gltfLoader.load('3D/knot/knot.glb',
                     (gltf) =>  {
@@ -198,6 +209,8 @@ export default class Experience {
                     map: bakedTextureChampagne
                 });
 
+                renderer.initTexture(bakedTextureChampagne);
+
                 gltfLoader.load('3D/bottles/champagne.glb',
                     (gltf) =>  {
 
@@ -228,6 +241,8 @@ export default class Experience {
                 VarLet.bakedMaterialDaniels = new THREE.MeshBasicMaterial({
                     map: bakedTextureDaniels
                 });
+
+                renderer.initTexture(bakedTextureDaniels);
 
                 gltfLoader.load('3D/bottles/daniels.glb',
                     (gltf) =>  {
@@ -260,6 +275,8 @@ export default class Experience {
                     map: bakedTextureWine
                 });
 
+                renderer.initTexture(bakedTextureWine);
+
                 gltfLoader.load('3D/bottles/wine.glb',
                     (gltf) =>  {
 
@@ -291,6 +308,8 @@ export default class Experience {
                     map: bakedTextureHennessy
                 });
 
+                renderer.initTexture(bakedTextureHennessy);
+
                 gltfLoader.load('3D/bottles/henessy.glb',
                     (gltf) =>  {
 
@@ -321,6 +340,8 @@ export default class Experience {
                 VarLet.bakedMaterialEnvelope = new THREE.MeshBasicMaterial({
                     map: bakedTextureEnvelope
                 });
+
+                renderer.initTexture(bakedTextureEnvelope);
 
                 gltfLoader.load('3D/envelope/envelope.glb',
                     (gltf) =>  {

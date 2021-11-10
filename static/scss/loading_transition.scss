@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $centered_width: 200;   // width of the elements in the screen
 $loadFromTopX: 40;      // number from the top of the screen
 $progressPadding: 8;   // padding between the load animation and the progress
@@ -15,7 +17,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
   .loading-line {
     width: 100%;
     max-width: $centered_width + px;
-    left: calc(50% - #{$centered_width/2}px);
+    left: calc(50% - #{math.div($centered-width, 2)}px);
     top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 20%;
     height: 2px;
     display: inline-block;
@@ -26,7 +28,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
 
   .load-value {
     top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 10%;
-    left: calc(50% - #{$centered_width/2}px);
+    left: calc(50% - #{math.div($centered-width, 2)}px);
     font-size: 150px;
     opacity: .7;
     transform: translateY(5%);
@@ -44,7 +46,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
 
     .loading-text {
       top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
-      left: calc(50% - #{$centered_width/2}px);
+      left: calc(50% - #{math.div($centered-width, 2)}px);
       font-size: 30px;
       font-family: Canela;
       color: #29363C;
@@ -52,7 +54,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
 
     .done-text {
       top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
-      left: calc(50% - #{$centered_width/2}px);
+      left: calc(50% - #{math.div($centered-width, 2)}px);
       opacity: 0;
       font-size: 30px;
       font-family: Canela;

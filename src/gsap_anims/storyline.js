@@ -1,6 +1,17 @@
 import {gsap} from 'gsap';
 
+/**
+ * Object that deals with creating the storyline animation on scroll.
+ */
 export default class Storyline {
+    /**
+     * Initiates the storyline experience.
+     * @param scrolltrigger ScrollTrigger object.
+     * @param body HTML body element.
+     * @param navbar HTML navbar element.
+     * @param texts HTML story elements.
+     * @param menu_links HTML navbar menu link elements.
+     */
     constructor(scrolltrigger, body, navbar, texts, menu_links) {
         this.scrollTrigger = scrolltrigger;
         this.navbar = navbar;
@@ -8,13 +19,18 @@ export default class Storyline {
         this.texts = texts;
         this.menu_links = menu_links;
         this.sectionHeight = 300;
-        this.makeSectionsStickyAndTextFade();
-        this.gradientBodyBackground()
+
+        this._makeSectionsStickyAndTextFade();
+        this._gradientBodyBackground()
     }
 
-    makeSectionsStickyAndTextFade() {
+    /**
+     * Makes section scrub and stick to viewport whilst scrolling and apply text fading animations.
+     * @private
+     */
+    _makeSectionsStickyAndTextFade() {
 
-        /* Makes section sticky for a certain amount of height --------- */
+        // Makes section sticky for a certain amount of height
         this.texts.forEach((section) => {
             this.scrollTrigger.create({
                 trigger: section,
@@ -25,7 +41,7 @@ export default class Storyline {
             });
         });
 
-        /* Opacity of each text in each story line section --------- */
+        // Opacity of each text in each story line section
         this.texts.forEach((section) => {
             const h = section.querySelector('h1');
 
@@ -41,16 +57,66 @@ export default class Storyline {
         });
     }
 
-    gradientBodyBackground() {
+    /**
+     * Changes the page's background color with each section
+     * @private
+     */
+    _gradientBodyBackground() {
 
-        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
+        // Body background color animations
+        const BODY_bodyToLightPurple = gsap.fromTo(this.body, { backgroundColor: "#1c303a" },{ backgroundColor: "#637CAD" });
         const BODY_lightPurtpleToDarkerPurple = gsap.fromTo(this.body, { backgroundColor: "#637CAD" },{ backgroundColor: "#E2E8F9", immediateRender: false });
         const BODY_darkerPurpleToOrange = gsap.fromTo(this.body, { backgroundColor: "#E2E8F9" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
-        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#322633" },{ backgroundColor: "#637CAD" });
+        // Navbar background color animations
+        const NAVBAR_bodyToLightPurple = gsap.fromTo(this.navbar, { backgroundColor: "#1c303a" },{ backgroundColor: "#637CAD" });
         const NAVBAR_lightPurtpleToDarkerPurple = gsap.fromTo(this.navbar, { backgroundColor: "#637CAD" },{ backgroundColor: "#E2E8F9", immediateRender: false });
         const NAVBAR_darkerPurpleToOrange = gsap.fromTo(this.navbar, { backgroundColor: "#E2E8F9" },{ backgroundColor: "#FBE7C6", immediateRender: false });
 
+
+        // Applying background color animations to body
+        this.scrollTrigger.create({
+            trigger: this.texts[0],
+            start: "top top",
+            scrub: true,
+            animation: BODY_bodyToLightPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[1],
+            start: "top top",
+            scrub: true,
+            animation: BODY_lightPurtpleToDarkerPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[2],
+            start: "top top",
+            scrub: true,
+            animation: BODY_darkerPurpleToOrange
+        });
+
+
+        // Applying background color animation to navbar
+        this.scrollTrigger.create({
+            trigger: this.texts[0],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_bodyToLightPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[1],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_lightPurtpleToDarkerPurple
+        });
+        this.scrollTrigger.create({
+            trigger: this.texts[2],
+            start: "top top",
+            scrub: true,
+            animation: NAVBAR_darkerPurpleToOrange
+        });
+
+
+        // Applying font color change so it contrasts with navbar color changes
         for(let ml of this.menu_links) {
             const MENU_LINK_bodyToLightPurple = gsap.fromTo(ml, { color: "#ededed" },{ color: "#E4F1FE" });
             const MENU_LINK_lightPurtpleToDarkerPurple = gsap.fromTo(ml, { color: "#E4F1FE" },{ color: "#aaaaaa", immediateRender: false });
@@ -75,45 +141,5 @@ export default class Storyline {
                 animation: MENU_LINK_darkerPurpleToOrange
             });
         }
-
-
-        this.scrollTrigger.create({
-            trigger: this.texts[0],
-            start: "top top",
-            scrub: true,
-            animation: BODY_bodyToLightPurple
-        });
-        this.scrollTrigger.create({
-            trigger: this.texts[1],
-            start: "top top",
-            scrub: true,
-            animation: BODY_lightPurtpleToDarkerPurple
-        });
-        this.scrollTrigger.create({
-            trigger: this.texts[2],
-            start: "top top",
-            scrub: true,
-            animation: BODY_darkerPurpleToOrange
-        });
-
-
-        this.scrollTrigger.create({
-            trigger: this.texts[0],
-            start: "top top",
-            scrub: true,
-            animation: NAVBAR_bodyToLightPurple
-        });
-        this.scrollTrigger.create({
-            trigger: this.texts[1],
-            start: "top top",
-            scrub: true,
-            animation: NAVBAR_lightPurtpleToDarkerPurple
-        });
-        this.scrollTrigger.create({
-            trigger: this.texts[2],
-            start: "top top",
-            scrub: true,
-            animation: NAVBAR_darkerPurpleToOrange
-        });
     }
 }

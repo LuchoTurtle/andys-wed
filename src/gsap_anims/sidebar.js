@@ -1,7 +1,17 @@
+/**
+ * Object that deals with creating the sidebar and the scrolling animation
+ */
 export default class Sidebar {
-    constructor(scrolltrigger, loco_scroll,
+    /**
+     * Creates the sidebar with scrolling animation.
+     * @param ScrollTrigger ScrollTrigger object.
+     * @param loco_scroll LocomotiveScroll object.
+     * @param progress_bar HTML progress bar element.
+     * @param sub_menus HTML sub-menu elements.
+     */
+    constructor(ScrollTrigger, loco_scroll,
                 progress_bar, sub_menus) {
-        this.scrollTrigger = scrolltrigger;
+        this.scrollTrigger = ScrollTrigger;
         this.loco_scroll = loco_scroll;
 
         this.progress_bar = progress_bar;
@@ -9,12 +19,16 @@ export default class Sidebar {
 
         this.tablet_breakpoint = window.matchMedia("(max-width: 768px)");
 
-        this.addEventListeners();
-        this.currentSectionSidebarAnimations();
+        this._addEventListeners();
+        this._currentSectionSidebarAnimations();
     }
 
-    // Changes progress bar according to progress and direction.
-    updateProgressBarDirection(progress) {
+    /**
+     * Changes the progress bar according to progress and direction.
+     * @param progress progress value - should be a value between 0 and 100
+     * @private
+     */
+    _updateProgressBarDirection(progress) {
         if (this.tablet_breakpoint.matches) {
             this.progress_bar.style.transform = `translateX(-${progress}%)`
         } else {
@@ -22,17 +36,21 @@ export default class Sidebar {
         }
     }
 
-    addEventListeners() {
-        /* Progress bar */
-        this.tablet_breakpoint.addEventListener('change', this.updateProgressBarDirection);
+    /**
+     * Add event listeners to HTML elements for line animations and progress bar on sidebar.
+     * @private
+     */
+    _addEventListeners() {
+        // Progress bar
+        this.tablet_breakpoint.addEventListener('change', this._updateProgressBarDirection);
 
         this.loco_scroll.on('scroll', ({ limit, scroll }) => {
             const progress = 100 - (scroll.y / limit.y * 100);
-            this.updateProgressBarDirection(progress)
+            this._updateProgressBarDirection(progress)
         });
 
 
-        /* Menu toggle highlight */
+        // Menu toggle highlight line animation
         const highlight = function() {
             let current_highlight = document.getElementsByClassName("menu__item--current")[0];
             current_highlight.classList.remove("menu__item--current");
@@ -44,9 +62,13 @@ export default class Sidebar {
         });
     }
 
-    currentSectionSidebarAnimations() {
+    /**
+     * Adding animations to highlight and de-highlight submenus when they change between each other
+     * @private
+     */
+    _currentSectionSidebarAnimations() {
 
-        /* Functions for dynamic current menu styles */
+        // Functions for dynamic current menu styles
         const highlight = function(menu_link) {
             let current_highlight = document.getElementsByClassName("menu__item--current")[0];
             if(current_highlight)
@@ -63,6 +85,7 @@ export default class Sidebar {
         };
 
 
+        // Applying animations to elements
         const menu_links = [...document.querySelectorAll('.menu-container_submenu')];
         const link_home = menu_links[0];
         const link_gallery = menu_links[1];
@@ -76,7 +99,7 @@ export default class Sidebar {
         const venue = document.getElementsByClassName("venue")[0];
         const rsvp = document.getElementsByClassName("rsvp")[0];
 
-        /* GSAP animation */
+        // GSAP animations
         this.scrollTrigger.create({
             trigger: hero,
             start: "top top",
@@ -111,7 +134,7 @@ export default class Sidebar {
             onEnterBack: () => highlight(link_rsvp),
         });
 
-        /* Click handlers */
+        // Click handlers
         const loco_scroll = this.loco_scroll;
         Array.from(this.sub_menus).forEach(function(element) {
             if(element.id === "link_home") {

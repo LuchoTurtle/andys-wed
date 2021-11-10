@@ -1,7 +1,7 @@
 @import 'utils/mixins';
 @import 'utils/vars';
 @import 'utils/font';
-@import 'utils/cursor';
+@import 'cursor';
 @import 'sidebar';
 @import 'story';
 @import 'hero';
@@ -10,7 +10,7 @@
 @import 'venue';
 @import 'rsvp';
 
-@import 'utils/loading_transition';
+@import 'loading_transition';
 
 body {
     margin: 0;

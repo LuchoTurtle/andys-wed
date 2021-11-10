@@ -2,8 +2,6 @@ import { gsap as vanilla_gsap } from "gsap";
 import { ScrollTrigger as vanilla_ScrollTrigger } from "gsap/ScrollTrigger";
 
 import * as THREE from "three";
-import * as dat from "dat.gui";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
 import {VarConst, VarLet, screenMeshPositionInitialization} from "./vars";
 import ScrollTriggerWithLoco from './js/gsap'
@@ -67,12 +65,7 @@ const {camera, scene, renderer} = experience;
 experience.loadFiles();
 experience.modelsAnimations();
 experience.addResizeHandler();
-experience.addHelper();
-
-
-// Debug
-const gui = new dat.GUI();
-gui.close();
+//experience.addHelper();
 
 
 /**

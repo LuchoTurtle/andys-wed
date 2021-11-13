@@ -45,6 +45,13 @@ const progress_bar = document.querySelector('.progress-bar');
 const sub_menus = document.getElementsByClassName("menu-container_submenu");
 new Sidebar(scroll_trigger, loco_scroll, progress_bar, sub_menus);
 
+const scrolldown = document.body.getElementsByClassName("scroll-down");
+const hero = document.body.getElementsByClassName("hero");
+scroll_trigger.create({
+    trigger: hero,
+    start: "bottom 80%",
+    animation: gsap.to(scrolldown, {opacity: 0, duration: 0.4})
+});
 
 
 /** -------------------------------- CURSOR SETUP ---------------------------------------------- **/

@@ -1,12 +1,12 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
-const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 module.exports = {
     entry: {
-        //three: path.resolve(__dirname, '../src/three_script.js'),
-        app: path.resolve(__dirname, '../src/app.js')
+        app: path.resolve(__dirname, '../src/app.js'),
+        notfound: path.resolve(__dirname, '../src/404.js'),
     },
     output:
         {
@@ -27,7 +27,15 @@ module.exports = {
                 ]
             }),
             new HtmlWebpackPlugin({
+                filename: 'index.html',
                 template: path.resolve(__dirname, '../src/index.html'),
+                chunks: ['app'],
+                minify: true
+            }),
+            new HtmlWebpackPlugin({
+                filename: '404.html',
+                template: path.resolve(__dirname, '../src/404.html'),
+                chunks: ['notfound'],
                 minify: true
             }),
             new MiniCSSExtractPlugin()

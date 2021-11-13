@@ -53,7 +53,7 @@ let VarLet = {
     bakedMaterialEnvelope: null,
 
     // Meshes
-    landimMesh: null,
+    landimMesh: null,   // it is used in both 404 and landing page
     bridgeMesh: null,
     knotMesh: null,
     champagneMesh: null,

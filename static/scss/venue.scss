@@ -102,6 +102,7 @@
       font-family: FoundersGroteskLight;
 
       a {
+        color: map-get(map-get($palettes, darkblue), base);
         background:
                 linear-gradient(to right, map-get(map-get($palettes, darkblue), light), map-get(map-get($palettes, darkblue), light)),
                 linear-gradient(to right, map-get(map-get($palettes, red), base), map-get(map-get($palettes, red), base));
@@ -119,7 +120,7 @@
         background-size: 0 0.1em, 100% 0.1em;
       }
 
-      a:visited {
+      a:visited a:active a:any-link{
         color: map-get(map-get($palettes, darkblue), base);
       }
     }
@@ -134,7 +135,7 @@
         cursor: none;
       }
 
-      a:visited {
+      a:visited a:active a:any-link {
         color: map-get(map-get($palettes, darkblue), base);
       }
     }

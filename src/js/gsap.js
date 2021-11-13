@@ -18,12 +18,6 @@ export default class ScrollTriggerWithLoco {
             multiplier: 0.45,
             lerp: 0.03,
             smooth: true,
-            smartphone: {
-                smooth: true
-            },
-            tablet: {
-                smooth: true
-            }
         });
 
         this._initTransformations()

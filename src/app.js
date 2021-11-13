@@ -1,5 +1,5 @@
-import { gsap as vanilla_gsap } from "gsap";
-import { ScrollTrigger as vanilla_ScrollTrigger } from "gsap/ScrollTrigger";
+import {gsap as vanilla_gsap} from "gsap";
+import {ScrollTrigger as vanilla_ScrollTrigger} from "gsap/ScrollTrigger";
 
 import * as THREE from "three";
 
@@ -24,6 +24,11 @@ const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gs
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
 screenMeshPositionInitialization();
+const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
+if (tablet_breakpoint.matches) {
+    document.body.requestFullscreen()
+}
+
 
 
 /** ------------------------------ ADDING ANIMATIONS -------------------------------------------- **/
@@ -31,7 +36,7 @@ const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
 const menu_links = [...document.getElementsByClassName("menu__link")];
-new Storyline(scroll_trigger, body, navbar,  texts, menu_links);
+new Storyline(scroll_trigger, body, navbar, texts, menu_links);
 
 
 const gallery = document.querySelector('.gallery');
@@ -80,7 +85,7 @@ experience.addResizeHandler();
  */
 let envelope_intersect_witness = null;
 window.addEventListener('click', () => {
-    if(envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1) {
+    if (envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1) {
         window.open("https://www.theknot.com/us/madalena-vicente-gravato-de-castro-e-almeida-and-andrew-sampaio-da-novoa-reid-jun-2022/rsvp", '_blank').focus();
     }
 });
@@ -91,7 +96,7 @@ window.addEventListener('click', () => {
 
 // Landim
 const tiltLandimMesh = () => {
-    if(VarLet.landimMesh && VarLet.landimMesh) {
+    if (VarLet.landimMesh && VarLet.landimMesh) {
         VarLet.landimMesh.rotation.y = VarConst.mouse.x * 0.01;
         VarLet.landimMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
@@ -99,7 +104,7 @@ const tiltLandimMesh = () => {
 
 // Bridge
 const tiltBridgeMesh = () => {
-    if(VarLet.bridgeMesh) {
+    if (VarLet.bridgeMesh) {
         VarLet.bridgeMesh.rotation.y = VarConst.mouse.x * 0.01;
         VarLet.bridgeMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
@@ -107,7 +112,7 @@ const tiltBridgeMesh = () => {
 
 // Knot
 const tiltKnotMesh = () => {
-    if(VarLet.knotMesh) {
+    if (VarLet.knotMesh) {
         VarLet.knotMesh.rotation.y = VarConst.mouse.x * 0.01;
         VarLet.knotMesh.rotation.z = VarConst.mouse.y * 0.01;
     }
@@ -115,7 +120,7 @@ const tiltKnotMesh = () => {
 
 // Envelope
 const tiltEnvelopeMesh = () => {
-    if(VarLet.envelopeMesh) {
+    if (VarLet.envelopeMesh) {
         VarLet.envelopeMesh.rotation.y = (VarConst.mouse.x * 0.1) + 1;
     }
 };
@@ -126,9 +131,8 @@ const tiltEnvelopeMesh = () => {
  */
 const raycaster = new THREE.Raycaster();
 const clock = new THREE.Clock();
-const tick = () =>
-{
-    if(VarLet.loadCompleted) {
+const tick = () => {
+    if (VarLet.loadCompleted) {
         const elapsedTime = clock.getElapsedTime();
 
         // Render
@@ -148,9 +152,9 @@ const tick = () =>
             const intersects = raycaster.intersectObjects(VarLet.envelopeMesh.children);
 
             // Mouse event on envelope enter
-            if(intersects.length) {
+            if (intersects.length) {
 
-                if(envelope_intersect_witness === null && VarLet.envelopeBakedMat.material.opacity === 1) {
+                if (envelope_intersect_witness === null && VarLet.envelopeBakedMat.material.opacity === 1) {
                     custom_cursor.cursorToClickableEnvelope()
                 }
 
@@ -158,7 +162,7 @@ const tick = () =>
             }
             // Mouse event on envelope leave
             else {
-                if(envelope_intersect_witness) {
+                if (envelope_intersect_witness) {
                     custom_cursor.cursorToNormal()
                 }
 

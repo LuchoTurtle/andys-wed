@@ -29,6 +29,27 @@ if (tablet_breakpoint.matches) {
     document.body.requestFullscreen()
 }
 
+// Day-time different colors on hero
+const isDayTime = (new Date().getHours() > 6 && new Date().getHours() < 18);
+const andrew_title = document.getElementById("andrew--title");
+const madalena_title = document.getElementById("madalena--title");
+const hero_subtitle = document.getElementById("hero--subtitle");
+const scroll_down = document.getElementsByClassName("scroll-down-text")[0];
+const scroll_down_bar = document.getElementsByClassName("scroll-down-bar")[0];
+
+if(isDayTime) {
+    andrew_title.style.color = '#29363c';
+    madalena_title.style.color = '#29363c';
+    hero_subtitle.style.color = '#697277';
+    scroll_down.style.color = '#29363c';
+    scroll_down_bar.style.background = '#29363c'
+    document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s bright outside, have fun!';
+} else {
+    andrew_title.style.color = 'whitesmoke';
+    madalena_title.style.color = 'whitesmoke';
+    hero_subtitle.style.color = 'navajowhite';
+    document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s a dark outside but we\'re open!';
+}
 
 
 /** ------------------------------ ADDING ANIMATIONS -------------------------------------------- **/
@@ -36,7 +57,7 @@ const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
 const menu_links = [...document.getElementsByClassName("menu__link")];
-new Storyline(scroll_trigger, body, navbar, texts, menu_links);
+new Storyline(scroll_trigger, body, navbar, texts, menu_links, isDayTime);
 
 
 const gallery = document.querySelector('.gallery');
@@ -72,7 +93,7 @@ linkItems.forEach(item => {
 
 const canvas = document.querySelector('.webgl');
 
-const experience = new Experience(canvas, scroll_trigger, loco_scroll);
+const experience = new Experience(canvas, scroll_trigger, loco_scroll, isDayTime);
 const {camera, scene, renderer} = experience;
 experience.loadFiles();
 experience.modelsAnimations();

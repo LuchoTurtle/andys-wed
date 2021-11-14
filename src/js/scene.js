@@ -12,8 +12,10 @@ export default class Experience {
      * @param canvas canvas HTML element.
      * @param scroll_trigger modified ScrollTrigger object that is compatible with Loco Scroll
      * @param loco_scroll modified Locomotive Scroll object that is compatible with ScrollTrigger.
+     * @param isDayTime boolean to switch up to day-time or night-time colors
      */
-    constructor(canvas, scroll_trigger, loco_scroll) {
+    constructor(canvas, scroll_trigger, loco_scroll,
+                isDayTime) {
         this.canvas = canvas;
         this.scroll_trigger = scroll_trigger;
         this.loco_scroll = loco_scroll;
@@ -23,7 +25,9 @@ export default class Experience {
             height: window.innerHeight
         };
         this.camera = this._setupCamera();
-        this.renderer = this._setupRenderer()
+        this.renderer = this._setupRenderer();
+
+        this.isDayTime = isDayTime;
     }
 
     /**
@@ -98,7 +102,11 @@ export default class Experience {
         /**
          * Textures and materials and models
          */
-        textureLoader.load('3D/landim/baked2.jpg',
+        let landim_baked_path = '3D/landim/baked.jpg';
+        if(this.isDayTime) {
+            landim_baked_path = '3D/landim/baked2.jpg';
+        }
+        textureLoader.load(landim_baked_path,
             (bakedTextureLandim) => {
                 bakedTextureLandim.flipY = false;
                 bakedTextureLandim.encoding = THREE.sRGBEncoding;

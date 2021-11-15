@@ -56,6 +56,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
       top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
       left: calc(50% - #{math.div($centered-width, 2)}px);
       opacity: 0;
+      text-align: center;
       font-size: 30px;
       font-family: Canela;
       color: map-get(map-get($palettes, red), dark);

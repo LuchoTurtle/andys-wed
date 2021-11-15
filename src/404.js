@@ -17,7 +17,7 @@ clickBack.forEach(item => {
     item.addEventListener('click', () => {
         gsap.to(overlay, {opacity: 1, duration: 0.6})
         setTimeout(() => {
-            window.location.replace('http://localhost:8080')
+            window.location.replace('https://mandylena.pt/')
         }, 2000);
     })
 });

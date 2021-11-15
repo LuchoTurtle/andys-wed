@@ -90,7 +90,7 @@ export default class Experience {
             gsap.to(VarConst.doneText, { duration: .5, opacity: 1 });
             gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in", delay: 1.8 });
 
-            loco_scroll.scrollTo(0.1) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
+            setTimeout(() => loco_scroll.scrollTo(1), 1000) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
         };
 
         // Texture loader

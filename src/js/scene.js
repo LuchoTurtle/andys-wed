@@ -36,7 +36,7 @@ export default class Experience {
      * @private
      */
     _setupCamera() {
-        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100);
+        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 40);
         camera.rotation.y = -Math.PI / 4;
         camera.position.set(-12.4, 4.1, 2.3);
         this.scene.add(camera);
@@ -52,7 +52,8 @@ export default class Experience {
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
             canvas: this.canvas,
-            antialias: true
+            antialias: true,
+            powerPreference: "high-performance"
         });
         renderer.setSize(this.sizes.width, this.sizes.height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

@@ -26,7 +26,8 @@ const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gs
 screenMeshPositionInitialization();
 const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
 if (tablet_breakpoint.matches) {
-    document.body.requestFullscreen()
+    document.body.requestFullscreen();
+    //TODO fullscreen only works after a user gesture
 }
 
 // Day-time different colors on hero
@@ -42,7 +43,7 @@ if(isDayTime) {
     madalena_title.style.color = '#29363c';
     hero_subtitle.style.color = '#697277';
     scroll_down.style.color = '#29363c';
-    scroll_down_bar.style.background = '#29363c'
+    scroll_down_bar.style.background = '#29363c';
     document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s bright outside, have fun!';
 } else {
     andrew_title.style.color = 'whitesmoke';

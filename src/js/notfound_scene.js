@@ -29,7 +29,7 @@ export default class NotFoundExperience {
      * @private
      */
     _setupCamera() {
-        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 50);
+        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 75);
         camera.position.set(-15, 1, -10);
         this.scene.add(camera);
 

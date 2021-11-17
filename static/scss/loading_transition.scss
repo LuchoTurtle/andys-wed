@@ -7,7 +7,9 @@ $progressPadding: 8;   // padding between the load animation and the progress
 .loading-wrapper {
   height: 100vh;
   z-index: 100000;
-  position: absolute;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   width: 100vw;
   background-color: #f8f4d5;
   @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);

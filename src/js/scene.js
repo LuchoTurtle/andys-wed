@@ -36,7 +36,7 @@ export default class Experience {
      * @private
      */
     _setupCamera() {
-        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 40);
+        const camera = new THREE.PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 75);
         camera.rotation.y = -Math.PI / 4;
         camera.position.set(-12.4, 4.1, 2.3);
         this.scene.add(camera);

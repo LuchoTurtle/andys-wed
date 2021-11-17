@@ -49,10 +49,16 @@ export default class Experience {
      * @private
      */
     _setupRenderer() {
+        let pixelRatio = window.devicePixelRatio;
+        let AA = true;
+        if (pixelRatio > 1) {
+            AA = false
+        }
+
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
             canvas: this.canvas,
-            antialias: true,
+            antialias: AA,
             powerPreference: "high-performance"
         });
         renderer.setSize(this.sizes.width, this.sizes.height);

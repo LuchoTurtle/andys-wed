@@ -26,7 +26,7 @@
         </div>
 
         <div class="language-container">
-            <span class="language-question">Who are you?</span>
+            <span class="language-question" data-translatable>Who are you? // Quem és?</span>
             <div class="choices">
                 <button id="pt-btn">deixa-me entrar!</button>
                 <button id="en-btn">just let me in, mate</button>
@@ -42,16 +42,16 @@
             <nav>
                 <div class="menu-container">
                     <div id="link_home" class="menu-container_submenu menu__item--current">
-                        <a href="#" class="menu__item menu__link">home</a>
+                        <a href="#" class="menu__item menu__link" data-translatable>home // início</a>
                     </div>
                     <div id="link_gallery" class="menu-container_submenu">
-                        <a href="#" class="menu__item menu__link">gallery</a>
+                        <a href="#" class="menu__item menu__link" data-translatable>gallery // galeria</a>
                     </div>
                     <div id="link_details" class="menu-container_submenu">
-                        <a href="#" class="menu__item menu__link">details</a>
+                        <a href="#" class="menu__item menu__link" data-translatable>details // detalhes</a>
                     </div>
                     <div id="link_rsvp" class="menu-container_submenu">
-                        <a href="#" class="menu__item menu__link">rsvp</a>
+                        <a href="#" class="menu__item menu__link" data-translatable>rsvp // rsvp</a>
                     </div>
                 </div>
             </nav>
@@ -68,50 +68,57 @@
                                 <span style="color: #a8b5ba">&</span><br/>
                                 <span id="madalena--title">Madalena</span>
                             </h1>
-                            <h2 id="hero--subtitle" data-scroll-speed="-1.3" data-scroll-delay="5">are getting married! <span class="more">And we want you in 😊</span></h2>
+                            <div data-translatable>
+                                <h2 class="hero--subtitle" data-scroll-speed="-1.3" data-scroll-delay="5" >are getting married!
+                                    <span class="more">And we want you there :)</span>
+                                </h2>
+                                <h2 class="hero--subtitle"  data-scroll-speed="-1.3" data-scroll-delay="5" >vão-se casar!
+                                    <span class="more">E nós queremos ver-te lá :)</span>
+                                </h2>
+                            </div>
                         </div>
                     </div>
 
                     <div class="scroll-down">
-                        <div class="scroll-down-text">SCROLL DOWN</div>
+                        <div class="scroll-down-text" data-translatable>SCROLL DOWN // DESCER</div>
                         <div class="scroll-down-bar"></div>
                     </div>
                 </section>
 
                 <section class="story">
                     <section class="story__section">
-                        <h1 style="color: white">The beautiful story began in Cascais</h1>
+                        <h1 style="color: white" data-translatable>The beautiful story began in Cascais, on this bridge // A nossa história começou em Cascais, nesta ponte</h1>
                     </section>
 
                     <section class="story__section">
-                        <h1>exactly where they decided to tie the knot.</h1>
+                        <h1 data-translatable>exactly where they decided to tie the knot. // no mesmo sítio onde decidiram dar o nó.</h1>
                     </section>
 
                     <section class="story__section">
-                        <h1>And now it's time to celebrate!</h1>
+                        <h1 data-translatable>And now it's time to celebrate! // E agora é altura de celebrar!</h1>
                     </section>
                 </section>
 
                 <section class="date-invite">
                     <div data-scroll data-scroll-delay="0.1" data-scroll-speed="1" id="invite">
                         <div class="invite__title">
-                            <p>THE INVITATION</p>
+                            <p data-translatable>THE INVITATION // O CONVITE</p>
                         </div>
                         <div class="line"></div>
                         <div class="invite__subtitle">
-                            <p>Come and join the celebration as Andrew and Madalena say "I do" amidst the centuries-old gardens in Landim.</p>
+                            <p data-translatable>Come and join the celebration as Andrew and Madalena say "I do" amidst the centuries-old gardens in Landim. // Junta-te às celebrações e vem ver o Andrew e Madalena dizer "Sim" nos jardins ricos de história em Landim.</p>
                         </div>
                     </div>
 
                     <div data-scroll data-scroll-delay="0.15" data-scroll-speed="2" id="date">
                         <div class="date__title">
-                            <p>THE DATE</p>
+                            <p data-translatable>THE DATE // A DATA</p>
                         </div>
                         <div class="line"></div>
                         <div class="date__subtitle">
-                            <span>Saturday,</span><br/>
-                            <span>July 11</span><br/>
-                            <span>2022</span>
+                            <span data-translatable>Saturday, // Sábado,</span><br/>
+                            <span data-translatable>July 11 // 11 Julho</span><br/>
+                            <span data-translatable>2022 // 2022</span>
                     </div>
                     </div>
                 </section>
@@ -121,52 +128,95 @@
                         <figure class="gallery__item" style="margin-top: 2vh">
                             <div id="image1" class="gallery__item-img"><div alt="Scavenger hunt clues that led Madalena to the bridge." class="gallery__item-imginner"></div></div>
                             <figcaption class="gallery__item-caption">
-                                <h2 style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                    <span>S</span>
-                                    <span>C</span>
-                                    <span>A</span>
-                                    <span>V</span>
-                                    <span>E</span>
-                                    <span>N</span>
-                                    <span>G</span>
-                                    <span>E</span>
-                                    <span>R</span>
-                                </h2>
-                                <h2 id="hunt" style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                    <span>H</span>
-                                    <span>U</span>
-                                    <span>N</span>
-                                    <span>T</span>
-                                </h2>
-                                <span class="gallery__item-header">CASCAIS</span>
-                                <p class="gallery__item-text">After the last clue, she found him halfway through the bridge. Knelt down.</p>
+                                <div data-translatable>
+                                    <div>
+                                        <h2 style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                            <span>S</span>
+                                            <span>C</span>
+                                            <span>A</span>
+                                            <span>V</span>
+                                            <span>E</span>
+                                            <span>N</span>
+                                            <span>G</span>
+                                            <span>E</span>
+                                            <span>R</span>
+                                        </h2>
+                                        <h2 id="hunt" style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                            <span>H</span>
+                                            <span>U</span>
+                                            <span>N</span>
+                                            <span>T</span>
+                                        </h2>
+                                    </div>
+                                    <div>
+                                        <h2 style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                            <span>C</span>
+                                            <span>A</span>
+                                            <span>Ç</span>
+                                            <span>A</span>
+                                            <span>&nbsp</span>
+                                            <span>A</span>
+                                            <span>O</span>
+                                        </h2>
+                                        <h2 id="hunt" style="-webkit-text-stroke-color: #000000" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                            <span>T</span>
+                                            <span>E</span>
+                                            <span>S</span>
+                                            <span>O</span>
+                                            <span>U</span>
+                                            <span>R</span>
+                                            <span>O</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                                <span class="gallery__item-header" data-translatable>THE PROPOSAL // A PERGUNTA</span>
+                                <p class="gallery__item-text" data-translatable>After the last clue, she found him halfway across bridge. Knelt down. // Depois da última pista, ela viu-o no meio da ponte. Ajoelhado.</p>
                             </figcaption>
                         </figure>
                         <figure class="gallery__item">
                             <div id="image2" class="gallery__item-img"><div alt="He proposed to her with this very ring." class="gallery__item-imginner"></div></div>
                             <figcaption class="gallery__item-caption">
-                                <h2 style="-webkit-text-stroke-color: #b8abbe" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                    <span>R</span>
-                                    <span>I</span>
-                                    <span>N</span>
-                                    <span>G</span>
-                                </h2>
-                                <span class="gallery__item-header">Sep 8 2020</span>
-                                <p class="gallery__item-text">He popped the question. She said he was crazy.</p>
+                                <div data-translatable>
+                                    <h2 style="-webkit-text-stroke-color: #b8abbe" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                        <span>R</span>
+                                        <span>I</span>
+                                        <span>N</span>
+                                        <span>G</span>
+                                    </h2>
+                                    <h2 style="-webkit-text-stroke-color: #b8abbe" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                        <span>A</span>
+                                        <span>N</span>
+                                        <span>E</span>
+                                        <span>L</span>
+                                    </h2>
+                                </div>
+                                <span class="gallery__item-header" data-translatable>Sep 4 2020 // Set 4 2020</span>
+                                <p class="gallery__item-text" data-translatable>He popped the question. She was embarassed with the onlookers. // Ele fez-lhe a pergunta. Ela ficou envergonhada no meio de olhares curiosos.</p>
                             </figcaption>
                         </figure>
                         <figure class="gallery__item" style="margin-bottom: 10vh">
                             <div id="image3" class="gallery__item-img"><div alt="Both happy she said yes!" class="gallery__item-imginner"></div></div>
                             <figcaption class="gallery__item-caption">
-                                <h2 style="-webkit-text-stroke-color: #57c456" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
-                                    <span>H</span>
-                                    <span>A</span>
-                                    <span>P</span>
-                                    <span>P</span>
-                                    <span>Y</span>
-                                </h2>
-                                <span class="gallery__item-header">14:05 pm</span>
-                                <p class="gallery__item-text">But she said yes!</p>
+                                <div data-translatable>
+                                    <h2 style="-webkit-text-stroke-color: #a8a8a8" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                        <span>H</span>
+                                        <span>A</span>
+                                        <span>P</span>
+                                        <span>P</span>
+                                        <span>Y</span>
+                                    </h2>
+                                    <h2 style="-webkit-text-stroke-color: #a8a8a8" class="gallery__item-title" data-scroll data-scroll-speed="2" data-splitting>
+                                        <span>F</span>
+                                        <span>E</span>
+                                        <span>L</span>
+                                        <span>I</span>
+                                        <span>Z</span>
+                                        <span>E</span>
+                                        <span>S</span>
+                                    </h2>
+                                </div>
+                                <span class="gallery__item-header" data-translatable>17:43 pm // 17:43 pm</span>
+                                <p class="gallery__item-text" data-translatable>But she said yes! // Mas ela disse que sim!</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -183,73 +233,96 @@
                         <div class="venue-cards">
                             <div data-scroll data-scroll-speed="1" id="airport">
                                 <div class="card__title">
-                                    <p>AIRPORT</p>
+                                    <p data-translatable>AIRPORT // AEROPORTO</p>
                                 </div>
                                 <div class="line"></div>
                                 <div class="card__subtitle">
-                                    <span>Aeroporto Francisco Sá Carneiro</span>
+                                    <span data-translatable> Porto Aeroport // Aeroporto Francisco Sá Carneiro</span>
                                 </div>
                                 <div class="card__link">
                                     <a
                                             href="https://www.google.com/flights?sxsrf=AOaemvIMMGyo3PjLGoGDWS1naDS_eY9qaw%3A1635786489024&source=flun&uitype=cuA&hl=pt-PT&gl=pt&tfs=CAEQAhoOcgwIAhIIL20vMHBtbjd6UENqUkljbTUxVUZObmVYUkpVVFJCVFZCdVVIZENSeTB0TFMwdExTMHRMWGR6WkhrMk1VRkJRVUZCUjBkQlNIWnJSR2t0WlVGQkVnRXdPQU09&ved=2ahUKEwjO0OzE0_fzAhUQkRQKHYW7AJMQlhd6BAgSEAk"
-                                            rel="noopener noreferrer nofollow" target="_blank">
-                                        Book a flight
+                                            rel="noopener noreferrer nofollow" target="_blank" data-translatable>
+                                        Book a flight // Reservar voo
                                     </a>
                                 </div>
-                                <div class="card__text">
-                                    You might find more affordable flight options if you use
-                                    <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px;">
-                                    <a href="https://skiplagged.com/" rel="noopener noreferrer nofollow" target="_blank">
-                                        Skiplagged
-                                    </a>
-                                </span>
-                                    .
+
+                                <div data-translatable>
+                                    <div class="card__text">
+                                        You might find more affordable flight options if you use
+                                        <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px;">
+                                        <a href="https://skiplagged.com/" rel="noopener noreferrer nofollow" target="_blank">
+                                            Skiplagged
+                                        </a>
+                                    </span>
+                                        .
+                                    </div>
+
+                                    <div class="card__text">
+                                        É possível que encontre melhores opções se usar
+                                        <span style="border-bottom: 1px dashed #264653; padding-bottom: 2px;">
+                                        <a href="https://skiplagged.com/" rel="noopener noreferrer nofollow" target="_blank">
+                                            Skiplagged
+                                        </a>
+                                    </span>
+                                        .
+                                    </div>
                                 </div>
+
                             </div>
                             <div data-scroll data-scroll-speed="1.7" id="venue">
                                 <div class="card__title">
-                                    <p>VENUE</p>
+                                    <p data-translatable>VENUE // ESPAÇO</p>
                                 </div>
                                 <div class="line"></div>
                                 <div class="card__subtitle">
                                     <span>Alameda de Mosteiro,</span><br/>
-                                    <span>4770-32</span>
+                                    <span>15h00</span>
                                 </div>
                                 <div class="card__link">
                                     <a href="https://www.google.com/maps/dir//Mosteiro+de+Landim,+Alameda+de+Mosteiro,+4770-328+Vila+Nova+de+Famalic%C3%A3o/@41.3792134,-8.4636841,15z/data=!4m16!1m6!3m5!1s0x0:0xf11ff2ba637bd6f1!2sMosteiro+de+Landim!8m2!3d41.3791331!4d-8.4641372!4m8!1m0!1m5!1m1!1s0xd24f61285cbd035:0xf11ff2ba637bd6f1!2m2!1d-8.4641372!2d41.3791331!3e3"
                                        rel="noopener noreferrer nofollow" target="_blank"
+                                       data-translatable
                                     >
-                                        Near Porto, in Famalicao
+                                        Near Porto // Perto do Porto, em Famalicão.
                                     </a>
                                 </div>
                             </div>
 
                             <div data-scroll data-scroll-speed="3" id="lodging">
                                 <div class="card__title">
-                                    <p>LODGING</p>
+                                    <p data-translatable>LODGING // PERNOITAR</p>
                                 </div>
                                 <div class="line"></div>
-                                <div class="card__text">
-                                    We suggest guests stay in Porto, as it is roughly a 45-minute drive from the venue. However, you can find alternatives in Braga, if you wish to.
-                                </div>
-                                <div class="card__link">
-                                    <a>Lodging list</a>
+                                <div data-translatable>
+                                    <div class="card__text">
+                                        We are currently recommending our guests stay in either:<br/><br/>
+                                        Vila Nova de Famalicão (15min)<br/>
+                                        Guimarães (20min)<br/>
+                                        or Porto (30min).
+                                    </div>
+                                    <div class="card__text">
+                                        Recomendamos os convidads pernoitarem em:<br/><br/>
+                                        Vila Nova de Famalicão (15min)<br/>
+                                        Guimarães (20min)<br/>
+                                        ou Porto (30min).
+                                    </div>
                                 </div>
                             </div>
 
                             <div data-scroll data-scroll-speed="3" id="registry">
                                 <div class="card__title">
-                                    <p>REGISTRY</p>
+                                    <p data-translatable>REGISTRY // REGISTO</p>
                                 </div>
                                 <div class="line"></div>
                                 <div class="card__subtitle">
-                                    <span>Thank You</span>
+                                    <span data-translatable>Thank You // Obrigado</span>
                                 </div>
-                                <div class="card__text">
-                                    Your presence on our wedding day is the most important gift you could ever give us. However, if you'd like to spoil us, we've picked out a few items, activities, and charities that pique our interests.
+                                <div class="card__text" data-translatable>
+                                    Your presence at our wedding is the most important gift you could give us. However, if you'd like to spoil us, you can contribute to our honeymoon! // A tua presença no nosso dia especial é o presente mais importante que nos poderias dar. No entanto, se nos queres dar um mimo, podes contribuir para a nossa lua-de-mel!
                                 </div>
                                 <div class="card__link">
-                                    <a>Registry</a>
+                                    <a data-translatable>Registry // Registo</a>
                                 </div>
                             </div>
                         </div>
@@ -258,8 +331,8 @@
 
                 <section class="rsvp">
                     <p class="paragraph-text">
-                        <span>click on the envelope to</span>
-                        <span class="rsvp--subtext">RSVP</span>
+                        <span data-translatable>click on the envelope to // clique no envelope para</span>
+                        <span class="rsvp--subtext" data-translatable>RSVP // RSVP</span>
                     </p>
                 </section>
             </div>

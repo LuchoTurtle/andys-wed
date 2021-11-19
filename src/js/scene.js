@@ -93,11 +93,14 @@ export default class Experience {
         };
         manager.onLoad = function ( ) {
             VarLet.loadCompleted = true;
-            gsap.to(VarConst.loadingText, { duration: .5, opacity: 0 });
-            gsap.to(VarConst.doneText, { duration: .5, opacity: 1 });
-            gsap.to(VarConst.loaderContainer, { duration: 1, yPercent: -200, ease: "power2.in", delay: 1.8 });
+            const tl = gsap.timeline({delay: 0.5});
+            tl.to(VarConst.loadingText, { duration: .5, opacity: 0 });
+            tl.to(VarConst.doneText, { duration: .5, opacity: 1 },"<+20%");
 
-            setTimeout(() => loco_scroll.scrollTo(1), 1000) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
+            tl.to(VarConst.loadingContainer, { duration: .5, opacity: 0 }, ">1");
+            tl.to(VarConst.cursorSmall, { duration: 1, opacity: 1 }, "<");
+
+            tl.to(VarConst.languageContainer, { duration: 1, opacity: 1 }, "<");
         };
 
         // Texture loader

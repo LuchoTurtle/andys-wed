@@ -24,11 +24,6 @@ const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gs
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
 screenMeshPositionInitialization();
-const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
-if (tablet_breakpoint.matches) {
-    document.body.requestFullscreen();
-    //TODO fullscreen only works after a user gesture
-}
 
 // Day-time different colors on hero
 const isDayTime = (new Date().getHours() > 6 && new Date().getHours() < 18);
@@ -89,6 +84,31 @@ linkItems.forEach(item => {
     item.addEventListener("mouseenter", () => custom_cursor.cursorToClickable());
     item.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
 });
+
+/** -------------------------------- INITIAL LOADING CHOICE ------------------------------------- **/
+const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
+const chosenLanguage = () => {
+    custom_cursor.cursorToNormal()
+    const tl = gsap.timeline();
+    tl.to(VarConst.languageContainer, { duration: .5, opacity: 0 });
+    tl.to(VarConst.cursorCanvas, { duration: 1, opacity: 1 }, "<");
+    tl.to(VarConst.initialContainer, { duration: 1, yPercent: -200, ease: "power2.in"});
+
+    if (tablet_breakpoint.matches) {
+        document.body.requestFullscreen();
+    }
+
+    setTimeout(() => loco_scroll.scrollTo(1), 1000) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
+};
+
+const enBtn = document.getElementById("en-btn");
+const ptBtn = document.getElementById("pt-btn");
+enBtn.addEventListener("mouseenter", () => custom_cursor.cursorToClickableEnvelope());
+enBtn.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
+enBtn.addEventListener("click", chosenLanguage);
+ptBtn.addEventListener("mouseenter", () => custom_cursor.cursorToClickableEnvelope());
+ptBtn.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
+ptBtn.addEventListener("click", chosenLanguage);
 
 /** ---------------------------------- THREE.JS ------------------------------------------------ **/
 

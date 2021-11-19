@@ -6,7 +6,7 @@ $progressPadding: 8;   // padding between the load animation and the progress
 
 .loading-wrapper {
   height: 100vh;
-  z-index: 100000;
+  z-index: 11000;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -15,36 +15,35 @@ $progressPadding: 8;   // padding between the load animation and the progress
   @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
 
 
-  /** Loading line and progress**/
-  .loading-line {
-    width: 100%;
-    max-width: $centered_width + px;
-    left: calc(50% - #{math.div($centered-width, 2)}px);
-    top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 20%;
-    height: 2px;
-    display: inline-block;
-    background-color: #dc7878;
-    margin-right: 80px;
-  }
-
-
-  .load-value {
-    top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 10%;
-    left: calc(50% - #{math.div($centered-width, 2)}px);
-    font-size: 150px;
-    opacity: .7;
-    transform: translateY(5%);
-    font-family: Canela;
-    font-style: italic;
-    color: transparent;
-    -webkit-text-stroke-color: #29363C;
-    -webkit-text-stroke-width: 1px;
-    margin-top: -100px;
-  }
-
-  /** Display text **/
-  .text-container {
+  /** Display loading text **/
+  .loader-container {
     @include flexbox($direction: column, $alignItems: center, $justifyContent: center);
+
+    .loading-line {
+      width: 100%;
+      max-width: $centered_width + px;
+      left: calc(50% - #{math.div($centered-width, 2)}px);
+      top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 20%;
+      height: 2px;
+      display: inline-block;
+      background-color: #dc7878;
+      margin-right: 80px;
+    }
+
+
+    .load-value {
+      top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 10%;
+      left: calc(50% - #{math.div($centered-width, 2)}px);
+      font-size: 150px;
+      opacity: .7;
+      transform: translateY(5%);
+      font-family: Canela;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke-color: #29363C;
+      -webkit-text-stroke-width: 1px;
+      margin-top: -100px;
+    }
 
     .loading-text {
       top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
@@ -55,6 +54,8 @@ $progressPadding: 8;   // padding between the load animation and the progress
     }
 
     .done-text {
+      @include flexbox($direction: column, $alignItems: center, $justifyContent: center);
+
       top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
       left: calc(50% - #{math.div($centered-width, 2)}px);
       opacity: 0;
@@ -66,5 +67,47 @@ $progressPadding: 8;   // padding between the load animation and the progress
     }
   }
 
+  /** Display language text **/
+  .language-container {
+    @include flexbox($direction: column, $alignItems: center, $justifyContent: center);
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+
+    .language-question {
+      top: ($loadFromTopX * 1%) + ($progressPadding * 1%) + 25%;
+      left: calc(50% - #{math.div($centered-width, 2)}px);
+      opacity: 1;
+      text-align: center;
+      font-size: 30px;
+      font-family: Canela;
+      color: map-get(map-get($palettes, red), dark);
+    }
+
+    .choices {
+      @include flexbox($direction: row, $alignItems: center, $justifyContent: space-between);
+      margin-top: 40px;
+
+      button {
+        opacity: 1;
+        text-align: center;
+        font-size: 15px;
+        font-family: Canela;
+        width: 32%;
+        outline: none;
+        border: none;
+        background: none;
+        cursor: none;
+      }
+
+      #pt-btn {
+        color: #74b128
+      }
+
+      #en-btn {
+        color: #528dff;
+      }
+    }
+  }
 
 }

@@ -7,7 +7,7 @@ import {gsap} from 'gsap';
 export default class Cursor {
     constructor() {
         this.innerCursor = document.querySelector(".cursor--small");
-        this.cursor = document.querySelector('.cursor')
+        this.cursor = document.querySelector('.cursor');
 
         // set the starting position of the cursor outside of the screen
         this.clientX = -100;

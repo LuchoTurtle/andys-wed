@@ -42,10 +42,16 @@ export default class NotFoundExperience {
      * @private
      */
     _setupRenderer() {
+        let pixelRatio = window.devicePixelRatio;
+        let AA = true;
+        if (pixelRatio > 1) {
+            AA = false
+        }
+
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
             canvas: this.canvas,
-            antialias: true
+            antialias: AA
         });
         renderer.setSize(this.sizes.width, this.sizes.height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

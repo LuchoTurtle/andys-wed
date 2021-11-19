@@ -1,12 +1,21 @@
 import * as THREE from 'three'
 
 const VarConst = {
+    cursorSmall: document.querySelector('.cursor--small'),
+    cursorCanvas: document.querySelector('.cursor--canvas'),
+
+    // Initial container (wraps below two)
+    initialContainer: document.querySelector('.loading-wrapper'),
+
     // Initial loading container
-    loaderContainer: document.querySelector('.loading-wrapper'),
+    loadingContainer: document.querySelector('.loader-container'),
     loadingLine: document.querySelector('.loading-line'),
     loadValue: document.querySelector('.load-value'),
     loadingText: document.querySelector('.loading-text'),
     doneText: document.querySelector('.done-text'),
+
+    // Initial language choice container
+    languageContainer: document.querySelector('.language-container'),
 
     // Mesh positions
     landimMesh_initial_position_z: 0,

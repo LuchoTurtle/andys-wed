@@ -105,7 +105,7 @@ const chosenLanguage = (language) => {
 
     // Requesting fullscreen on mobile devices (we needed a user gesture for fullscreen request to work)
     if (tablet_breakpoint.matches) {
-        document.body.requestFullscreen();
+        //document.body.requestFullscreen();
     }
 
     setTimeout(() => {

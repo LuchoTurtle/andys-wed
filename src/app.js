@@ -15,7 +15,7 @@ import Sidebar from "./gsap_anims/sidebar";
 import Cursor from './js/cursor';
 import Experience from "./js/scene";
 
-import i18n from './js/i18n';
+import I18N from './js/i18n';
 
 
 /** ---------------------- GSAP / SCROLLTRIGGER / LOCOSCROLL SETUP ----------------------------- **/
@@ -92,6 +92,8 @@ linkItems.forEach(item => {
 });
 
 /** -------------------------------- INITIAL LOADING CHOICE ------------------------------------- **/
+const i18n = new I18N();
+
 const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
 const chosenLanguage = (language) => {
     // Change cursor to normal
@@ -114,7 +116,7 @@ const chosenLanguage = (language) => {
 
         // Changing language, adding gallery animations and hero color changing according to day time.
         // (we call here so the CSS animations work properly on the updated language HTML)
-        i18n.changeLanguage(language);
+        i18n.setLanguage(language);
         addGalleryAnimations();
         changeHeroAccordingToDaytime()
 

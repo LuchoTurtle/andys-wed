@@ -233,6 +233,29 @@
   }
 
   /* Registry */
+  #dress-code {
+    width: 15vw;
+
+    @media (max-width: map-get($breakpoints, breakpoint-mobileS)) {
+      width: 76vw;
+      margin-top: 10vw;
+    }
+
+    @media (min-width: map-get($breakpoints, breakpoint-mobileS)) {
+      width: 77vw;
+      margin-top: 10vh;
+    }
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      width: 20vw;
+      position: relative;
+      left: 65vw;
+      top: -20vh;
+    }
+
+  }
+
+  /* Registry */
   #registry {
     width: 15vw;
 

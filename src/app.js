@@ -15,6 +15,8 @@ import Sidebar from "./gsap_anims/sidebar";
 import Cursor from './js/cursor';
 import Experience from "./js/scene";
 
+import I18N from './js/i18n';
+
 
 /** ---------------------- GSAP / SCROLLTRIGGER / LOCOSCROLL SETUP ----------------------------- **/
 
@@ -23,28 +25,31 @@ const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gs
 
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
+const isDayTime = (new Date().getHours() > 6 && new Date().getHours() < 18);
+
 screenMeshPositionInitialization();
 
-// Day-time different colors on hero
-const isDayTime = (new Date().getHours() > 6 && new Date().getHours() < 18);
-const andrew_title = document.getElementById("andrew--title");
-const madalena_title = document.getElementById("madalena--title");
-const hero_subtitle = document.getElementById("hero--subtitle");
-const scroll_down = document.getElementsByClassName("scroll-down-text")[0];
-const scroll_down_bar = document.getElementsByClassName("scroll-down-bar")[0];
+function changeHeroAccordingToDaytime() {
+    // Day-time different colors on hero
+    const andrew_title = document.getElementById("andrew--title");
+    const madalena_title = document.getElementById("madalena--title");
+    const hero_subtitle = document.getElementsByClassName("hero--subtitle")[0];
+    const scroll_down = document.getElementsByClassName("scroll-down-text")[0];
+    const scroll_down_bar = document.getElementsByClassName("scroll-down-bar")[0];
 
-if(isDayTime) {
-    andrew_title.style.color = '#29363c';
-    madalena_title.style.color = '#29363c';
-    hero_subtitle.style.color = '#697277';
-    scroll_down.style.color = '#29363c';
-    scroll_down_bar.style.background = '#29363c';
-    document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s bright outside, have fun!';
-} else {
-    andrew_title.style.color = 'whitesmoke';
-    madalena_title.style.color = 'whitesmoke';
-    hero_subtitle.style.color = 'navajowhite';
-    document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s a dark outside but we\'re open!';
+    if(isDayTime) {
+        andrew_title.style.color = '#29363c';
+        madalena_title.style.color = '#29363c';
+        hero_subtitle.style.color = '#697277';
+        scroll_down.style.color = '#29363c';
+        scroll_down_bar.style.background = '#29363c';
+        document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s bright outside, have fun!';
+    } else {
+        andrew_title.style.color = 'whitesmoke';
+        madalena_title.style.color = 'whitesmoke';
+        hero_subtitle.style.color = 'navajowhite';
+        document.getElementsByClassName("done-text")[0].innerHTML = 'It\'s a dark outside but we\'re open!';
+    }
 }
 
 
@@ -54,14 +59,6 @@ const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
 const menu_links = [...document.getElementsByClassName("menu__link")];
 new Storyline(scroll_trigger, body, navbar, texts, menu_links, isDayTime);
-
-
-const gallery = document.querySelector('.gallery');
-const galleryItemElems = [...gallery.querySelectorAll('.gallery__item')];
-galleryItemElems.forEach(el => {
-    new GalleryItem(el)
-});
-
 
 const progress_bar = document.querySelector('.progress-bar');
 const sub_menus = document.getElementsByClassName("menu-container_submenu");
@@ -75,6 +72,15 @@ scroll_trigger.create({
     animation: gsap.to(scrolldown, {opacity: 0, duration: 0.4})
 });
 
+function addGalleryAnimations() {
+    const gallery = document.querySelector('.gallery');
+    const galleryItemElems = [...gallery.querySelectorAll('.gallery__item')];
+    galleryItemElems.forEach(el => {
+        new GalleryItem(el)
+    });
+
+}
+
 
 /** -------------------------------- CURSOR SETUP ---------------------------------------------- **/
 
@@ -86,29 +92,45 @@ linkItems.forEach(item => {
 });
 
 /** -------------------------------- INITIAL LOADING CHOICE ------------------------------------- **/
+const i18n = new I18N();
+
 const tablet_breakpoint = window.matchMedia("(max-width: 768px)");
-const chosenLanguage = () => {
-    custom_cursor.cursorToNormal()
+const chosenLanguage = (language) => {
+    // Change cursor to normal
+    custom_cursor.cursorToNormal();
+
+    // Animation to begin the site experience
     const tl = gsap.timeline();
     tl.to(VarConst.languageContainer, { duration: .5, opacity: 0 });
     tl.to(VarConst.cursorCanvas, { duration: 1, opacity: 1 }, "<");
     tl.to(VarConst.initialContainer, { duration: 1, yPercent: -200, ease: "power2.in"});
 
+    // Requesting fullscreen on mobile devices (we needed a user gesture for fullscreen request to work)
     if (tablet_breakpoint.matches) {
-        document.body.requestFullscreen();
+        //document.body.requestFullscreen();
     }
 
-    setTimeout(() => loco_scroll.scrollTo(1), 1000) // this is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
+    setTimeout(() => {
+        // This is to make bridge mesh start correctly (it's a bug with var initializations but this is a dirty fix, cba)
+        loco_scroll.scrollTo(1);
+
+        // Changing language, adding gallery animations and hero color changing according to day time.
+        // (we call here so the CSS animations work properly on the updated language HTML)
+        i18n.setLanguage(language);
+        addGalleryAnimations();
+        changeHeroAccordingToDaytime()
+
+    }, 1000)
 };
 
 const enBtn = document.getElementById("en-btn");
 const ptBtn = document.getElementById("pt-btn");
 enBtn.addEventListener("mouseenter", () => custom_cursor.cursorToClickableEnvelope());
 enBtn.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
-enBtn.addEventListener("click", chosenLanguage);
+enBtn.addEventListener("click", () => chosenLanguage('en'));
 ptBtn.addEventListener("mouseenter", () => custom_cursor.cursorToClickableEnvelope());
 ptBtn.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
-ptBtn.addEventListener("click", chosenLanguage);
+ptBtn.addEventListener("click", () => chosenLanguage('pt'));
 
 /** ---------------------------------- THREE.JS ------------------------------------------------ **/
 

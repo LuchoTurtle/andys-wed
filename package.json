@@ -13,6 +13,7 @@
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.1.0",
     "dat.gui": "^0.7.7",
+    "dom-i18n": "^1.2.0",
     "file-loader": "^6.2.0",
     "gsap": "^3.7.1",
     "html-loader": "^2.1.1",

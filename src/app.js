@@ -14,6 +14,7 @@ import Storyline from "./gsap_anims/storyline";
 import Sidebar from "./gsap_anims/sidebar";
 import Cursor from './js/cursor';
 import Experience from "./js/scene";
+import Registry from "./js/registry";
 
 import I18N from './js/i18n';
 
@@ -22,6 +23,15 @@ import I18N from './js/i18n';
 
 // Modified gsap, ScrollTrigger and locomotive scroll object that are compatible with each other.
 const {gsap, loco_scroll, scroll_trigger} = new ScrollTriggerWithLoco(vanilla_gsap, vanilla_ScrollTrigger);
+
+/** -------------------------------- CURSOR SETUP ---------------------------------------------- **/
+
+const custom_cursor = new Cursor();
+const linkItems = document.querySelectorAll("a");
+linkItems.forEach(item => {
+    item.addEventListener("mouseenter", () => custom_cursor.cursorToClickable());
+    item.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
+});
 
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
@@ -81,15 +91,7 @@ function addGalleryAnimations() {
 
 }
 
-
-/** -------------------------------- CURSOR SETUP ---------------------------------------------- **/
-
-const custom_cursor = new Cursor();
-const linkItems = document.querySelectorAll("a");
-linkItems.forEach(item => {
-    item.addEventListener("mouseenter", () => custom_cursor.cursorToClickable());
-    item.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
-});
+new Registry(custom_cursor, gsap);
 
 /** -------------------------------- INITIAL LOADING CHOICE ------------------------------------- **/
 const i18n = new I18N();

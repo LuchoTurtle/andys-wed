@@ -15,7 +15,6 @@ export default class ScrollTriggerWithLoco {
         this.scroller_el = document.querySelector('[data-scroll-container]');
         this.loco_scroll = new LocomotiveScroll({
             el: this.scroller_el,
-            multiplier: 0.45,
             lerp: 0.03,
             smooth: true,
         });

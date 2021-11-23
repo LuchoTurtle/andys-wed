@@ -9,6 +9,8 @@ import '../static/scss/404.scss'
 /** -------------------------------- CURSOR SETUP ---------------------------------------------- **/
 
 const custom_cursor = new Cursor();
+document.querySelectorAll('.cursor').forEach((obj) => obj.style.opacity = 1); // by default, cursor has opacity 0. For this page, we set it to 1 programmatically
+
 const clickBack = document.querySelectorAll("#go-back-span");
 const overlay = document.querySelectorAll(".redirect-overlay");
 clickBack.forEach(item => {

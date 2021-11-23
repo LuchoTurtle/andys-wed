@@ -101,6 +101,6 @@ $progressPadding: 8;   // padding between the load animation and the progress
   height: 100vh;
   background-color: map-get(map-get($palettes, yellow), light);
   opacity: 0;
-  z-index: 100000;
+  z-index: 10000;
   pointer-events: none;
 }

@@ -23,6 +23,11 @@ module.exports = {
         [
             new CopyWebpackPlugin({
                 patterns: [
+                    {from: path.resolve(__dirname, '../_headers')}
+                ]
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
                     {from: path.resolve(__dirname, '../static')}
                 ]
             }),

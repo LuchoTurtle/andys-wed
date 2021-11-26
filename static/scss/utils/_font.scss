@@ -2,36 +2,43 @@
   font-family: "Rossanova";
   src: url("font/Rossanova.woff2") format("woff2"),
   url("font/Rossanova.woff") format("woff");
+  font-display: swap;
 }
 @font-face {
   font-family: "Chapaza";
   src: url("font/Chapaza.woff2") format("woff2"),
   url("font/Chapaza.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Story";
   src: url("font/Judson-Regular.woff2") format("woff2"),
   url("font/Judson-Regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Canela";
   src: url("font/Canela-Bold.woff2") format("woff2");
-  font-weight: bold
+  font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Canela";
   src: url("font/Canela-Medium.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "FoundersGroteskLight";
   src: url("font/Founders_Grotesk_Light.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "FoundersGroteskMedium";
   src: url("font/Founders_Grotesk_Medium.woff2") format("woff2");
+  font-display: swap;
 }

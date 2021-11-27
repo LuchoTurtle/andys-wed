@@ -1,7 +1,15 @@
 import classie from 'desandro-classie'
 import {VarConst} from "../vars";
 
+/**
+ * Registry class, pertaining to the fade in and fade out animation of Registry page.
+ */
 export default class Registry {
+    /**
+     * Initializes the registry object.
+     * @param custom_cursor custom cursor to change its styles accordingly within the registry page
+     * @param gsap modified GSAP object compatible with loco scroll
+     */
     constructor(custom_cursor, gsap) {
         this.closeButton = document.getElementById("registry-close--icon");
         this.registryLink = document.getElementById("registry-link");
@@ -11,6 +19,10 @@ export default class Registry {
         this._setup();
     }
 
+    /**
+     * Sets up the event listeners to open, close and toggle image animation.
+     * @private
+     */
     _setup() {
         // Registry link
         this.registryLink.addEventListener('click', () => this.openRegistry());
@@ -26,10 +38,16 @@ export default class Registry {
         this.figure.addEventListener("mouseleave", () => this.custom_cursor.cursorToNormal());
     }
 
+    /**
+     * Open registry page.
+     */
     openRegistry() {
         this.gsap.to(VarConst.registryContainer, { duration: 2, yPercent: 200, ease: "power3.out"});
     }
 
+    /**
+     * Close registry page.
+     */
     closeRegistry() {
         this.gsap.to(VarConst.registryContainer, { duration: 2, yPercent: -200, ease: "power3.in"});
     }

@@ -69,3 +69,9 @@ main {
 .c-scrollbar_thumb {
     display: none
 }
+
+/* To fix the FOUC */
+html {
+    visibility: visible;
+    opacity: 1;
+}

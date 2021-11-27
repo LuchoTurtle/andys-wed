@@ -11,6 +11,7 @@
     @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
   }
 
+  // Title
   .venue-title {
     color: map-get(map-get($palettes, darkblue), base);
     font-family: Canela;
@@ -47,6 +48,7 @@
     }
   }
 
+  // Cards
   .venue-cards {
     width: 100%;
     height: 100%;
@@ -142,9 +144,36 @@
 
   }
 
+  // Image
+  .venue-image {
+
+    @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+      display: none;
+    }
+
+      #fg {
+        position: absolute;
+        left: 0;
+        width: 56.05556vw;
+        height: auto;
+        display: block;
+        z-index: 1;
+      }
+
+      #bg {
+        position: absolute;
+        margin-top: 5vh;
+        left: 0;
+        width: 56.05556vw;
+        height: auto;
+        display: block;
+        z-index: 0;
+      }
+
+  }
 
 
-  /* Airport */
+  // Specific cards
   #airport {
     width: 15vw;
 

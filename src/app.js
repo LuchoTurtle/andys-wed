@@ -33,6 +33,9 @@ linkItems.forEach(item => {
     item.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
 });
 
+const local_linkItem = document.getElementById("localization--link");
+local_linkItem.addEventListener("mouseenter", () => custom_cursor.cursorToClickable());
+local_linkItem.addEventListener("mouseleave", () => custom_cursor.cursorToNormal());
 
 /** ---------------------------------- VAR INITIALIZATIONS ------------------------------------- **/
 const isDayTime = (new Date().getHours() > 6 && new Date().getHours() < 18);
@@ -152,7 +155,7 @@ experience.addResizeHandler();
 let envelope_intersect_witness = null;
 window.addEventListener('click', () => {
     if (envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1) {
-        window.open("https://www.theknot.com/us/madalena-vicente-gravato-de-castro-e-almeida-and-andrew-sampaio-da-novoa-reid-jun-2022/rsvp", '_blank').focus();
+        window.open("https://www.eventbrite.com/e/madalena-andrews-wedding-registration-220882394187", '_blank').focus();
     }
 });
 

@@ -199,6 +199,7 @@
   /* Venue */
   #venue {
     width: 15vw;
+    z-index: 2;
 
     @media (max-width: map-get($breakpoints, breakpoint-mobileS)) {
       width: 76vw;

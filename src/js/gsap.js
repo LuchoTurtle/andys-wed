@@ -17,6 +17,12 @@ export default class ScrollTriggerWithLoco {
             el: this.scroller_el,
             lerp: 0.03,
             smooth: true,
+            mobile: {
+                smooth: true
+            },
+            tablet: {
+                smooth: true
+            }
         });
 
         this._initTransformations()

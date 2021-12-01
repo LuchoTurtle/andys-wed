@@ -17,15 +17,10 @@ export default class ScrollTriggerWithLoco {
             el: this.scroller_el,
             lerp: 0.03,
             smooth: true,
-            mobile: {
-                smooth: true
-            },
-            tablet: {
-                smooth: true
-            }
         });
 
-        this._initTransformations()
+        this._initTransformations();
+        this._configScrollTrigger();
     }
 
     /**
@@ -72,5 +67,15 @@ export default class ScrollTriggerWithLoco {
 
         // After everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
         this.scroll_trigger.refresh();
+    }
+
+    /**
+     * Configuration scroll trigger object.
+     * @private
+     */
+    _configScrollTrigger() {
+        this.scroll_trigger.config({
+            autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+        })
     }
 }

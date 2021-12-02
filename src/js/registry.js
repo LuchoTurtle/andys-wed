@@ -1,5 +1,5 @@
 import classie from 'desandro-classie'
-import {VarConst} from "../vars";
+import {VarConst, VarLet} from "../vars";
 
 /**
  * Registry class, pertaining to the fade in and fade out animation of Registry page.
@@ -25,10 +25,16 @@ export default class Registry {
      */
     _setup() {
         // Registry link
-        this.registryLink.addEventListener('click', () => this.openRegistry());
+        this.registryLink.addEventListener('click', () => {
+            this.openRegistry();
+            VarLet.registryIsOpen = true;
+        });
 
         // Close button
-        this.closeButton.addEventListener('click', () => this.closeRegistry());
+        this.closeButton.addEventListener('click', () => {
+            this.closeRegistry();
+            VarLet.registryIsOpen = false;
+        });
         this.closeButton.addEventListener('mouseenter', () => this.custom_cursor.cursorToClickable());
         this.closeButton.addEventListener("mouseleave", () => this.custom_cursor.cursorToNormal());
 

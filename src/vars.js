@@ -53,6 +53,9 @@ const VarConst = {
 let VarLet = {
     loadCompleted: false,
 
+    // Registry
+    registryIsOpen: false,
+
     // Materials
     bakedMaterialLandim: null,
     poleLightMaterialLandim: null,

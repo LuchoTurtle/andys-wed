@@ -223,7 +223,7 @@ const tick = () => {
             // Mouse event on envelope enter
             if (intersects.length) {
 
-                if (envelope_intersect_witness === null && VarLet.envelopeBakedMat.material.opacity === 1) {
+                if (envelope_intersect_witness === null && VarLet.envelopeBakedMat.material.opacity === 1 && !VarLet.registryIsOpen) {
                     custom_cursor.cursorToClickableEnvelope()
                 }
 

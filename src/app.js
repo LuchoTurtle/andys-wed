@@ -278,4 +278,4 @@ let subtitle_styles = [
     `padding: 8px 19px`,
     `border: 1px dashed;`
 ].join(';');
-console.log("%c Great seeing you here 😊.\nWe always fancy those that are curious by nature. But today it's time to celebrate. Head on back to the website and get ready for the best wedding ever! 🎉", subtitle_styles);
+console.log("%c Great seeing you here 😊.\nWe always fancy those that are curious by nature. But today it's time to celebrate. Head on back to the website and get ready for the best wedding ever! 🎉 \n💻 This site was made with ❤ by LuchoTurtle. Check me out at https://github.com/LuchoTurtle/andys-wed . \n🎨 Illustrations were created by Vicente Sampaio. Check him out at https://vicentesampaio.hotglue.me/start .", subtitle_styles);

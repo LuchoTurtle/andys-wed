@@ -100,6 +100,28 @@
         transform: rotate(10deg) translateX(25%) scale(0.8);
       }
 
+
+
+      // Click me title
+      #clickme {
+        display: flex;
+        width: 100%;
+        margin-left: 10%;
+        
+        img {
+          display: block;
+          max-width: 230px;
+          max-height: 64px;
+          width: auto;
+          height: auto;
+        }
+
+        h3 {
+          font-family: Chalk;
+          color: whitesmoke;
+        }
+      }
+
     }
 
 

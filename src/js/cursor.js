@@ -135,7 +135,7 @@ export default class Cursor {
 
     cursorToNormal() {
         gsap.to(this.innerCursor, { duration: .40, padding: 3, ease: "power4.easeOut" });
-        gsap.to(this.outterCircle, { duration: .4,  opacity: 1, ease: "power4.easeIn" });
+        gsap.to(this.outterCircle, { duration: .2,  opacity: 1, ease: "power4.easeIn" });
 
         this.noiseScale = 350;
         this.noiseRange = 3;
@@ -151,7 +151,7 @@ export default class Cursor {
         this.noiseScale = 120;
         this.noiseRange = 5;
         gsap.to(this, {strokeColor: "#8fa6ff", duration: .70});
-        this.innerCursor.style.display = 'none'
+        this.innerCursor.style.display = 'none';
     }
 
     cursorToClickableEnvelope() {

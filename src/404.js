@@ -63,3 +63,31 @@ const tutorial = document.querySelectorAll(".tutorial-wrapper");
 canvas.addEventListener("wheel", () => {
     gsap.to(tutorial, {opacity: 0})
 });
+
+
+
+/** -------------------------------- CONSOLE LOG EASTER EGG ---------------------------------------------- **/
+
+
+let title_style = [
+    'font-weight: bold',
+    'font-size: 50px',
+    `color: red`,
+    `text-shadow: 3px 3px 0 rgb(217,31,38)`,
+    `6px 6px 0 rgb(226,91,14)`,
+    `9px 9px 0 rgb(245,221,8)`,
+    `12px 12px 0 rgb(5,148,68)`,
+    `15px 15px 0 rgb(25,18,168)`
+].join(';');
+console.log('%c Hey there!', title_style);
+
+let subtitle_styles = [
+    `font-size: 12px`,
+    `font-family: monospace`,
+    `background: white`,
+    `display: inline-block`,
+    `color: black`,
+    `padding: 8px 19px`,
+    `border: 1px dashed;`
+].join(';');
+console.log("%c Great seeing you here 😊.\nWe always fancy those that are curious by nature. But today it's time to celebrate. Head on back to the website and get ready for the best wedding ever! 🎉 \n💻 This site was made with ❤ by LuchoTurtle. Check me out at https://github.com/LuchoTurtle/andys-wed . \n🎨 Illustrations were created by Vicente Sampaio. Check him out at https://vicentesampaio.hotglue.me/start .", subtitle_styles);

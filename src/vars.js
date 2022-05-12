@@ -18,7 +18,7 @@ const VarConst = {
     languageContainer: document.querySelector('.language-container'),
 
     // Initial language choice container
-    registryContainer: document.querySelector('.registry'),
+    registryContainer: document.querySelector('.info'),
 
     // Mesh positions
     landimMesh_initial_position_z: 0,

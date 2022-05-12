@@ -1,0 +1,156 @@
+@import 'utils/mixins';
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+
+.info {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  justify-content: center;
+  opacity: 0;
+  background-color: white;
+
+  // X icon
+  .close {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+
+    i {
+      font-size: 24px;
+      opacity: 0.5;
+    }
+
+    i:hover {
+      opacity: 1
+    }
+  }
+
+
+  /* Clickable images */
+  #garden_img {
+    width: 34vw;
+    height: auto;
+    position: absolute;
+    z-index: 230;
+    left: 10%;
+    top: 13%;
+  }
+
+  #saloon_img {
+    width: 20vw;
+    height: auto;
+    position: absolute;
+    z-index: 230;
+    right: 10%;
+    bottom: 7%;
+  }
+
+  /* Scribble canvas */
+  #scribble_canvas {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    filter: invert(1) grayscale(1);
+    mix-blend-mode: difference;
+    z-index: 230;
+  }
+
+
+  /* Text */
+  h1 {
+    line-height: 13px;
+    font-family: 'Lora', serif;
+    font-size: 50px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    /*Fixed width so they are both the same.*/
+    width: 90vw;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    color: black;
+    @include font-size(13px, 60px);
+  }
+
+  .price {
+    top: 70%;
+    text-align: left;
+  }
+
+  span {
+    //z-index: 210;
+  }
+
+
+  /* Background image container */
+  .container {
+    position: relative;
+    text-align: center;
+    z-index: 220;
+  }
+
+  .image-block {
+    z-index: 221;
+  }
+
+  .image-wrap {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+  }
+
+  img {
+    height: auto;
+
+    @media (max-width: map-get($breakpoints, 'tablet')) {
+      max-width: 200px;
+    }
+  }
+
+  /* Foreground */
+  .image-block h1 {
+    color: white;
+    position: absolute;
+    z-index: 222;
+  }
+
+
+  /* Background random */
+  .bg_random {
+    position: absolute;
+    z-index: 205;
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
+
+    .random_text {
+      font-family: "MedievalSharp", cursive;
+      line-height: 0;
+      @include font-size(13px, 50px);
+      margin-left: 15px;
+      -webkit-text-stroke-color: #ad1677;
+      -webkit-text-stroke-width: 1px;
+      color: transparent;
+      opacity: 0.7;
+
+    }
+
+
+  }
+
+}
+
+
+

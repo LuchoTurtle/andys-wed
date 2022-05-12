@@ -48,14 +48,20 @@ export default class Registry {
      * Open registry page.
      */
     openRegistry() {
-        this.gsap.to(VarConst.registryContainer, { duration: 2, yPercent: 200, ease: "power3.out"});
+        this.gsap.to(VarConst.registryContainer, { duration: 2, opacity: 1, ease: "power3.out"});
+        document.querySelector('.info').style.display = 'flex';
     }
 
     /**
      * Close registry page.
      */
     closeRegistry() {
-        this.gsap.to(VarConst.registryContainer, { duration: 2, yPercent: -200, ease: "power3.in"});
+        const tl = this.gsap.timeline({
+            onComplete: () => {
+                document.querySelector('.info').style.display = 'none';
+            }
+        });
+        tl.to(VarConst.registryContainer, { duration: 2, opacity: 0, ease: "power3.in"});
     }
 
 }

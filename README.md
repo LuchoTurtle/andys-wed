@@ -1,6 +1,6 @@
 # Mandylena's Wed
 
-A beautiful, feature rich, smooth and eye-popping responsive wedding website/experience made for Madalena and Andrew's special day.
+Wdding website/experience made for Madalena and Andrew's special day.
 
 Created with Three.js, GSAP and Sass. You can find a live demo [here](https://mandylena.pt/).
 

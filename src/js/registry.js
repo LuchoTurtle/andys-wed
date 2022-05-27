@@ -44,7 +44,7 @@ export default class Registry {
      */
     openRegistry() {
         this.gsap.to(VarConst.registryContainer, { duration: 2, opacity: 1, ease: "power3.out"});
-        document.querySelector('.info').style.display = 'flex';
+        document.querySelector('.registry').style.display = 'flex';
     }
 
     /**
@@ -53,7 +53,11 @@ export default class Registry {
     closeRegistry() {
         const tl = this.gsap.timeline({
             onComplete: () => {
-                document.querySelector('.info').style.display = 'none';
+                document.querySelector('.registry').style.display = 'none';
+                // Resetting drawing canvas
+                const canvas = document.querySelector('#scribble_canvas');
+                const context = canvas.getContext('2d');
+                context.clearRect(0, 0, canvas.width, canvas.height);
             }
         });
         tl.to(VarConst.registryContainer, { duration: 1, opacity: 0, ease: "power1.in"});

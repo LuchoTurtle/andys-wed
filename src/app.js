@@ -154,7 +154,7 @@ experience.addResizeHandler();
  */
 let envelope_intersect_witness = null;
 window.addEventListener('click', () => {
-    if (envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1) {
+    if (envelope_intersect_witness && VarLet.envelopeBakedMat.material.opacity === 1 && !VarLet.registryIsOpen) {
         window.open("https://www.eventbrite.com/e/madalena-andrews-wedding-registration-220882394187", '_blank').focus();
     }
 });

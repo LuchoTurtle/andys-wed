@@ -6,6 +6,10 @@
   display: grid;
   place-items: center;
 
+  @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+    margin-top: 20vh;
+  }
+
 }
 
 .paragraph-text {

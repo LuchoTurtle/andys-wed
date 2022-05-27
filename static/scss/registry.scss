@@ -1,22 +1,32 @@
-@import 'utils/vars';
+@import 'utils/mixins';
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
 .registry {
-  height: 100vh;
-  z-index: 11000;
   position: fixed;
-  transform: translateY(-200%);
-  right: 0;
+  //display: flex;
+  display: none;
+  flex-direction: column;
   width: 100vw;
-  background-color: map-get(map-get($palettes, darkblue), light);
-  @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
+  height: 100vh;
+  //z-index: 11989;
+  z-index: 200;
+  justify-content: center;
+  //opacity: 1;
+  opacity: 0;
+  background-color: white;
 
   // X icon
   .close {
+    position: absolute;
     width: 100%;
     display: flex;
     justify-content: end;
-    margin-right: 67px;
-    margin-top: 25px;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
 
     i {
       font-size: 24px;
@@ -29,147 +39,226 @@
   }
 
 
-  // Page contents
-  .registry-wrapper {
-    bottom: 0;
-    right: 0;
-    @include flexbox($direction: row, $alignItems: center, $justifyContent: center, $grow: 1);
+  /* Clickable images */
+  #garden_img {
+    width: 20vw;
+    height: auto;
+    max-width: 80vw;
+    position: absolute;
+    z-index: 220;
+    left: 10%;
+    top: 24%;
+  }
 
-    @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
-      @include flexbox($direction: column-reverse, $alignItems: center, $justifyContent: center, $grow: 1);
+  #saloon_img {
+    width: 20vw;
+    height: auto;
+    position: absolute;
+    z-index: 220;
+    right: 10%;
+    bottom: 7%;
+  }
+
+  /* Scribble canvas */
+  #scribble_canvas {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    filter: invert(1) grayscale(1);
+    mix-blend-mode: difference;
+    z-index: 230;
+  }
+
+
+  /* Text */
+  h1 {
+    line-height: 13px;
+    font-family: 'Lora', serif;
+    font-size: 50px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    /*Fixed width so they are both the same.*/
+    width: 90vw;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    color: black;
+    @include font-size(13px, 60px);
+  }
+
+  .price {
+    top: 70%;
+    text-align: left;
+  }
+
+  span {
+    //z-index: 210;
+  }
+
+
+  /* Background image container */
+  .container {
+    position: relative;
+    text-align: center;
+    z-index: 220;
+  }
+
+  .image-block {
+    z-index: 221;
+  }
+
+  .image-wrap {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+  }
+
+  img {
+    height: auto;
+
+    @media (max-width: map-get($breakpoints, 'tablet')) {
+      max-width: 200px;
     }
+  }
 
-    @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
-      padding-top: 10%;
-    }
-
-
-    // Image stack section
-    .image-stack {
-      @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
-      flex: 1;
-
-      @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
-        display: none;
-      }
-
-      .stack {
-        margin: 20px auto;
-        width: 400px;
-        padding: 0;
-        position: relative;
-        max-width: 95%;
-
-        @media (max-width: map-get($breakpoints, breakpoint-laptop)) {
-          max-width: 70%;
-        }
-
-      }
-
-      .stack img {
-        max-width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: all 0.3s;
-      }
-
-      .stack img:last-child {
-        position: relative;
-      }
-
-      /* Fan out animation */
-      .stack-fanout img:first-child,
-      .stack-fanout img:nth-child(2) {
-        -webkit-transform: scale(0.8);
-        transform: scale(0.8);
-      }
-
-      .stack-fanout.active img:nth-child(3) {
-        -webkit-transform: scale(0.9);
-        transform: scale(0.9);
-      }
-
-      .stack-fanout.active img:first-child {
-        -webkit-transform: rotate(-10deg) translateX(-25%) scale(0.8);
-        transform: rotate(-10deg) translateX(-25%) scale(0.8);
-      }
-
-      .stack-fanout.active img:nth-child(2) {
-        -webkit-transform: rotate(10deg) translateX(25%) scale(0.8);
-        transform: rotate(10deg) translateX(25%) scale(0.8);
-      }
+  /* Foreground */
+  .image-block h1 {
+    color: white;
+    position: absolute;
+    z-index: 222;
+  }
 
 
+  /* Background random */
+  .bg_random {
+    position: absolute;
+    z-index: 205;
+    width: 100vw;
+    height: 100vh;
+    background-color: beige;
 
-      // Click me title
-      #clickme {
-        display: flex;
-        width: 100%;
-        margin-left: 10%;
-        
-        img {
-          display: block;
-          max-width: 230px;
-          max-height: 64px;
-          width: auto;
-          height: auto;
-        }
-
-        h3 {
-          font-family: Chalk;
-          color: whitesmoke;
-        }
-      }
-
-    }
-
-
-    // Text section
-    .text {
-      @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
-      flex: 1;
-      margin-right: 15px;
+    .random_text {
+      white-space: nowrap;
+      font-family: "MedievalSharp", cursive;
+      line-height: 0;
+      @include font-size(13px, 50px);
       margin-left: 15px;
+      -webkit-text-stroke-color: #ad1677;
+      -webkit-text-stroke-width: 1px;
+      color: transparent;
+      opacity: 0.7;
 
-      @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
-        @include flexbox($direction: column, $alignItems: center, $justifyContent: start, $grow: 1);
+    }
+  }
+
+  /* Description */
+  .honeymoon_description {
+    position: fixed;
+    top: 1%;
+    width: 100vw;
+    height: 30vh;
+    z-index: 250;
+
+    .honeymoon_description--wrapper {
+      font-family: "EB Garamond", serif;
+      font-size: 2.5vmin;
+
+      padding: 20px;
+      margin-right: 50px;
+      margin-left: 50px;
+      background-color: white;
+      text-align: center;
+
+      .paragraph_one {
+        background-image: linear-gradient(262deg, #7a6dab 0%, #9733ff 50%, #ff0054 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 0;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        @include font-size(15px, 25px);
       }
 
-      &--title {
-        font-family: Canela;
-        font-size: 40px;
-        -webkit-text-stroke-color: #c3c2c0;
-        -webkit-text-stroke-width: 0.5px;
-        color: transparent;
-        opacity: 0.7;
-        text-align: center;
+      .paragraph_two {
+        background-image: linear-gradient(262deg, #db6500 0%, #7a2525 50%, #76acdb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        padding: 0;
+        @include font-size(13px, 20px);
       }
 
-      &--subtitle {
-        color: map-get(map-get($palettes, darkblue), base);
-        margin-top: 20px;
-        font-family: FoundersGroteskLight;
-
-        @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
-          font-size: small;
-        }
+      .paragraph_three {
+        background-image: linear-gradient(262deg, #4ea3db 0%, #5d7a30 50%, #db6349 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        padding: 0;
+        @include font-size(13px, 20px);
       }
-
-      &--ibandetails {
-        font-family: FoundersGroteskLight;
-        color: map-get(map-get($palettes, darkblue), base);
-        margin-top: 30px;
-        font-size: 25px;
-
-        @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
-          font-size: 19px;
-        }
-
-      }
-
     }
 
   }
+
+  /* IBAN */
+  .honeymoon_IBAN {
+    position: absolute;
+    bottom: 1%;
+    width: 100vw;
+    height: 30vh;
+    z-index: 250;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: flex-end;
+
+
+    .honeymoon_IBAN--wrapper {
+      font-family: "EB Garamond", serif;
+      font-size: 2.5vmin;
+      flex: 1;
+      width: 100%;
+
+      padding: 20px;
+      margin-right: 50px;
+      margin-left: 50px;
+      background-color: white;
+      text-align: center;
+
+      .paragraph_one {
+        background-image: linear-gradient(262deg, #7a6dab 0%, #9733ff 50%, #ff0054 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding: 0;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        @include font-size(15px, 25px);
+      }
+
+      .paragraph_two {
+        background-image: linear-gradient(262deg, #db6500 0%, #7a2525 50%, #76acdb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        padding: 0;
+        @include font-size(13px, 20px);
+      }
+
+      .paragraph_three {
+        background-image: linear-gradient(262deg, #4ea3db 0%, #5d7a30 50%, #db6349 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        padding: 0;
+        @include font-size(13px, 20px);
+      }
+    }
+
+  }
+
 }
+
+
 

@@ -55,50 +55,101 @@
         </div>
     </div>
 
-    <!-- Registry -->
     <div class="registry">
         <div class="close">
             <i id="registry-close--icon" class="fa fa-times"></i>
         </div>
-        <div class="registry-wrapper">
-            <div class="image-stack">
-                <div id="clickme">
-                    <div data-translatable="">
-                        <h3>click me</h3>
-                        <h3>clica aqui</h3>
-                    </div>
-                    <img src="../static/img/arrow.png" alt="arrow"/>
+        <canvas id="scribble_canvas"></canvas>
+        <img src="../static/img/stack-2.png" id="garden_img"/>
+        <img src="../static/img/stack-3.png" id="saloon_img"/>
+        <div class="bg_random">
+            <div data-translatable>
+                <div class="random_text">
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+                    <p>honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon honeymoon</p>
+
                 </div>
-                <figure class="stack stack-fanout">
-                    <img src="../static/img/stack-2.png" alt="img03"/>
-                    <img src="../static/img/stack-3.png" alt="img04"/>
-                    <img src="../static/img/stack-1.jpg" alt="img01"/>
-                </figure>
-            </div>
-            <div class="text">
-                <span class="text--title" data-translatable>Our honey fund // A nossa lua-de-mel</span>
-                <div data-translatable>
-                    <div class="text--subtitle">
-                        <p>We are honoured you will be there to share our special day.</p>
-                        <p>Your presence is our gift! We're lucky to already have a home full of everything we need but if you still want to get us a gift, please help us go on the honey moon of our dreams.</p>
-                        <p>We're still planning our trip, but if you want to help us please find our bank details below :)</p>
-                    </div>
-                    <div class="text--subtitle">
-                        <p>Estamos bastante gratos por estares connosco no nosso melhor dia de sempre!</p>
-                        <p>A tua presença já é uma dádiva. Nós temos sorte em já ter uma casa com tudo o que precisamos mas se gostavas de nos dar algo, por favor contribui para a nossa lua-de-mel.<p>
-                        <p>Ainda estamos a planear a nossa viagem, mas se quiseres ajudar, aqui tens os nossos detalhes bancários :)</p>
-                    </div>
-                </div>
-                <div class="text--ibandetails">
-                    <div data-translatable>
-                        <div><span><b>NAME: </b>Andrew Reid</span><br/></div>
-                        <div><span><b>NOME: </b>Andrew Reid</span><br/></div>
-                    </div>
-                    <span><b>IBAN: </b>PT50 0023 0000 4556 9370 4299 4</span><br/>
-                    <span><b>SWIFT: </b>ACTVPTPL</span>
+                <div class="random_text">
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+                    <p>lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel lua-de-mel</p>
+
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="image-block">
+                <div class="image-wrap">
+                    <img src="../static/img/stack-1.jpg">
+                    <h1 class="overblock coordinates">
+                        <p class="coordinates_text">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="coord">41°22'45.2" N</span>
+                        </p>
+                        <p class="coordinates_text">
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="coord">8°27'49.8" W</span>
+                        </p>
+                    </h1>
+                </div>
+            </div>
+            <h1 class="underblock">
+                <p class="coordinates_text">
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="coord">41°22'45.2" N</span>
+                </p>
+                <p class="coordinates_text">
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="coord">8°27'49.8" W</span>
+                </p>
+            </h1>
+        </div>
+        <div class="honeymoon_description">
+            <div class="honeymoon_description--wrapper" data-translatable>
+                <div>
+                    <p class="paragraph_one"><strong>We are honoured you will be there to share our special day.</strong></p>
+                    <p class="paragraph_two">Your presence is our gift! We're lucky to already have a home full of everything we need but if you still want to get us a gift, please help us go on the honey moon of our dreams.</p>
+                    <p class="paragraph_three">We're still planning our trip, but if you want to help us please find our bank details below :)</p>
+                </div>
+                <div>
+                    <p class="paragraph_one"><strong>Estamos bastante gratos por estares connosco no nosso melhor dia de sempre!</strong></p>
+                    <p class="paragraph_two">A tua presença já é uma dádiva. Nós temos sorte em já ter uma casa com tudo o que precisamos mas se gostavas de nos dar algo, por favor contribui para a nossa lua-de-mel.<p>
+                    <p class="paragraph_three">Ainda estamos a planear a nossa viagem, mas se quiseres ajudar, aqui tens os nossos detalhes bancários :)</p>
+                </div>
+                </div>
+            </div>
+        <div class="honeymoon_IBAN">
+            <div class="honeymoon_IBAN--wrapper">
+                <div data-translatable>
+                    <div><span><b>NAME: </b>Andrew Reid</span><br/></div>
+                    <div><span><b>NOME: </b>Andrew Reid</span><br/></div>
+                </div>
+                <span><b>IBAN: </b>PT50 0023 0000 4556 9370 4299 4</span><br/>
+                <span><b>SWIFT: </b>ACTVPTPL</span>
+            </div>
+        </div>
+        <footer>
+            <div class="back_button" id="back-to-schedule__button">
+                <div class="arrow-wrap">
+                    <span class="arrow-part-1"></span>
+                    <span class="arrow-part-2"></span>
+                    <span class="arrow-part-3"></span>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <main>
@@ -153,15 +204,24 @@
 
                 <section class="story">
                     <section class="story__section">
-                        <h1 style="color: white" data-translatable>The beautiful story began in Cascais, on this bridge // A história deles começou em Cascais, nesta ponte</h1>
+                        <p class="title--text">
+                            <span class="progress_line"></span>
+                            <span class="title--text_span" data-translatable>The beautiful story began in Cascais, on this bridge // A história deles começou em Cascais, nesta ponte.</span>
+                        </p>
                     </section>
 
                     <section class="story__section">
-                        <h1 data-translatable>exactly where they decided to tie the knot. // no mesmo sítio onde decidiram dar o nó.</h1>
+                        <p class="title--text">
+                            <span class="progress_line"></span>
+                            <span class="title--text_span" data-translatable>exactly where they decided to tie the knot. // no mesmo sítio onde decidiram dar o nó.</span>
+                        </p>
                     </section>
 
                     <section class="story__section">
-                        <h1 data-translatable>And now it's time to celebrate! // E agora é altura de celebrar!</h1>
+                        <p class="title--text">
+                            <span class="progress_line"></span>
+                            <span class="title--text_span" data-translatable>And now it's time to celebrate! // E agora é altura de celebrar!</span>
+                        </p>
                     </section>
                 </section>
 

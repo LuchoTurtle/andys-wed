@@ -6,6 +6,7 @@ import {gsap} from 'gsap';
 export default class Storyline {
     /**
      * Initiates the storyline experience.
+     * @param gsap Modified GSAP object.
      * @param scrolltrigger ScrollTrigger object.
      * @param body HTML body element.
      * @param navbar HTML navbar element.
@@ -13,7 +14,8 @@ export default class Storyline {
      * @param menu_links HTML navbar menu link elements.
      * @param isDayTime boolean to switch up to day-time or night-time colors
      */
-    constructor(scrolltrigger, body, navbar, texts, menu_links, isDayTime) {
+    constructor(gsap, scrolltrigger, body, navbar, texts, menu_links, isDayTime) {
+        this.gsap = gsap;
         this.scrollTrigger = scrolltrigger;
         this.navbar = navbar;
         this.body = body;
@@ -45,8 +47,25 @@ export default class Storyline {
 
         // Opacity of each text in each story line section
         this.texts.forEach((section) => {
-            const h = section.querySelector('h1');
+            const h = section.querySelector('.title--text');
 
+            const line = section.querySelector('.progress_line');
+
+            // Line progress
+            this.gsap.from(line, {
+                scrollTrigger: {
+                    trigger: section,
+                    scrub: true,
+                    pin: true,
+                    start: "top top",
+                    end: "+=100%"
+                },
+                scaleX: 0,
+                transformOrigin: "left center",
+                ease: "none"
+            });
+
+            // Opacity
             this.scrollTrigger.create({
                 trigger: section,
                 start: "top top",

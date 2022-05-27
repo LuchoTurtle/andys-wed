@@ -29,6 +29,10 @@
       height: 100% ;
       width: 3px;
     }
+
+    @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+      display:  none;
+    }
   }
 
 

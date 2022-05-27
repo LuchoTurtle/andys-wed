@@ -71,7 +71,7 @@ const body = document.body;
 const navbar = document.body.getElementsByClassName("navbar");
 const texts = [...document.getElementsByClassName("story__section")];
 const menu_links = [...document.getElementsByClassName("menu__link")];
-new Storyline(scroll_trigger, body, navbar, texts, menu_links, isDayTime);
+new Storyline(gsap, scroll_trigger, body, navbar, texts, menu_links, isDayTime);
 
 const progress_bar = document.querySelector('.progress-bar');
 const sub_menus = document.getElementsByClassName("menu-container_submenu");

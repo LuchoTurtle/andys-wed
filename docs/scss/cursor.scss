@@ -1,0 +1,28 @@
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+
+  // Don't show cursor on mobile devices
+  @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+    display: none !important
+  }
+}
+
+
+.cursor--small {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 3px;
+  border-radius: 50%;
+  z-index: 12000;
+  border: .1px solid map-get($palettes, orange);
+}
+
+.cursor--canvas {
+  width: 100vw;
+  height: 100vh;
+  z-index: 13000;
+}

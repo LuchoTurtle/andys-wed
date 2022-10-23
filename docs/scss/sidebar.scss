@@ -1,0 +1,152 @@
+@import 'utils/vars';
+
+.navbar {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  font-family: Chapaza;
+  background-color: map-get(map-get($palettes, yellow), light);
+  font-size: 1.15em;
+
+  @media (max-width: map-get($breakpoints, breakpoint-mobileL)) {
+    font-size: 1em;
+  }
+
+  @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+    width: map-get($sidebar, width);
+    height: 100%;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    background-color: map-get(map-get($palettes, red), base);
+    height: 3px ;
+    width: 100%;
+    position: fixed;
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      height: 100% ;
+      width: 3px;
+    }
+
+    @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+      display:  none;
+    }
+  }
+
+
+  /* Nav */
+  nav {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    @include flexbox($direction: column);
+  }
+
+  .menu-container {
+    flex: 1;
+    @include flexbox($direction: row, $alignItems: center, $justifyContent: center, $grow: 1);
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      @include flexbox($direction: column, $alignItems: center, $justifyContent: center, $grow: 1);
+    }
+  }
+
+  .menu-container_submenu {
+    width: 100%;
+    height: 100%;
+    @include flexbox($alignItems: center, $justifyContent: center, $grow: 1);
+    flex: 1;
+  }
+
+  /* Menu animation */
+  /* Menu styles */
+  .menu__item {
+    display: block;
+    margin: 0 1em;
+  }
+
+  .menu__link {
+    position: relative;
+    margin: 0 1em;
+    padding-right: 0;
+    padding-left: 0;
+    color: #b5b5b5;
+    -webkit-transition: color 0.4s;
+    transition: color 0.4s;
+    text-decoration: none;
+    cursor: none;
+
+    // Rotating on all browsers
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    filter: none;
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    }
+  }
+
+  .menu__item--current .menu__link,
+  .menu__item--current .menu__link:hover,
+  .menu__item--current .menu__link:focus {
+    color: map-get(map-get($palettes, red), dark);
+  }
+
+  .menu__item--current .menu__link::after,
+  .menu__item--current .menu__link::before {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  .menu__item--current .menu__link::before {
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+
+  .menu__link:hover,
+  .menu__link:focus {
+    color: #b5b5b5;
+  }
+
+  .menu__link:hover::before,
+  .menu__link:focus::before {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+
+  .menu__link::before,
+  .menu__link::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    -webkit-transform: scale3d(0, 1, 1);
+    transform: scale3d(0, 1, 1);
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+    -webkit-transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .menu__link::before {
+    background: #b5b5b5;
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+  }
+
+  .menu__link::after {
+    background: map-get(map-get($palettes, red), dark);
+  }
+}

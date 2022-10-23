@@ -1,0 +1,101 @@
+// Credits to go https://codepen.io/futenma/pen/oNxrWYe
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.scroll-down {
+  bottom: 0;
+  height: 100px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  font-family: 'Roboto', sans-serif;
+}
+
+.scroll-down-text {
+  color: #d8d8d8;
+  font-weight: bold;
+}
+
+.scroll-down-bar {
+  background: #d8d8d8;
+  bottom: 0;
+  display: inline-block;
+  height: 65px;
+  left: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  width: 2px;
+}
+
+.scroll-down-bar::before {
+  animation: scrollDown 1.5s infinite;
+  background: #ab987a;
+  content: '';
+  display: inline-block;
+  height: 35px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  z-index: 1;
+}
+
+@-moz-keyframes scrollDown {
+  0% {
+    transform: translate3d(0, -32px, 0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    animation-timing-function: ease-in;
+    transform: translate3d(0, 65px, 0);
+  }
+}
+@-webkit-keyframes scrollDown {
+  0% {
+    transform: translate3d(0, -32px, 0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    animation-timing-function: ease-in;
+    transform: translate3d(0, 65px, 0);
+  }
+}
+
+@-o-keyframes scrollDown {
+  0% {
+    transform: translate3d(0, -32px, 0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    animation-timing-function: ease-in;
+    transform: translate3d(0, 65px, 0);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translate3d(0, -32px, 0);
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    animation-timing-function: ease-in;
+    transform: translate3d(0, 65px, 0);
+  }
+}

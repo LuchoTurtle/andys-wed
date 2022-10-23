@@ -1,0 +1,35 @@
+$palettes: (
+        darkblue: (
+                base: #264653,
+                light: #677e87
+        ) ,
+        darkcyan: (
+                base: #2A9D8F,
+                light: #A0E7E5
+        ),
+        yellow: (
+                base: #E9C46A,
+                light: #FBE7C6,
+        ),
+        darkgreen: (
+                base: #284135,
+                light: #53675d
+        ),
+        orange: #F4A261,
+        red: (
+                base: #E76F51,
+                dark: #d94f5c,
+        )
+);
+
+$breakpoints: (
+        breakpoint-laptop: 1024px,
+        breakpoint-tablet: 768px,
+        breakpoint-mobileL: 425px,
+        breakpoint-mobileS: 320px
+);
+
+$sidebar: (
+        width: 60px,
+)
+

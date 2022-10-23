@@ -1,0 +1,77 @@
+@import 'utils/mixins';
+@import 'utils/vars';
+@import 'utils/font';
+@import 'cursor';
+@import 'sidebar';
+@import 'story';
+@import 'hero';
+@import 'date-invite';
+@import 'gallery';
+@import 'venue';
+@import 'rsvp';
+@import 'scroll-down';
+@import 'registry';
+
+@import 'loading_transition';
+
+body {
+    margin: 0;
+    background-color: map-get(map-get($palettes, yellow), light);
+    cursor: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* Content ------------- */
+.content {
+    margin-left: 0;
+    overflow-y: unset !important;
+
+    @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+        margin-left: map-get($sidebar, width);
+    }
+
+    .content-body {
+        width: 100vw;
+
+        @media (min-width: map-get($breakpoints, breakpoint-tablet)) {
+            width: calc(100vw - #{map-get($sidebar, width)});
+        }
+    }
+}
+
+main {
+    position: absolute;
+    z-index: 1;
+}
+
+
+
+/* Three.js */
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    z-index: -1;
+    display: block;
+}
+
+/* Needed for dat.GUI */
+.dg.ac {
+    z-index: 1000 !important;
+}
+
+/* Hide scrollbar thumb */
+.c-scrollbar_thumb {
+    display: none
+}
+
+/* To fix the FOUC */
+html {
+    visibility: visible;
+    opacity: 1;
+}

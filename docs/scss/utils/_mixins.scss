@@ -1,0 +1,81 @@
+/**
+* FLEXBOX
+* A mixin to rule complex flexbox layout
+* @author nicolacastellanidev@gmail.com
+* https://dev.to/nicolalc/a-mixin-to-rule-them-all-flexbox-driven-layout-mixin-1h43
+*/
+@mixin flexbox(
+  $display: flex,
+  $direction: row,
+  $placeContent: null,
+  $placeItems: null,
+  $wrap: nowrap,
+  $shrink: 0,
+  $grow: 0,
+  $alignContent: null,
+  $justifyContent: null,
+  $alignItems: null,
+  $justifyItems: null) {
+
+  display: $display;
+  flex-direction: $direction;
+
+  @if $placeContent == null {
+    @if $alignContent   { align-content: $alignContent; }
+    @if $justifyContent { justify-content: $justifyContent; }
+  } @else {
+    place-content: $placeContent;
+  }
+
+  @if $placeItems == null {
+    @if $alignItems   { align-items: $alignItems; }
+    @if $justifyItems { justify-items: $justifyItems; }
+  } @else {
+    place-items: $placeItems;
+  }
+
+  flex-wrap: $wrap;
+  flex-shrink: $shrink;
+  flex-grow: $grow;
+}
+
+// --------------------------------
+
+// ==============================
+// Font size mixin
+// from https://codepen.io/jakob-e/pen/yVyYzv
+// ==============================
+
+//  default font scale bounding
+$font-lock-min:  400px !default;
+$font-lock-max: 1000px !default;
+
+//  font-size
+@mixin font-size(
+  $min,                         // font-size
+  $max: null,                   // optional maximum font size
+  $lock-min: $font-lock-min,  // optional minimum viewport width
+  $lock-max: $font-lock-max   // optional maximum viewport width
+){
+  & { font-size: $min; }
+  @if $max {
+    @media (min-width: $lock-min) {
+      & {
+        font-size: calc(
+                #{$min} +
+                #{num($max) - num($min)} *
+                (100vw - #{$lock-min}) /
+                #{num($lock-max) - num($lock-min)}
+        );
+      }
+    }
+    @media (min-width: $lock-max){
+      & { font-size: $max; }
+    }
+  }
+}
+
+//  strip units helper function
+@function num($input){
+  @return $input/($input * 0 + 1);
+}

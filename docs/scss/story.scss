@@ -1,0 +1,95 @@
+@import 'utils/vars';
+
+.progress_line {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  position: relative;
+  display: inline-block;
+  background-color: rgba(255,255,255,1);
+  transform-origin: left center;
+}
+
+.story {
+
+    .title--text_span {
+      line-height: initial;
+      color: black;
+    }
+
+    section {
+      height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    &__section {
+      font-family: "Story", serif;
+    }
+
+    :nth-child(1) {
+      .title--text {
+        opacity: 0;
+        margin: 28vh auto auto 9vw;
+        text-align: right;
+        font-weight: 100;
+      };
+
+      .title--text_span {
+        line-height: initial;
+        color: whitesmoke;
+      }
+
+      @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+        .title--text {
+          margin: auto;
+          text-align: center;
+        }
+      }
+    }
+
+    :nth-child(2) {
+      .title--text {
+        opacity: 0;
+        margin: auto 7vw 23vh auto;
+        text-align: left;
+        font-weight: 100;
+      };
+
+      .title--text_span {
+        line-height: initial;
+        color: black;
+      }
+
+      .progress_line {
+        background-color: black;
+      }
+
+      @media (max-width: map-get($breakpoints, breakpoint-tablet)) {
+        .title--text {
+          margin: auto;
+          text-align: center;
+        }
+      }
+    }
+
+    :nth-child(3) {
+      .title--text {
+        opacity: 0;
+        margin: auto;
+        text-align: center;
+        font-weight: 100;
+      };
+
+      .title--text_span {
+        line-height: initial;
+        color: black;
+      }
+
+      .progress_line {
+        background-color: black;
+      }
+    }
+
+
+}

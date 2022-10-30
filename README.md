@@ -2,7 +2,7 @@
 
 Wedding website/experience made for Madalena and Andrew's special day.
 
-Created with Three.js, GSAP and Sass. You can find a live demo [here](https://mandylena.pt/).
+Created with Three.js, GSAP and Sass. You can find a live demo [here](https://luchoturtle.github.io/andys-wed/).
 
 Illustrations by [Vicente Sampaio](https://vicentesampaio.hotglue.me/start).
 

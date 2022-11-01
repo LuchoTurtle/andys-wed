@@ -1,4 +1,18 @@
-# Mandylena's Wed
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img alt="logo" width="40%" src="https://user-images.githubusercontent.com/17494745/199332105-3849c637-acb0-4e42-bab8-83edb271f61c.png">
+  </a>
+
+  <h3 align="center">Mandylena's Wed</h3>
+
+  <p align="center">
+   Andrew and Madalena got married. Here's their site.
+    <br />
+    <a href="https://luchoturtle.github.io/andys-wed/">View Site</a>
+  </p>
+</div>
+
+</br>
 
 Wedding website/experience made for Madalena and Andrew's special day.
 

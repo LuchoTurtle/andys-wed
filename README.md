@@ -7,8 +7,6 @@
 
   <p align="center">
    Andrew and Madalena got married. Here's their site.
-    <br />
-    <a href="https://luchoturtle.github.io/andys-wed/">View Site</a>
   </p>
 </div>
 

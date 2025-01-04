@@ -21,7 +21,7 @@ Illustrations by [Vicente Sampaio](https://vicentesampaio.hotglue.me/start).
 
 ## :hatching_chick: Getting Started
 
-As simple as it can be. To run locally, just use `npm` or `yarn`, as you do.
+To run locally, just use `npm` or `yarn`, as you do.
 
 ```
 npm run dev
